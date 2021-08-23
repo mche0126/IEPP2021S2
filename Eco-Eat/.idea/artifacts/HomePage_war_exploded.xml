@@ -1,0 +1,24 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="HomePage:war exploded">
+    <output-path>$PROJECT_DIR$/HomePage/HomePage/HomePage/target/HomePage</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>HomePage</module>
+        <packaging>war</packaging>
+        <unpackNestedArchives>false</unpackNestedArchives>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="HomePage" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/HomePage/HomePage/HomePage/target/HomePage/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="HomePage/web/Web" />
+    </root>
+  </artifact>
+</component>
