@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="styles/general.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="scripts/tips.js"></script>
 </head>
 <body>
 
@@ -34,9 +35,9 @@
             <div class="card text-center text-white bg-info mb-3" style="max-width: 28rem; height:150px;">
                 <div class="card-body">
                     <div style="height: 20px"></div>
-                    <h5 class="card-title">Panel title</h5>
-                    <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the panel's content.</p>
-                    <a class="card-link">Card link</a>
+                    <h5 class="card-title" style="font-weight: bold;">Guidelines for a vegan lifestyle</h5>
+                    <p class="card-text">Learn some rules and guidelines to adopt a vegan lifestyle.</p>
+                    <a href="#" class="btn btn-sm btn-primary" onclick="showInfo1()">Learn more</a>
                 </div>
             </div>
         </div>
@@ -44,9 +45,9 @@
             <div class="card text-center text-white bg-info mb-3" style="max-width: 28rem; height:150px;">
                 <div class="card-body">
                     <div style="height: 20px"></div>
-                    <h5 class="card-title">Panel title</h5>
-                    <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the panel's content.</p>
-                    <a class="card-link">Card link</a>
+                    <h5 class="card-title" style="font-weight: bold;">Nutrition: what you need to know</h5>
+                    <p class="card-text">Nutritional facts and things to remember when choosing vegan.</p>
+                    <a href="#" class="btn btn-sm btn-primary" onclick="showInfo2()">Learn more</a>
                 </div>
             </div>
         </div>
@@ -54,14 +55,71 @@
             <div class="card text-center text-white bg-info mb-3" style="max-width: 28rem; height:150px;">
                 <div class="card-body">
                     <div style="height: 20px"></div>
-                    <h5 class="card-title">Panel title</h5>
-                    <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the panel's content.</p>
-                    <a class="card-link">Card link</a>
+                    <h5 class="card-title" style="font-weight: bold;">Daily nutrient requirements</h5>
+                    <p class="card-text">Learn about requirements you need to take care to consume.</p>
+                    <a href="#" class="btn btn-sm btn-primary" onclick="showInfo3()">Learn more</a>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="row" style="height: 100px;"></div>
+    <div id="info-1" class="row" style="display: none;">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            TEXT 1<br>
+            Vegans enjoy an abundance of flavorful food choices. Everywhere you look, you’ll find more vegan foods to try.
+            The easiest option is, of course, ready-to-eat foods. Sure, some of these foods are unhealthy indulgences. But you’ve got plenty of wonderfully healthy choices too. Please check out our long list of the world’s easiest vegan foods.
+            Sandwiches occupy a mid-point between convenience foods and actual cooking. You can make vegan sandwiches in thousands of healthy varieties. Buy large whole-grain tortillas and you can also turn any sandwich idea into a wrap.
+            Going vegan doesn’t mean giving up favorites like burgers, cream cheese, or yogurt. Dozens of companies make delicious vegan versions of these foods. The same goes for desserts. Vegan ice creams are marvelous and sold everywhere. And the best brownie and the best cookie I’ve ever eaten were both vegan.
+            If you enjoy alcohol, many of the world’s best wines and beers are vegan. And the vast majority of distilled spirits are vegan too.
+            You can master the basics of vegan cooking in no time. Just read our vegan cooking guide.
+            Many vegan meals take just minutes to prepare. Your first vegan cookbook should specialize in quick and easy recipes. You can later move on to more sophisticated meals.
+            As your cooking skills develop, your options increase. You can choose from hundreds of vegan cookbooks that collectively cover every conceivable cooking niche. Consider buying one specifically devoted to your favorite cuisine.
+            You can also go deep into any branch of vegan cooking that interests you. Maybe it’s desserts or Instant Pot recipes. There are even cookbooks focused entirely on vegan meats and cheeses.
+            Once vegan cooking becomes second nature, why not commit to going vegan at home? This move requires practically no effort, since you have total control over which foods you bring into your kitchen. Yet this simple commitment puts you a giant step closer to going entirely vegan.
+
+        </div>
+        <div class="col-sm-4"></div>
+       </div>
+
+    <div id="info-2" class="row" style="display: none;">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            TEXT 2<br>
+            Vegans enjoy an abundance of flavorful food choices. Everywhere you look, you’ll find more vegan foods to try.
+            The easiest option is, of course, ready-to-eat foods. Sure, some of these foods are unhealthy indulgences. But you’ve got plenty of wonderfully healthy choices too. Please check out our long list of the world’s easiest vegan foods.
+            Sandwiches occupy a mid-point between convenience foods and actual cooking. You can make vegan sandwiches in thousands of healthy varieties. Buy large whole-grain tortillas and you can also turn any sandwich idea into a wrap.
+            Going vegan doesn’t mean giving up favorites like burgers, cream cheese, or yogurt. Dozens of companies make delicious vegan versions of these foods. The same goes for desserts. Vegan ice creams are marvelous and sold everywhere. And the best brownie and the best cookie I’ve ever eaten were both vegan.
+            If you enjoy alcohol, many of the world’s best wines and beers are vegan. And the vast majority of distilled spirits are vegan too.
+            You can master the basics of vegan cooking in no time. Just read our vegan cooking guide.
+            Many vegan meals take just minutes to prepare. Your first vegan cookbook should specialize in quick and easy recipes. You can later move on to more sophisticated meals.
+            As your cooking skills develop, your options increase. You can choose from hundreds of vegan cookbooks that collectively cover every conceivable cooking niche. Consider buying one specifically devoted to your favorite cuisine.
+            You can also go deep into any branch of vegan cooking that interests you. Maybe it’s desserts or Instant Pot recipes. There are even cookbooks focused entirely on vegan meats and cheeses.
+            Once vegan cooking becomes second nature, why not commit to going vegan at home? This move requires practically no effort, since you have total control over which foods you bring into your kitchen. Yet this simple commitment puts you a giant step closer to going entirely vegan.
+
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+
+    <div id="info-3" class="row" style="display: none;">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            TEXT 3<br>
+            Vegans enjoy an abundance of flavorful food choices. Everywhere you look, you’ll find more vegan foods to try.
+            The easiest option is, of course, ready-to-eat foods. Sure, some of these foods are unhealthy indulgences. But you’ve got plenty of wonderfully healthy choices too. Please check out our long list of the world’s easiest vegan foods.
+            Sandwiches occupy a mid-point between convenience foods and actual cooking. You can make vegan sandwiches in thousands of healthy varieties. Buy large whole-grain tortillas and you can also turn any sandwich idea into a wrap.
+            Going vegan doesn’t mean giving up favorites like burgers, cream cheese, or yogurt. Dozens of companies make delicious vegan versions of these foods. The same goes for desserts. Vegan ice creams are marvelous and sold everywhere. And the best brownie and the best cookie I’ve ever eaten were both vegan.
+            If you enjoy alcohol, many of the world’s best wines and beers are vegan. And the vast majority of distilled spirits are vegan too.
+            You can master the basics of vegan cooking in no time. Just read our vegan cooking guide.
+            Many vegan meals take just minutes to prepare. Your first vegan cookbook should specialize in quick and easy recipes. You can later move on to more sophisticated meals.
+            As your cooking skills develop, your options increase. You can choose from hundreds of vegan cookbooks that collectively cover every conceivable cooking niche. Consider buying one specifically devoted to your favorite cuisine.
+            You can also go deep into any branch of vegan cooking that interests you. Maybe it’s desserts or Instant Pot recipes. There are even cookbooks focused entirely on vegan meats and cheeses.
+            Once vegan cooking becomes second nature, why not commit to going vegan at home? This move requires practically no effort, since you have total control over which foods you bring into your kitchen. Yet this simple commitment puts you a giant step closer to going entirely vegan.
+
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
 </div>
 
 
