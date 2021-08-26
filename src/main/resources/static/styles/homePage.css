@@ -2,9 +2,11 @@
 
 /* Slideshow container */
 .slideshow-container {
-    width: 1000px;
+    width: 900px;
+    height: auto;
     position: relative;
     margin: auto;
+    border: 2px solid black;
 }
 
 /* Hide the images by default */
