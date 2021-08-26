@@ -1,12 +1,15 @@
 #logo {
-    height:70px;
-    width:160px;
+    height:85px;
+    width: auto;
 }
 
-#main-header {
-    background-color: #9ADEA1;
+#main-header a{
+    /*background-color: #9ADEA1;*/
     border: none;
-    height:80px;
+    height:auto;
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
 }
 
 #home-pic1 {
