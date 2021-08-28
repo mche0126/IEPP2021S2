@@ -5,10 +5,17 @@
 
 #main-header a{
     /*background-color: #9ADEA1;*/
+    background-color: rgba(0,0,0,0);
     border: none;
     height:auto;
     text-decoration: none;
     color: black;
     font-weight: bolder;
+}
+
+.nav-active:hover {
+    background-color: #8AFF8A;
+    transition: font-size 1s;
+    font-size: 20px;
 }
 
