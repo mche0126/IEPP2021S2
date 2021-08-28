@@ -11,6 +11,9 @@
     text-decoration: none;
     color: black;
     font-weight: bolder;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: 'Permanent Marker', cursive;
 }
 
 .nav-active:hover {
