@@ -34,8 +34,22 @@
     </div>
 </nav>
 
+<!-- Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="banner">
+                <div style="padding-top: 30px;">With our carbon emissions calculator, find out about carbon emissions from food items!</div>
+            </div>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>
+
 <!-- Accept user input for food item to view emission details.-->
 <div class="container">
+
     <div class="row" style="margin-top: 175px;">
 
         <form action="#" th:action="@{/emissions}" th:object="${foodItem}" method="post">
