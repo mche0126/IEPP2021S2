@@ -114,6 +114,7 @@
 
 <script th:inline="javascript">
     <!--        get data from html-->
+
     /*<![CDATA[*/
 
     var response = [[${response}]];
@@ -121,9 +122,30 @@
 
     /*]]>*/;
 
+    response.delete("calcium")
+    response.delete("calories")
+    response.delete("category")
+    response.delete("chole_sterol")
+    response.delete("dietaryFiber")
     response.delete("emissionsTotal");
     response.delete("waterUsed");
     response.delete("landUsed");
+    response.delete("food")
+    response.delete("id")
+    response.delete("iron")
+    response.delete("keyWords")
+    response.delete("landUsed")
+    response.delete("potassium")
+    response.delete("protein")
+    response.delete("saturatedFat")
+    response.delete("sodium")
+    response.delete("sugars")
+    response.delete("totalCarbohydrate")
+    response.delete("totalFat")
+    response.delete("vitaminA")
+    response.delete("vitaminC")
+    response.delete("waterUsed")
+
 
     var values = Object.values(response),
         keys = Object.keys(response);
