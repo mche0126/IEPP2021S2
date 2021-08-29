@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Emissions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/styles/tips.css">
+    <link rel="stylesheet" href="styles/general.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="scripts/tips.js"></script>
+
+    <!--    font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+<nav id="main-header" class="navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <img id="logo" src="images/eco-eat-logo.png"/>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-active"><a href=..>Home</a></li>
+            <li class="nav-active"><a href="/tips">Tips</a></li>
+            <li class="nav-active" style="text-decoration: underline"><a href="/emissions">Emissions</a></li>
+        </ul>
+
+    </div>
+</nav>
+
+<!-- Accept user input for food item to view emission details.-->
+<div class="container">
+    <div class="row" style="margin-top: 175px;">
+
+        <form action="#" th:action="@{/emissions}" th:object="${foodItem}" method="post">
+            <p>Enter the food item: <input type="text" th:field="*{foodName}" /></p>
+            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

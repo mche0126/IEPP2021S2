@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tips</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/styles/tips.css">
+    <link rel="stylesheet" href="styles/general.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!--    font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<nav id="main-header" class="navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <img id="logo" src="images/eco-eat-logo.png"/>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-active"><a href=..>Home</a></li>
+            <li class="nav-active"><a href="/tips">Tips</a></li>
+            <li class="nav-active" style="text-decoration: underline"><a href="/emissions">Emissions</a></li>
+        </ul>
+
+    </div>
+</nav>
+<!--Display food emission details in a table from model attribute foodItem. -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8"><h2 th:text="'Emissions for ' + ${foodItem.foodName}"></h2></div>
+        <div class="col-sm-2"></div>
+    </div>
+    <br><br>
+    <div class="row">
+        <table class="table">
+
+            <tbody>
+                <tr class="table-success" >
+                    <div class="col-sm-2"></div>
+                    <td class="col-sm-4">Land use</td>
+                    <td class="col-sm-4" th:text="${response.emissionsLandUse} + ' kg'"></td>
+                    <div class="col-sm-2"></div>
+                </tr>
+                <tr class="table-info">
+                    <div class="col-sm-2"></div>
+                    <td class="col-sm-4">Farm use</td>
+                    <td class="col-sm-4" th:text="${response.emissionsFarm} + ' kg'"></td>
+                    <div class="col-sm-2"></div>
+                </tr>
+                <tr class="table-success">
+                    <div class="col-sm-2"></div>
+                    <td class="col-sm-4">Processing</td>
+                    <td class="col-sm-4" th:text="${response.emissionsProcessing} + ' kg'"></td>
+                    <div class="col-sm-2"></div>
+                </tr>
+                <tr class="table-info">
+                    <div class="col-sm-2"></div>
+                    <td class="col-sm-4">Transport</td>
+                    <td class="col-sm-4" th:text="${response.emissionsTransport} + ' kg'"></td>
+                    <div class="col-sm-2"></div>
+                </tr>
+                <tr class="table-success">
+                    <div class="col-sm-2"></div>
+                    <td class="col-sm-4">Retail</td>
+                    <td class="col-sm-4" th:text="${response.emissionsRetail} + ' kg'"></td>
+                    <div class="col-sm-2"></div>
+                </tr>
+                <tr class="table-info">
+                    <div class="col-sm-2"></div>
+                    <td class="col-sm-4">Packaging</td>
+                    <td class="col-sm-4" th:text="${response.emissionsPackaging} + ' kg'"></td>
+                    <div class="col-sm-2"></div>
+                </tr>
+                <tr class="table-success">
+                    <div class="col-sm-2"></div>
+                    <td class="col-sm-4">Total emissions</td>
+                    <td class="col-sm-4" th:text="${response.emissionsTotal} + ' kg'"></td>
+                    <div class="col-sm-2"></div>
+                </tr>
+                <tr class="table-info">
+                    <div class="col-sm-2"></div>
+                    <td class="col-sm-4">Water used</td>
+                    <td class="col-sm-4" th:text="${response.waterUsed} + ' L'"></td>
+                    <div class="col-sm-2"></div>
+                </tr>
+                <tr class="table-success">
+                    <div class="col-sm-2"></div>
+                    <td class="col-sm-4">Land used</td>
+                    <td class="col-sm-4" th:text="${response.landUsed} + ' m2'"><sup>2</sup></td>
+                    <div class="col-sm-2"></div>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>
