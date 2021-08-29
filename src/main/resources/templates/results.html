@@ -111,7 +111,7 @@
         </table>
     </div>
 </div>
-<div id = "barChart"></div>
+<div id = "barChart" style="border: black solid 2px"></div>
 
 <script th:inline="javascript">
     <!--        get data from html-->
@@ -120,8 +120,9 @@
 
     var response = [[${response}]];
     console.log(response);
+    console.log(typeof response)
 
-    /*]]>*/;
+    /*]]>*/
 
     response.delete("calcium")
     response.delete("calories")
