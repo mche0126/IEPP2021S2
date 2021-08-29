@@ -51,11 +51,19 @@
 <div class="container">
 
     <div class="row" style="margin-top: 175px;">
-
         <form action="#" th:action="@{/emissions}" th:object="${foodItem}" method="post">
-            <p>Enter the food item: <input type="text" th:field="*{foodName}" /></p>
-            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+            <div class="form-group row">
+                <label for="food" class="col-sm-2 col-form-label">Enter the food item:</label>
+                <div class="col-sm-2">
+                    <input id="food" type="text" th:field="*{foodName}" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2"><input type="submit" class="btn btn-primary" value="Calculate" /></div>
+            </div>
         </form>
+
 
     </div>
 </div>
