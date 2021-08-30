@@ -147,7 +147,6 @@
     delete response.vitaminA;
     delete response.vitaminC;
     delete response.waterUsed;
-    delete response.From;
 
 
     var values = Object.values(response),
@@ -155,6 +154,7 @@
     let data = [],
         maximum = 0;
     for (let i = 0; i< 6; i++){
+        console.log(typeof values[i])
         if (values[i] > maximum) {maximum = values[i];}
         data[i] = {name : keys[i], score : values[i]}
     }
@@ -187,15 +187,7 @@
     // set SVG
     svg
         .append("g")
-        .attr("fill", function(d){
-            if(d.name == "emissionsFarm") return "#FD0100";
-            if(d.name == "emissionsAnimalFeed") return "#F76915";
-            if(d.name == "emissionsPacking") return "#EEDE04";
-            if(d.name == "emissionsLandUse") return "#A0D636";
-            if(d.name == "emissionsProcessing") return "#2FA236";
-            if(d.name == "emissionsTransport") return "#333ED4";
-            if(d.name == "emissionsRetail") return "#add8e6";
-        })
+        .attr("fill", 'royalblue')
         .selectAll("rect")
         .data(data.sort((a, b) => d3.descending(a.score, b.score)))
         .join("rect")
