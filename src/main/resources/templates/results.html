@@ -196,6 +196,13 @@
         .attr("height", d => y(0) - y(d.score))
         .attr("width", x.bandwidth());
 
+    // add title
+    svg
+        .append("text")
+        .attr("x", width/2)
+        .attr("y", 0 - (margin.top/2))
+        .text("Emission Breakdown Bar Chart");
+
     // x Axis
     function xAxis(g) {
         g.attr("transform", `translate(0,${height - margin.bottom})`)
