@@ -119,8 +119,6 @@
     /*<![CDATA[*/
 
     var response = [[${response}]];
-    console.log(response);
-    console.log(typeof response)
 
     /*]]>*/
 
@@ -155,9 +153,8 @@
     let data = [],
         maximum = 0;
     for (let i = 0; i< 6; i++){
-        console.log(typeof values[i])
         if (values[i] > maximum) {maximum = values[i];}
-        data[i] = {name : keys[i], score : values[i]}
+        data[i] = {name : keys[i].split("emissions").pop(), score : values[i]}
     }
 
 
