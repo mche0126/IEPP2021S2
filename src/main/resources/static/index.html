@@ -1,160 +1,36 @@
 <!DOCTYPE HTML>
-<html>
+<html class="wide wow-animation" lang="en">
 <head>
     <title>Eco Eat</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/general.css">
-    <link rel="stylesheet" href="styles/homePage.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<!--    font-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Lobster&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CLato%7CKalam:300,400,700">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
+    <link rel="stylesheet" type="text/css" href="styles/loadingSpinner.css">
+
+
 <body>
-
-
-
-<!--navigation bar-->
-<nav id="main-header" class="navbar">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <!--logo image-->
-            <a href=".."><img id="logo" src="images/eco-eat-logo.png" style="float: left"/></a>
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-            <li class="nav-active" style="text-decoration: underline"><a href="#">Home</a></li>
-            <li class="nav-active"><a href="/tips">Tips</a></li>
-            <li class="nav-active"><a href="/emissions">Emissions</a></li>
-        </ul>
+<!--Loading spinner-->
+<div class="preloader">
+    <div class='circle'>
+        <div class='inner'></div>
     </div>
-</nav>
-
-<!--Main content-->
-<!--Slide show container-->
-<div class="slideshow-container">
-<!--    first image-->
-    <div class="mySlides fade">
-        <div class="text">
-            <div class="question">
-                Did you know that agriculture contributes to 13% of Australia’s carbon emissions?
-            </div>
-            <br>
-            <div class="advice">
-                Eco-eat helps reduce the carbon emissions in your diet so you can eat eco-friendly!
-            </div>
-            <br>
-            <a href="#"><button type="button" class="btn btn-primary"
-                    style="font-family: 'Permanent Marker',cursive;
-                    float: right; margin: 2vw">Explore</button></a>
-        </div>
-        <div class="image-container">
-            <img src="images/home-slide-1.jpg" style="width:70%; height: 100%">
-        </div>
+    <div class='circle'>
+        <div class='inner'></div>
     </div>
-
-<!--second image-->
-    <div class="mySlides fade">
-        <div class="text">
-            <div class="question">
-                Want to know which food has less carbon emissions?
-            </div>
-            <br>
-            <div class="advice">
-                Go to our Calculator to find more.
-            </div>
-            <br>
-            <a href="/emissions"><button type="button" class="btn btn-primary"
-                    style="font-family: 'Permanent Marker',cursive;
-                        float: right; margin: 2vw">Read More</button></a>
-        </div>
-        <div class="image-container">
-            <img src="images/home-slide-2.jpg" style="width:70%; height: 100%">
-        </div>
+    <div class='circle'>
+        <div class='inner'></div>
     </div>
-
-<!--    third image-->
-    <div class="mySlides fade">
-        <div class="text">
-            <div class="question">
-                Considering a vegan diet?
-            </div>
-            <br>
-            <div class="advice">
-                Get advice on how to go vegan in a healthy way.
-            </div>
-            <br>
-            <a href="/tips"><button type="button" class="btn btn-primary"
-                    style="font-family: 'Permanent Marker',cursive;
-                        float: right; margin: 2vw">Read More</button></a>
-        </div>
-        <div class="image-container">
-            <img src="images/home-slide-3.jpg" style="width:70%; height: 100%">
-        </div>
+    <div class='circle'>
+        <div class='inner'></div>
     </div>
-
-<!--    fourth image-->
-    <div class="mySlides fade">
-        <div class="text">
-            <div class="question">
-                Looking for recipes that are better for the environment?
-            </div>
-            <br>
-            <div class="advice">
-                Search and compare recipes based on carbon footprint.
-            </div>
-            <br>
-            <button type="button" class="btn btn-primary"
-                    style="font-family: 'Permanent Marker',cursive;
-                        float: right; margin: 2vw">Read More</button>
-        </div>
-        <div class="image-container">
-            <img src="images/home-slide-4.jpg" style="width:70%; height: 100%">
-        </div>
+    <div class='circle'>
+        <div class='inner'></div>
     </div>
-
-<!--    fifth image-->
-    <div class="mySlides fade">
-        <div class="text">
-            <div class="question">
-                Want to eat out in an eco-friendly way?
-            </div>
-            <br>
-            <div class="advice">
-                Search for vegan restaurants in your area.
-            </div>
-            <br>
-            <button type="button" class="btn btn-primary"
-                    style="font-family: 'Permanent Marker',cursive;
-                        float: right; margin: 2vw">Read More</button>
-        </div>
-        <div class="image-container">
-            <img src="images/home-slide-5.jpg" style="width:70%; height: 100%">
-        </div>
-    </div>
-
-<!--     Next and previous Button   -->
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
 </div>
 
-<br>
-<!--The dots-->
-<div style="text-align: center">
-    <span class="dot" onclick="currentSlide(1)"></span>
-    <span class="dot" onclick="currentSlide(2)"></span>
-    <span class="dot" onclick="currentSlide(3)"></span>
-    <span class="dot" onclick="currentSlide(4)"></span>
-    <span class="dot" onclick="currentSlide(5)"></span>
-</div>
-
-
-<script src="scripts/homePage.js"></script>
 
 
 </body>
