@@ -1,0 +1,35 @@
+#logo {
+    height:85px;
+    width: auto;
+}
+
+#main-header a{
+    /*background-color: #9ADEA1;*/
+    background-color: rgba(0,0,0,0);
+    border: none;
+    height:auto;
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.nav-active:hover {
+    background-color: #8AFF8A;
+    transition: font-size 1s;
+    font-size: 20px;
+}
+
+.superscript{font-size:x-small; vertical-align:super;font-style:oblique}
+
+.banner {
+    height: 80px;
+    background-color: #C3EFCA;
+    text-align: center;
+    border: none;
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+}
