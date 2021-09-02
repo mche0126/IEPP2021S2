@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
 <html xmlns:th="https://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Emissions</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../static/styles/tips.css">
-    <link rel="stylesheet" href="../../static/styles/general.css">
+    <link rel="stylesheet" href="styles/tips.css">
+    <link rel="stylesheet" href="styles/general.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="../../static/scripts/tips.js"></script>
@@ -34,12 +26,12 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <!--logo image-->
-            <a href="../iteration1"><img id="logo" src="../../static/images/eco-eat-logo.png" style="float: left"/></a>
+            <a href="../iteration1"><img id="logo" src="images/eco-eat-logo.png" style="float: left"/></a>
         </div>
         <ul class="nav navbar-nav navbar-right">
             <li class="nav-active"><a href="../iteration1">Home</a></li>
-            <li class="nav-active"><a href="/tips">Tips</a></li>
-            <li class="nav-active" style="text-decoration: underline"><a href="/emissions">Emissions</a></li>
+            <li class="nav-active"><a href="tips">Tips</a></li>
+            <li class="nav-active" style="text-decoration: underline"><a href="#">Emissions</a></li>
         </ul>
 
     </div>
@@ -75,7 +67,7 @@
 <div class="container"style="margin-top: 50px;">
 
     <div class="row">
-        <form action="#" th:action="@{/emissions}" th:object="${foodItem}" method="post">
+        <form action="#" th:action="@{emissions}" th:object="${foodItem}" method="post">
             <div class="form-group row">
                 <label for="food" class="col-sm-2 col-form-label">Enter the food item:</label>
                 <div class="col-sm-2">

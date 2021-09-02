@@ -109,17 +109,20 @@ public class EcoEatApplication {
     @PostMapping("/iteration1/emissions")
     public String iteration1FoodSubmit(@ModelAttribute FoodItem foodItem, Model model) {
         model.addAttribute("foodItem", foodItem);
-        log.info(foodItem.toString());
+
         QueryFoodRequest request = new QueryFoodRequest(foodItem.getFoodName());
-        QueryFoodResponse response[] = postFoodEmissions(request);
-        log.info(response[0].toString());
+        QueryFoodResponse response[] = iteration1PostFoodEmissions(request);
+
         model.addAttribute("response", response[0]);
         return "iteration1/results";
     }
 
-    @Bean
-    public RestTemplate iteration1RestTemplate(RestTemplateBuilder builder) {
-        return builder.build();
+    @PostMapping("/iteration1/foodemissions")
+    public QueryFoodResponse[] iteration1PostFoodEmissions(@RequestBody QueryFoodRequest request) {
+
+        QueryFoodResponse response[] = restTemplate.postForObject(
+                queryFoodUrl, request, QueryFoodResponse[].class);
+        return response;
     }
 
 
