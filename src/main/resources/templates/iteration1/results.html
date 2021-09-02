@@ -6,8 +6,8 @@
     <title>Results</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/styles/tips.css">
-    <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="../../static/styles/tips.css">
+    <link rel="stylesheet" href="../../static/styles/general.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <!-- Load d3.js -->
@@ -32,10 +32,12 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <!--logo image-->
-            <a href=".."><img id="logo" src="images/eco-eat-logo.png" style="float: left"/></a>
+            <a href="../.."><img id="logo" src="../../static/images/eco-eat-logo.png" style="float: left"/></a>
         </div>
+
+<!--        Navilist-->
         <ul class="nav navbar-nav navbar-right">
-            <li class="nav-active"><a href=..>Home</a></li>
+            <li class="nav-active"><a href=../iteratio1>Home</a></li>
             <li class="nav-active"><a href="/tips">Tips</a></li>
             <li class="nav-active" style="text-decoration: underline"><a href="/emissions">Emissions</a></li>
         </ul>
@@ -43,7 +45,9 @@
     </div>
 </nav>
 
-<a href="/emissions"><button type="button" class="btn btn-primary" style="margin: 1vw">Back</button></a>
+
+<!--back button-->
+<a href="../iteration1/emissions.html"><button type="button" class="btn btn-primary" style="margin: 1vw">Back</button></a>
 
 <!--Display food emission details in a table from model attribute foodItem. -->
 <div class="container">
@@ -57,60 +61,60 @@
         <table class="table table-active">
             <caption>Emission values per 1g of food item.</caption>
             <tbody>
-                <tr class="success" >
-                    <div class="col-sm-2"></div>
-                    <td class="col-sm-4">Land use</td>
-                    <td class="col-sm-4" th:text="${response.emissionsLandUse} + ' kg'"></td>
-                    <div class="col-sm-2"></div>
-                </tr>
-                <tr class="info">
-                    <div class="col-sm-2"></div>
-                    <td class="col-sm-4">Farm use</td>
-                    <td class="col-sm-4" th:text="${response.emissionsFarm} + ' kg'"></td>
-                    <div class="col-sm-2"></div>
-                </tr>
-                <tr class="success">
-                    <div class="col-sm-2"></div>
-                    <td class="col-sm-4">Processing</td>
-                    <td class="col-sm-4" th:text="${response.emissionsProcessing} + ' kg'"></td>
-                    <div class="col-sm-2"></div>
-                </tr>
-                <tr class="info">
-                    <div class="col-sm-2"></div>
-                    <td class="col-sm-4">Transport</td>
-                    <td class="col-sm-4" th:text="${response.emissionsTransport} + ' kg'"></td>
-                    <div class="col-sm-2"></div>
-                </tr>
-                <tr class="success">
-                    <div class="col-sm-2"></div>
-                    <td class="col-sm-4">Retail</td>
-                    <td class="col-sm-4" th:text="${response.emissionsRetail} + ' kg'"></td>
-                    <div class="col-sm-2"></div>
-                </tr>
-                <tr class="info">
-                    <div class="col-sm-2"></div>
-                    <td class="col-sm-4">Packaging</td>
-                    <td class="col-sm-4" th:text="${response.emissionsPackaging} + ' kg'"></td>
-                    <div class="col-sm-2"></div>
-                </tr>
-                <tr class="success">
-                    <div class="col-sm-2"></div>
-                    <td class="col-sm-4">Total emissions</td>
-                    <td class="col-sm-4" th:text="${response.emissionsTotal} + ' kg'"></td>
-                    <div class="col-sm-2"></div>
-                </tr>
-                <tr class="info">
-                    <div class="col-sm-2"></div>
-                    <td class="col-sm-4">Water used</td>
-                    <td class="col-sm-4" th:text="${response.waterUsed} + ' L'"></td>
-                    <div class="col-sm-2"></div>
-                </tr>
-                <tr class="success">
-                    <div class="col-sm-2"></div>
-                    <td class="col-sm-4">Land used</td>
-                    <td class="col-sm-4" th:text="${response.landUsed} + ' m2'"><sup>2</sup></td>
-                    <div class="col-sm-2"></div>
-                </tr>
+            <tr class="success" >
+                <div class="col-sm-2"></div>
+                <td class="col-sm-4">Land use</td>
+                <td class="col-sm-4" th:text="${response.emissionsLandUse} + ' kg'"></td>
+                <div class="col-sm-2"></div>
+            </tr>
+            <tr class="info">
+                <div class="col-sm-2"></div>
+                <td class="col-sm-4">Farm use</td>
+                <td class="col-sm-4" th:text="${response.emissionsFarm} + ' kg'"></td>
+                <div class="col-sm-2"></div>
+            </tr>
+            <tr class="success">
+                <div class="col-sm-2"></div>
+                <td class="col-sm-4">Processing</td>
+                <td class="col-sm-4" th:text="${response.emissionsProcessing} + ' kg'"></td>
+                <div class="col-sm-2"></div>
+            </tr>
+            <tr class="info">
+                <div class="col-sm-2"></div>
+                <td class="col-sm-4">Transport</td>
+                <td class="col-sm-4" th:text="${response.emissionsTransport} + ' kg'"></td>
+                <div class="col-sm-2"></div>
+            </tr>
+            <tr class="success">
+                <div class="col-sm-2"></div>
+                <td class="col-sm-4">Retail</td>
+                <td class="col-sm-4" th:text="${response.emissionsRetail} + ' kg'"></td>
+                <div class="col-sm-2"></div>
+            </tr>
+            <tr class="info">
+                <div class="col-sm-2"></div>
+                <td class="col-sm-4">Packaging</td>
+                <td class="col-sm-4" th:text="${response.emissionsPackaging} + ' kg'"></td>
+                <div class="col-sm-2"></div>
+            </tr>
+            <tr class="success">
+                <div class="col-sm-2"></div>
+                <td class="col-sm-4">Total emissions</td>
+                <td class="col-sm-4" th:text="${response.emissionsTotal} + ' kg'"></td>
+                <div class="col-sm-2"></div>
+            </tr>
+            <tr class="info">
+                <div class="col-sm-2"></div>
+                <td class="col-sm-4">Water used</td>
+                <td class="col-sm-4" th:text="${response.waterUsed} + ' L'"></td>
+                <div class="col-sm-2"></div>
+            </tr>
+            <tr class="success">
+                <div class="col-sm-2"></div>
+                <td class="col-sm-4">Land used</td>
+                <td class="col-sm-4" th:text="${response.landUsed} + ' m2'"><sup>2</sup></td>
+                <div class="col-sm-2"></div>
+            </tr>
             </tbody>
         </table>
     </div>
