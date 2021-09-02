@@ -82,22 +82,22 @@ public class EcoEatApplication {
      */
 
 //    Homepage Mapping
-    @RequestMapping("/iteration1")
+    @GetMapping("/iteration1")
     public String viewIteration1Home(){
         return "iteration1Index";
     }
 
 //    Tips page Mapping
-    @RequestMapping("/iteration1/tips")
+    @GetMapping("/iteration1/tips")
     public String viewIteration1Tips() {
-        return "/iteration1Tips";
+        return "iteration1Tips";
     }
 
     /*
     Mapping for View emissions
  */
     @GetMapping("/iteration1/emissions")
-    public String Iteration1FoodForm(Model model) {
+    public String iteration1FoodForm(Model model) {
         model.addAttribute("foodItem", new FoodItem());
         return "iteration1Emission";
     }
