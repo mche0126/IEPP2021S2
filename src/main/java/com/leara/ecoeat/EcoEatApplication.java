@@ -84,13 +84,13 @@ public class EcoEatApplication {
 //    Homepage Mapping
     @RequestMapping("/iteration1")
     public String viewIteration1Home(){
-        return "/iteration1/index";
+        return "iteration1Index";
     }
 
 //    Tips page Mapping
     @RequestMapping("/iteration1/tips")
     public String viewIteration1Tips() {
-        return "/iteration1/tips";
+        return "/iteration1Tips";
     }
 
     /*
@@ -99,7 +99,7 @@ public class EcoEatApplication {
     @GetMapping("/iteration1/emissions")
     public String Iteration1FoodForm(Model model) {
         model.addAttribute("foodItem", new FoodItem());
-        return "iteration1/emissions";
+        return "iteration1Emission";
     }
 
     /*
@@ -114,7 +114,7 @@ public class EcoEatApplication {
         QueryFoodResponse response[] = iteration1PostFoodEmissions(request);
 
         model.addAttribute("response", response[0]);
-        return "iteration1/results";
+        return "iteration1Results";
     }
 
     @PostMapping("/iteration1/foodemissions")
