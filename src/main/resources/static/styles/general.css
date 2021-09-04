@@ -13,29 +13,4 @@
     animation-timing-function: ease-in
 }
 
-[data-x-mode] .page {
-    opacity: 1
-}
 
-
-@media(min-width:1630px) {
-    html.boxed .page {
-        max-width: 1600px;
-        margin-left: auto;
-        margin-right: auto;
-        box-shadow: 0 0 23px 0 rgba(1,1,1,.1)
-    }
-
-    html.boxed .rd-navbar-static {
-        max-width: 1600px;
-        margin-left: auto;
-        margin-right: auto
-    }
-
-    html.boxed .rd-navbar-static.rd-navbar--is-stuck {
-        max-width: 1600px;
-        width: 100%;
-        left: calc(50% - 1600px);
-        right: calc(50% - 1600px)
-    }
-}
