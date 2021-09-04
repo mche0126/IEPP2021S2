@@ -7,6 +7,7 @@
     position: relative;
     margin: auto;
     border: 2px solid black;
+    margin-top: 100px;
 }
 
 /* Hide the images by default */
