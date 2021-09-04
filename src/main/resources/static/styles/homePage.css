@@ -104,14 +104,14 @@
 }
 
 .question{
-    font-family: 'Lobster', cursive;
+    font-family: sans-serif;
     font-size: 1.5vw;
     font-weight: lighter;
     margin: 10px;
 }
 
 .advice{
-    font-family: 'Fredoka One', cursive;
+    font-family: sans-serif;
     font-size: 1.5vw;
     font-weight: bolder;
 }
