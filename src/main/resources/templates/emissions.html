@@ -62,13 +62,14 @@
         </div>
     </div>
 </div>
+
 <!-- Accept user input for food item to view emission details.-->
-<div class="container"style="margin-top: 50px;">
+<div class="container"style="margin-top: 50px; margin-left: 50px;">
 
     <div class="row">
         <form action="#" th:action="@{/emissions}" th:object="${foodItem}" method="post">
             <div class="form-group row">
-                <label for="food" class="col-sm-2 col-form-label">Enter the food item:</label>
+                <label for="food" class="col-sm-2 col-form-label" style="font-family: sans-serif; font-size: 1.5vw; font-weight: lighter;">Enter the food item:</label>
                 <div class="col-sm-2">
                     <input id="food" type="text" th:field="*{foodName}" />
                 </div>
