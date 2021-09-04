@@ -22,6 +22,19 @@
     line-height: 27px;
 }
 
+.navbar .navbar-nav > .active > a{
+    background-color: #717171;
+    color: white;
+}
+
+.navbar .navbar-nav > li > a:hover,
+.navbar .navbar-nav > li > a:focus,
+.navbar .navbar-nav > .active > a:hover,
+.navbar .navbar-nav > .active > a:focus {
+    color: #00D100;
+    background-color: #dddddd;
+}
+
 @media (max-width:1050px) {
     .navbar-header {
         float: none;
