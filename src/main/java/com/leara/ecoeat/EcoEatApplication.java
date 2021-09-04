@@ -55,10 +55,13 @@ public class EcoEatApplication {
     public String foodSubmit(@ModelAttribute FoodItem foodItem, Model model) {
         model.addAttribute("foodItem", foodItem);
         log.info(foodItem.toString());
-        QueryFoodRequest request = new QueryFoodRequest(foodItem.getFoodName());
+        //QueryFoodRequest request = new QueryFoodRequest(foodItem.getFoodName());
+        QueryFoodRequest request = new QueryFoodRequest("");
         QueryFoodResponse response[] = postFoodEmissions(request);
         log.info(response[0].toString());
         model.addAttribute("response", response[0]);
+        model.addAttribute("responseArray", response);
+        log.info("length "+ response.length);
         return "results";
     }
 
