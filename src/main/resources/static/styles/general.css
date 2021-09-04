@@ -17,9 +17,6 @@
     opacity: 1
 }
 
-html.boxed body {
-    background: #e1e1e1 url(../images/bg-pattern-1.jpg) repeat fixed
-}
 
 @media(min-width:1630px) {
     html.boxed .page {

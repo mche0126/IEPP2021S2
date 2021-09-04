@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Work in progress</title>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body onload="move()">
+<div class="w3-container">
+    <img src="../static/images/eco-eat-logo.png">
+    <h2>Sorry about the inconvenience</h2>
+    <h2>This page is working in Progress</h2>
+
+    <div class="w3-light-grey">
+        <div id="myBar" class="w3-green" style="height:24px;width:0"></div>
+    </div>
+    <br>
+
+    <a href="../.."><button class="w3-button w3-green">Back to Home</button></a>
+</div>
+
+<script>
+    function move() {
+
+            var elem = document.getElementById("myBar");
+            var width = 1;
+            var id = setInterval(frame, 10);
+            function frame() {
+                if (width >= 100) {
+                    elem.style.width = 0 + '%';
+                    width = 0;
+                } else {
+                    width++;
+                    elem.style.width = width + '%';
+                }
+            }
+    }
+</script>
+</body>
+</html>

@@ -125,5 +125,9 @@ public class EcoEatApplication {
         return response;
     }
 
+//    work in progress page
+    @GetMapping("/workinprogress")
+    public String workInProgress(){return "workInProgress";}
+
 
 }
