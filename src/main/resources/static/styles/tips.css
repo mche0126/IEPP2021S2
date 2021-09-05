@@ -1,0 +1,75 @@
+body{
+    animation: fade-in 2s;
+    background-attachment: fixed;
+    background-image: linear-gradient(to bottom right, white, #C9E7D5);
+    font-family: 'Rubik', sans-serif;
+  }
+  
+  .banner{
+    background-color: #81C784;
+    border-radius: 5px 30px;
+    box-shadow: 5px 5px 4px grey;
+    color: white;
+    font-size: 130%;
+    padding-bottom: 20px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 20px;
+    text-align: center;
+    text-shadow: 3px 3px 13px black;
+  }
+  
+  .card-body{
+    animation: fade-in 2s;
+    background-image: linear-gradient(to bottom right, #C8E6C9, #4FCB7C);
+    border-color: #C8E6C9;
+    border-radius: 20px;
+    box-shadow: 5px 5px 4px grey;
+    color: black;
+    height: 180px;
+    margin-top: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+    text-align: center;
+  }
+  
+  .card-title{
+    font-weight: bold;
+  }
+  
+  .card-text{
+    font-weight: light;
+  }
+  
+  #info-1 section, #info-2 section, #info-3 section{
+    animation:fade-in 2s;
+    background-image: linear-gradient(to bottom right, #F4FCF0, #9FF992);
+    border: 1px solid grey;
+    border-radius: 20px;
+    box-shadow: 8px 8px 4px grey;
+    font-family: sans-serif;
+    margin-bottom: 7px;
+    padding: 12px;
+  }
+  
+  #info-1 a, #info-2 a, #info-3 a{
+    color: green;
+    word-break: break-all;
+  }
+  
+  #info-1 h2, #info-2 h2, #info-3 h2{
+    font-weight: bold;
+    padding-left: 12px;
+  }
+  
+  @keyframes fade-in {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
+  @media only screen and (max-width: 700px){
+    #info-1 section, #info-2 section, #info-3 section, .card-body, .card-title{
+    font-size: 1.2em;
+    }
+    
+  }
