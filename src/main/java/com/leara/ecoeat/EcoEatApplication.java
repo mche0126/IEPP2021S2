@@ -78,6 +78,9 @@ public class EcoEatApplication {
         return response;
     }
 
+    @GetMapping("/map")
+    public String viewMap(){ return "/map";}
+
 
     /*
     Iteration one Mapping section
