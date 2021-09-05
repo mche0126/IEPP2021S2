@@ -1,10 +1,12 @@
+/* Styles for all of tips page - background, initial fade in animation and font*/
 body{
     animation: fade-in 2s;
     background-attachment: fixed;
     background-image: linear-gradient(to bottom right, white, #C9E7D5);
     font-family: 'Rubik', sans-serif;
   }
-  
+
+ /* Styles for tips page banner */
   .banner{
     background-color: #81C784;
     border-radius: 5px 30px;
@@ -18,7 +20,8 @@ body{
     text-align: center;
     text-shadow: 3px 3px 13px black;
   }
-  
+
+/* Styles for tips page cards*/
   .card-body{
     animation: fade-in 2s;
     background-image: linear-gradient(to bottom right, #C8E6C9, #4FCB7C);
@@ -41,6 +44,7 @@ body{
     font-weight: light;
   }
   
+/* Creates the bubbles around the main content of the tips page*/
   #info-1 section, #info-2 section, #info-3 section{
     animation:fade-in 2s;
     background-image: linear-gradient(to bottom right, #F4FCF0, #9FF992);
@@ -52,21 +56,25 @@ body{
     padding: 12px;
   }
   
+/* Link style for tips page*/
   #info-1 a, #info-2 a, #info-3 a{
     color: green;
     word-break: break-all;
   }
-  
+
+ /* Heading style for main content of tips page*/
   #info-1 h2, #info-2 h2, #info-3 h2{
     font-weight: bold;
     padding-left: 12px;
   }
   
+/* Fade in animation effect, linked by multiple classes*/
   @keyframes fade-in {
     from {opacity: 0;}
     to {opacity: 1;}
   }
   
+/* Adjusts text of tips page for mobile browsers*/
   @media only screen and (max-width: 700px){
     #info-1 section, #info-2 section, #info-3 section, .card-body, .card-title{
     font-size: 1.2em;
