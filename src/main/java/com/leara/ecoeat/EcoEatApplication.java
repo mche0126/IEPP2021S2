@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 
 
 @SpringBootApplication
@@ -62,8 +63,25 @@ public class EcoEatApplication {
         model.addAttribute("response", response[0]);
         model.addAttribute("responseArray", response);
         log.info("length "+ response.length);
+
         return "results";
     }
+
+    public ArrayList<QueryFoodResponse> inputSearch(String searchString){
+        QueryFoodRequest request = new QueryFoodRequest("");
+        QueryFoodResponse response[] = postFoodEmissions(request);
+        ArrayList<QueryFoodResponse> matchedResponses = new ArrayList<QueryFoodResponse>();
+        if( response.length != 0 && response!=null) {
+            for(QueryFoodResponse responseItem: response){
+                if(responseItem.getFood().contains(searchString))
+                    matchedResponses.add(responseItem);
+            }
+            return matchedResponses;
+        }
+        else
+            return matchedResponses;
+    }
+
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
