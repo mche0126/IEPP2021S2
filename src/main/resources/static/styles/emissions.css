@@ -1,0 +1,51 @@
+body {
+    animation: fade-in 2s;
+    background-attachment: fixed;
+    background-image: linear-gradient(to bottom right, white, #c9e7d5);
+    font-family: "Rubik", sans-serif;
+  }
+  
+  /* Styles for tips page banner */
+  .banner {
+    background-color: #81c784;
+    border-radius: 5px 30px;
+    box-shadow: 5px 5px 4px grey;
+    color: white;
+    font-size: 130%;
+    padding-bottom: 20px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 20px;
+    text-align: center;
+    text-shadow: 3px 3px 13px black;
+  }
+  
+  #explanation section{
+    margin-top: 50px;
+    margin-left: 20px
+    animation: fade-in 2s;
+    background-image: linear-gradient(to bottom right, #f4fcf0, #9ff992);
+    border: 1px solid grey;
+    border-radius: 20px;
+    box-shadow: 8px 8px 4px grey;
+    font-family: sans-serif;
+    margin: 7px;
+    padding: 12px;
+  }
+  
+  #foodEntry{
+    animation: fade-in 2s;
+    background-image: linear-gradient(to bottom right, #f4fcf0, #9ff992);
+    border: 1px solid grey;
+    border-radius: 20px;
+    box-shadow: 8px 8px 4px grey;
+    font-family: sans-serif;
+    margin: 7px;
+    padding: 12px;
+  }
+  
+  #food{
+    border: 1px solid grey;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
