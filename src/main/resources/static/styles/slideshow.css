@@ -1,4 +1,6 @@
-* {box-sizing: border-box}
+* {
+    box-sizing: border-box
+}
 
 /* Slideshow container */
 .slideshow-container {
@@ -17,7 +19,7 @@
 }
 
 /*image div*/
-.image-container{
+.image-container {
     height: 30vw;
 }
 
@@ -45,7 +47,7 @@
 
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 /*text panel*/
@@ -96,23 +98,31 @@
 
 
 @-webkit-keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
 }
 
 @keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
 }
 
-.question{
+.question {
     font-family: sans-serif;
     font-size: 1.5vw;
     font-weight: lighter;
     margin: 10px;
 }
 
-.advice{
+.advice {
     font-family: sans-serif;
     font-size: 1.5vw;
     font-weight: bolder;
