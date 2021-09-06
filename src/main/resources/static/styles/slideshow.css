@@ -3,7 +3,7 @@
 /* Slideshow container */
 .slideshow-container {
     width: 75%;
-    max-height: 70%;
+    height: 70%;
     position: relative;
     margin: auto;
     border: 2px solid black;
@@ -18,7 +18,7 @@
 
 /*image div*/
 .image-container{
-
+    height: 30vw;
 }
 
 /* Next & previous buttons */
