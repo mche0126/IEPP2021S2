@@ -54,12 +54,18 @@ public class EcoEatApplication {
      */
     @PostMapping("/emissions")
     public String foodSubmit(@ModelAttribute FoodItem foodItem, Model model) {
+
+//         add food item as model attribute
         model.addAttribute("foodItem", foodItem);
         log.info(foodItem.toString());
+
+//        Send request to database
         //QueryFoodRequest request = new QueryFoodRequest(foodItem.getFoodName());
         QueryFoodRequest request = new QueryFoodRequest("");
         QueryFoodResponse response[] = postFoodEmissions(request);
         log.info(response[0].toString());
+
+//        add response list and response as model attribute
         model.addAttribute("response", response[0]);
         model.addAttribute("responseArray", response);
         log.info("length "+ response.length);
@@ -68,8 +74,11 @@ public class EcoEatApplication {
     }
 
     public ArrayList<QueryFoodResponse> inputSearch(String searchString){
+//                Send request to database
         QueryFoodRequest request = new QueryFoodRequest("");
         QueryFoodResponse response[] = postFoodEmissions(request);
+
+//        add response to model if not null
         ArrayList<QueryFoodResponse> matchedResponses = new ArrayList<QueryFoodResponse>();
         if( response.length != 0 && response!=null) {
             for(QueryFoodResponse responseItem: response){
