@@ -95,16 +95,19 @@
         </div>
     </div>
 </div>
+
 <!-- Accept user input for food item to view emission details.-->
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
             <section id="foodEntry">
-                <form action="#" th:action="@{/emissions}" th:object="${foodItem}" method="post">
+<!--                <form action="#" th:action="@{/emissions}" th:object="${foodItem}" method="post">-->
+                <form action="#">
                     <div class="form-group row">
                         <label for="food" class="col-sm-4 col-form-label">Enter the food item:</label>
                         <div class="col-sm-2">
-                            <input id="food" type="text" th:field="*{foodName}"/>
+<!--                            <input id="food" type="text" th:field="*{foodName}"/>-->
+                            <input id="food" type="text"/>
                         </div>
                     </div>
                     <div class="row">

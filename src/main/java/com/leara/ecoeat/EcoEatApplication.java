@@ -43,51 +43,27 @@ public class EcoEatApplication {
         Mapping for View emissions
      */
     @GetMapping("/emissions")
-    public String foodForm(Model model) {
-        model.addAttribute("foodItem", new FoodItem());
+    public String viewEmissions(Model model) {
+        log.info("start");
+        sendFoodRequest(model);
+        log.info("Done");
         return "emissions";
     }
 
-    /*
-        Mapping for View emissions - invoke service to get details on food emissions
-        and map to model attribute.
-     */
     @PostMapping("/emissions")
-    public String foodSubmit(@ModelAttribute FoodItem foodItem, Model model) {
-
-//         add food item as model attribute
-        model.addAttribute("foodItem", foodItem);
-        log.info(foodItem.toString());
-
-//        Send request to database
-        //QueryFoodRequest request = new QueryFoodRequest(foodItem.getFoodName());
+    public String sendFoodRequest(Model model){
+        //        Send request to database
         QueryFoodRequest request = new QueryFoodRequest("");
-        QueryFoodResponse response[] = postFoodEmissions(request);
-        log.info(response[0].toString());
+        QueryFoodResponse[] response = postFoodEmissions(request);
 
-//        add response list and response as model attribute
-        model.addAttribute("response", response[0]);
-        model.addAttribute("responseArray", response);
-        log.info("length "+ response.length);
+        model.addAttribute("response", response);
+        log.info(String.valueOf(response.length));
 
-        return "results";
+        return "emissions";
     }
 
-//    public ArrayList<QueryFoodResponse> inputSearch(String searchString){
-////                Send request to database
-//        QueryFoodRequest request = new QueryFoodRequest("");
-//        QueryFoodResponse response[] = postFoodEmissions(request);
-//
-////        add response to model if not null
-//        ArrayList<QueryFoodResponse> matchedResponses = new ArrayList<QueryFoodResponse>();
-//        if( response.length != 0) {
-//            for(QueryFoodResponse responseItem: response){
-//                if(responseItem.getFood().contains(searchString))
-//                    matchedResponses.add(responseItem);
-//            }
-//        }
-//        return matchedResponses;
-//    }
+
+
 
 
     @Bean
