@@ -1,6 +1,7 @@
 package com.leara.ecoeat;
 
 import com.leara.dtoclasses.FoodItem;
+import com.leara.dtoclasses.FormattedFood;
 import com.leara.dtoclasses.QueryFoodRequest;
 import com.leara.dtoclasses.QueryFoodResponse;
 import org.slf4j.Logger;
@@ -54,12 +55,20 @@ public class EcoEatApplication {
 
     @PostMapping("/emissions")
     public String sendFoodRequest(Model model) {
+        FormattedFood newFood;
         //        Send request to database
         QueryFoodRequest request = new QueryFoodRequest("");
         QueryFoodResponse[] response = postFoodEmissions(request);
 
-        model.addAttribute("response", response);
+        ArrayList<FormattedFood> data = new ArrayList<FormattedFood>();
+        for (QueryFoodResponse queryFoodResponse : response) {
+            newFood = new FormattedFood(queryFoodResponse);
+            data.add(newFood);
+        }
+
+        model.addAttribute("response", data);
         log.info(String.valueOf(response.length));
+        log.info(String.valueOf(data.get(550).getFood()));
 
         return "emissions";
     }
