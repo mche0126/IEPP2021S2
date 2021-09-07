@@ -23,9 +23,11 @@ import java.util.ArrayList;
 public class EcoEatApplication {
 
     private static final Logger log = LoggerFactory.getLogger(EcoEatApplication.class);
+
     public static void main(String[] args) {
         SpringApplication.run(EcoEatApplication.class, args);
     }
+
     private static String queryFoodUrl = "http://47.113.179.46:8080/food/queryFoodMessage";
     @Autowired
     RestTemplate restTemplate;
@@ -51,7 +53,7 @@ public class EcoEatApplication {
     }
 
     @PostMapping("/emissions")
-    public String sendFoodRequest(Model model){
+    public String sendFoodRequest(Model model) {
         //        Send request to database
         QueryFoodRequest request = new QueryFoodRequest("");
         QueryFoodResponse[] response = postFoodEmissions(request);
@@ -61,9 +63,6 @@ public class EcoEatApplication {
 
         return "emissions";
     }
-
-
-
 
 
     @Bean
@@ -80,7 +79,9 @@ public class EcoEatApplication {
     }
 
     @GetMapping("/map")
-    public String viewMap(){ return "/map";}
+    public String viewMap() {
+        return "/map";
+    }
 
 
     /*
@@ -88,13 +89,13 @@ public class EcoEatApplication {
     Page include index (home page), tips, emissions, results
      */
 
-//    Homepage Mapping
+    //    Homepage Mapping
     @GetMapping("/iteration1")
-    public String viewIteration1Home(){
+    public String viewIteration1Home() {
         return "iteration1Index";
     }
 
-//    Tips page Mapping
+    //    Tips page Mapping
     @GetMapping("/iteration1/tips")
     public String viewIteration1Tips() {
         return "iteration1Tips";
@@ -132,9 +133,11 @@ public class EcoEatApplication {
         return response;
     }
 
-//    work in progress page
+    //    work in progress page
     @GetMapping("/workinprogress")
-    public String workInProgress(){return "workInProgress";}
+    public String workInProgress() {
+        return "workInProgress";
+    }
 
 
 }
