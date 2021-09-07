@@ -73,23 +73,21 @@ public class EcoEatApplication {
         return "results";
     }
 
-    public ArrayList<QueryFoodResponse> inputSearch(String searchString){
-//                Send request to database
-        QueryFoodRequest request = new QueryFoodRequest("");
-        QueryFoodResponse response[] = postFoodEmissions(request);
-
-//        add response to model if not null
-        ArrayList<QueryFoodResponse> matchedResponses = new ArrayList<QueryFoodResponse>();
-        if( response.length != 0 && response!=null) {
-            for(QueryFoodResponse responseItem: response){
-                if(responseItem.getFood().contains(searchString))
-                    matchedResponses.add(responseItem);
-            }
-            return matchedResponses;
-        }
-        else
-            return matchedResponses;
-    }
+//    public ArrayList<QueryFoodResponse> inputSearch(String searchString){
+////                Send request to database
+//        QueryFoodRequest request = new QueryFoodRequest("");
+//        QueryFoodResponse response[] = postFoodEmissions(request);
+//
+////        add response to model if not null
+//        ArrayList<QueryFoodResponse> matchedResponses = new ArrayList<QueryFoodResponse>();
+//        if( response.length != 0) {
+//            for(QueryFoodResponse responseItem: response){
+//                if(responseItem.getFood().contains(searchString))
+//                    matchedResponses.add(responseItem);
+//            }
+//        }
+//        return matchedResponses;
+//    }
 
 
     @Bean
