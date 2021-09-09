@@ -394,7 +394,7 @@
     });
 
     map.on('load', () => {
-        buildLocationList(stores);
+
         /* Add the data to your map as a layer */
         map.addLayer({
             id: 'locations',
@@ -406,10 +406,40 @@
             }
         });
 
+        map.on('click', ({ point }) => {
+            /* Determine if a feature in the "locations" layer exists at that point. */
+            const features = map.queryRenderedFeatures(point, {
+                layers: ['locations']
+            });
+
+            /* If it does not exist, return */
+            if (!features.length) return;
+
+            const clickedPoint = features[0];
+
+            /* Fly to the point */
+            flyToStore(clickedPoint);
+
+            /* Close all other popups and display popup for clicked store */
+            createPopUp(clickedPoint);
+
+            /* Highlight listing in sidebar (and remove highlight for all other listings) */
+            const activeItem = document.getElementsByClassName('active');
+            if (activeItem[0]) {
+                activeItem[0].classList.remove('active');
+            }
+            const listing = document.getElementById(
+                `listing-${clickedPoint.properties.id}`
+            );
+            listing.classList.add('active');
+        });
+
+        buildLocationList(stores);
     });
 
     function buildLocationList({ features }) {
         for (const { properties } of features) {
+
             /* Add a new listing section to the sidebar. */
             const listings = document.getElementById('listings');
             const listing = listings.appendChild(document.createElement('div'));
@@ -435,7 +465,41 @@
                 const roundedDistance = Math.round(properties.distance * 100) / 100;
                 details.innerHTML += `<div><strong>${roundedDistance} miles away</strong></div>`;
             }
+
+
+            link.addEventListener('click', function () {
+                for (const feature of features) {
+                    if (this.id === `link-${feature.properties.id}`) {
+                        flyToStore(feature);
+                        createPopUp(feature);
+                    }
+                }
+                const activeItem = document.getElementsByClassName('active');
+                if (activeItem[0]) {
+                    activeItem[0].classList.remove('active');
+                }
+                this.parentNode.classList.add('active');
+            });
+
         }
+    }
+
+    function flyToStore(currentFeature) {
+        map.flyTo({
+            center: currentFeature.geometry.coordinates,
+            zoom: 15
+        });
+    }
+
+    function createPopUp(currentFeature) {
+        const popUps = document.getElementsByClassName('mapboxgl-popup');
+        /** Check if there is already a popup on the map and if so, remove it */
+        if (popUps[0]) popUps[0].remove();
+
+        const popup = new mapboxgl.Popup({ closeOnClick: false })
+            .setLngLat(currentFeature.geometry.coordinates)
+            .setHTML(`<h3>Sweetgreen</h3><h4>${currentFeature.properties.address}</h4>`)
+            .addTo(map);
     }
 </script>
 
