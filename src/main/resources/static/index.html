@@ -2,21 +2,16 @@
 <html lang="en">
 <head>
     <title>Eco Eat</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="styles/footer.css"/>
-    <link rel="stylesheet" href="styles/navigationBar.css"/>
-    <link rel="stylesheet" href="styles/slideshow.css"/>
-<!--    <link rel="stylesheet" href="styles/general.css">-->
+    <link rel="stylesheet" href="styles/general.css">
+<!--    <link rel="stylesheet" href="styles/slideshow.css"/>-->
+
+
 
 
 
@@ -39,201 +34,225 @@
 <!--            <div class='inner'></div>-->
 <!--        </div>-->
 <!--    </div>-->
-<!--page-->
-    <div class ="page">
-        <!-- Page Header-->
-        <!-- Fixed navbar -->
-        <div class="container">
-            <nav class="navbar navbar-default navbar-fixed-top" >
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
+<!--nav bar-->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
-                        <a class="navbar-brand" href="#"><img src="images/eco-eat-logo.png" style="height: 80px"/></a>
-                    </div>
-
-                    <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="/emissions">Emission Calculator</a></li>
-                            <li><a href="/tips">Low Carbon Tips</a></li>
-                            <li><a href="/workinprogress">Vegan Food Map</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Recipes<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="/workinprogress">Find a recipe that suits you</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="/workinprogress">Compare two different recipes</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <a class="navbar-brand" href="#"><img src="images/eco-eat-logo.png" style="height: 80px"/></a>
         </div>
 
-        <!--    End of the navigation bar-->
-    
-        <!-- Blank space for navigation -->
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="/emissions">Emission Calculator</a></li>
+                <li><a href="/tips">Low Carbon Tips</a></li>
+                <li><a href="/workinprogress">Vegan Food Map</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Recipes<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/workinprogress">Find a recipe that suits you</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/workinprogress">Compare two different recipes</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--    End of the navigation bar-->
+
+<!--page-->
+<div class="page">
+    <!-- Blank space for navigation -->
     <div class="container">
         <div class="row" style="margin-top: 100px;"></div>
     </div>
 
-        <div id="info" class="container">
-            <div class="row">
-              <div class="col-sm-4">
-                <section>
-                  Did you know that agriculture contributes to 13% of Australia’s carbon emissions?
-                  <br>
-                  <br>
-                  Eco-eat helps reduce the carbon emissions in your diet so you can eat eco-friendly!
-                  <br>
-                  <br>
-                  <a href="#"><button type="button" class="btn btn-primary">Explore</button></a>
+
+
+    <div id="info" class="container">
+        <div class="row" style="margin-top: 50px">
+            <div class="col-sm-4" style="height: 100%">
+                <section style="height: 100%">
+                    Did you know that agriculture contributes to 13% of Australia’s carbon emissions?
+                    <br>
+                    <br>
+                    Eco-eat helps reduce the carbon emissions in your diet so you can eat eco-friendly!
+                    <br>
+                    <br>
+                    <a href="#">
+                        <button type="button" class="btn btn-primary">Explore</button>
+                    </a>
                 </section>
-              </div>
-          
-              <div class="col-sm-8">
-                <div class="image-container">
-                  <iframe id="video1" height="100%" width="70%" src="https://www.youtube.com/embed/wbR-5mHI6bo" title="YouTube Video Player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                  </iframe>
-                </div>
-              </div>
-          
             </div>
-            <div class="row">
-              <div class="col-sm-8">
+
+            <div class="col-sm-8" style="height: 100%">
                 <div class="image-container">
-                  <img src="images/home-slide-2.jpg">
+                    <iframe id="video1" height="100%" width="70%" src="https://www.youtube.com/embed/wbR-5mHI6bo"
+                            title="YouTube Video Player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                    </iframe>
                 </div>
-              </div>
-          
-              <div class="col-sm-4">
-                <section>
-                  Want to know which food has less carbon emissions?
-                  <br>
-                  <br>
-                  Go to our Calculator to find more.
-                  <br>
-                  <br>
-                  <a href="/emissions"><button type="button" class="btn btn-primary">Read More</button></a>
-                </section>
-              </div>
             </div>
-          
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <section>
-                        Considering a vegan diet?
-                        <br>
-                  <br>
-                        Get advice on how to go vegan in a healthy way.
-                        <br>
-                  <br>
-                        <a href="/tips"><button type="button" class="btn btn-primary">Read More</button></a>
-                      </section>
-                    </div>
-          
-                    <div class="col-sm-8">
-                    <div class="image-container">
-                      <img src="images/home-slide-3.jpg">
-                    </div>
-                    </div>
-              </div>
-          
-           <div class="row">
-              <div class="col-sm-8">
-                <div class="image-container">
-                  <img src="images/home-slide-4.jpg">
-                </div>
-              </div>
-          
-              <div class="col-sm-4">
-                <section>
-                  Looking for recipes that are better for the environment?
-                  <br>
-                  <br>
-                  Search and compare recipes based on carbon footprint.
-                  <br>
-                  <br>
-                  <a href=""><button type="button" class="btn btn-primary">Read More</button></a>
-                </section>
-              </div>
-            </div>
-          
-            <div class="row">
-                    <div class="col-sm-4">
-                      <section>
-                        Want to eat out in an eco-friendly way?
-                        <br>
-                  <br>
-                        Search for vegan restaurants in your area.
-                        <br>
-                  <br>
-                        <a href="/tips"><button type="button" class="btn btn-primary">Read More</button></a>
-                      </section>
-                    </div>
-          
-                    <div class="col-sm-8">
-                    <div class="image-container">
-                      <img src="images/home-slide-5.jpg">
-                    </div>
-                    </div>
-          </div>
-          <br>
+
         </div>
-    
 
-<!--            Footer              -->
-        <div class="container" style="width: 100%;
-        margin-top: 100px;" >
-            <div class="row cen">
-                <footer>
-                    <div class="row" style="width: 100%">
-                        <div class="col-xs-1"></div>
-                        <div class="col-lg-3">
-                            <img id="footerLogo" src="images/eco-eat-logo.png" style="  margin-right: 30px">
-                        </div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <h3 style="font-weight: bolder; margin-left: 20px">About Us</h3>
-                                        <ul style="list-style-type:none;">
-                                            <a href="/workinprogress"><li><h6>Our Project</h6></li></a>
-                                            <a href="/workinprogress"><li><h6>Our Team</h6></li></a>
-                                        </ul>
-                                </div>
-                                <div class="col-lg-3">
-                                    <h3 style="font-weight: bolder; margin-left: 20px">What we have</h3>
-                                    <ul style="list-style-type:none;">
-                                        <a href="/emission"><li><h6>Emission Calculator</h6></li></a>
-                                        <a href="/tips"><li><h6>Low Carbon Tips</h6></li></a>
-                                        <a href="/workinprogress"><li><h6>Vegan Food Map</h6></li></a>
-                                        <a href="/workinprogress"><li><h6>Vegan Food Recipes</h6></li></a>
-                                        <a href="/workinprogress"><li><h6>Food Recipes Comparison</h6></li></a>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="copyright">Leara Eco-Eat Project Team © 2021</p>
-                </footer>
+        <div class="row" style="margin-top: 50px">
+            <div class="col-sm-8" style="height: 100%">
+                <div class="image-container">
+                    <img src="images/home-slide-2.jpg">
+                </div>
+            </div>
 
+            <div class="col-sm-4" style="height: 100%">
+                <section style="height: 100%">
+                    Want to know which food has less carbon emissions?
+                    <br>
+                    <br>
+                    Go to our Calculator to find more.
+                    <br>
+                    <br>
+                    <a href="/emissions">
+                        <button type="button" class="btn btn-primary">Read More</button>
+                    </a>
+                </section>
             </div>
         </div>
 
+        <div class="row"  style="margin-top: 50px">
+            <div class="col-sm-4" style="height: 100%">
+                <section>
+                    Considering a vegan diet?
+                    <br>
+                    <br>
+                    Get advice on how to go vegan in a healthy way.
+                    <br>
+                    <br>
+                    <a href="/tips">
+                        <button type="button" class="btn btn-primary">Read More</button>
+                    </a>
+                </section>
+            </div>
 
+            <div class="col-sm-8" style="height: 100%">
+                <div class="image-container">
+                    <img src="images/home-slide-3.jpg">
+                </div>
+            </div>
+        </div>
 
+        <div class="row" style="margin-top: 50px">
+            <div class="col-sm-8" style="height: 100%">
+                <div class="image-container">
+                    <img src="images/home-slide-4.jpg">
+                </div>
+            </div>
 
-    <!--     end of the page   -->
+            <div class="col-sm-4" style="height: 100%">
+                <section>
+                    Looking for recipes that are better for the environment?
+                    <br>
+                    <br>
+                    Search and compare recipes based on carbon footprint.
+                    <br>
+                    <br>
+                    <a href="">
+                        <button type="button" class="btn btn-primary">Read More</button>
+                    </a>
+                </section>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 50px">
+            <div class="col-sm-4" style="height: 100%">
+                <section>
+                    Want to eat out in an eco-friendly way?
+                    <br>
+                    <br>
+                    Search for vegan restaurants in your area.
+                    <br>
+                    <br>
+                    <a href="/tips">
+                        <button type="button" class="btn btn-primary">Read More</button>
+                    </a>
+                </section>
+            </div>
+
+            <div class="col-sm-8" style="height: 100%">
+                <div class="image-container">
+                    <img src="images/home-slide-5.jpg">
+                </div>
+            </div>
+        </div>
+        <br>
     </div>
 
 
+    <!--            Footer              -->
+    <div class="container" style="width: 100%;
+        margin-top: 100px;">
+        <div class="row cen">
+            <footer>
+                <div class="row" style="width: 100%">
+                    <div class="col-xs-1"></div>
+                    <div class="col-lg-3">
+                        <img id="footerLogo" src="images/eco-eat-logo.png" style="  margin-right: 30px">
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <h3 style="font-weight: bolder; margin-left: 20px">About Us</h3>
+                                <ul style="list-style-type:none;">
+                                    <a href="/workinprogress">
+                                        <li><h6>Our Project</h6></li>
+                                    </a>
+                                    <a href="/workinprogress">
+                                        <li><h6>Our Team</h6></li>
+                                    </a>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3">
+                                <h3 style="font-weight: bolder; margin-left: 20px">What we have</h3>
+                                <ul style="list-style-type:none;">
+                                    <a href="/emission">
+                                        <li><h6>Emission Calculator</h6></li>
+                                    </a>
+                                    <a href="/tips">
+                                        <li><h6>Low Carbon Tips</h6></li>
+                                    </a>
+                                    <a href="/workinprogress">
+                                        <li><h6>Vegan Food Map</h6></li>
+                                    </a>
+                                    <a href="/workinprogress">
+                                        <li><h6>Vegan Food Recipes</h6></li>
+                                    </a>
+                                    <a href="/workinprogress">
+                                        <li><h6>Food Recipes Comparison</h6></li>
+                                    </a>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="copyright">Leara Eco-Eat Project Team © 2021</p>
+            </footer>
+
+        </div>
+    </div>
+
+
+    <!--     end of the page   -->
+</div>
 
 
 </body>
