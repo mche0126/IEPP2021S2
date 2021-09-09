@@ -1,31 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Map</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>Vegan food map</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="styles/navigationBar.css">
     <link rel="stylesheet" href="styles/general.css">
     <link rel="stylesheet" href="styles/footer.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-
-
+    <link rel="stylesheet" href="styles/emissions.css">
     <!--    font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" >
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="styles/maps.css">
 </head>
 <body>
 <!--navigation bar-->
-<nav class="navbar navbar-default navbar-fixed-top" >
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -38,11 +40,12 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="../..">Home</a></li>
-                <li><a href="/emissions">Emission Calculator</a></li>
+                <li class="active"><a href="#">Emission Calculator</a></li>
                 <li><a href="/tips">Low Carbon Tips</a></li>
-                <li class="active"><a href="#">Vegan Food Map</a></li>
+                <li><a href="/map">Vegan Food Map</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Recipes<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Recipes <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/workinprogress">Find a recipe that suits you</a></li>
                         <li role="separator" class="divider"></li>
@@ -54,9 +57,37 @@
     </div>
 </nav>
 
+<!-- Blank space for navigation -->
+<div class="container">
+    <div class="row" style="margin-top: 100px;"></div>
+</div>
+
+<!-- Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="banner">
+                <div>Find out vegan and vegetarian friendly restaurants near you!</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class='sidebar'>
+            <div class='heading'>
+                <h1>Our locations</h1>
+            </div>
+            <div id='listings' class='listings'></div>
+        </div>
+        <div id="map" class="map"></div>
+
+    </div>
+
+</div>
 <!--            Footer              -->
 <div class="container" style="width: 100%;
-        margin-top: 100px;" >
+        margin-top: 900px;">
     <div class="row cen">
         <footer>
             <div class="row" style="width: 100%">
@@ -69,18 +100,32 @@
                         <div class="col-lg-3">
                             <h3 style="font-weight: bolder; margin-left: 20px">About Us</h3>
                             <ul style="list-style-type:none;">
-                                <a href="/workinprogress"><li><h6>Our Project</h6></li></a>
-                                <a href="/workinprogress"><li><h6>Our Team</h6></li></a>
+                                <a href="/workinprogress">
+                                    <li><h6>Our Project</h6></li>
+                                </a>
+                                <a href="/workinprogress">
+                                    <li><h6>Our Team</h6></li>
+                                </a>
                             </ul>
                         </div>
                         <div class="col-lg-3">
                             <h3 style="font-weight: bolder; margin-left: 20px">What we have</h3>
                             <ul style="list-style-type:none;">
-                                <a href="/emission"><li><h6>Emission Calculator</h6></li></a>
-                                <a href="/tips"><li><h6>Low Carbon Tips</h6></li></a>
-                                <a href="/workinprogress"><li><h6>Vegan Food Map</h6></li></a>
-                                <a href="/workinprogress"><li><h6>Vegan Food Recipes</h6></li></a>
-                                <a href="/workinprogress"><li><h6>Food Recipes Comparison</h6></li></a>
+                                <a href="/emission">
+                                    <li><h6>Emission Calculator</h6></li>
+                                </a>
+                                <a href="/tips">
+                                    <li><h6>Low Carbon Tips</h6></li>
+                                </a>
+                                <a href="/map">
+                                    <li><h6>Vegan Food Map</h6></li>
+                                </a>
+                                <a href="/workinprogress">
+                                    <li><h6>Vegan Food Recipes</h6></li>
+                                </a>
+                                <a href="/workinprogress">
+                                    <li><h6>Food Recipes Comparison</h6></li>
+                                </a>
                             </ul>
                         </div>
                     </div>
@@ -92,7 +137,307 @@
     </div>
 </div>
 
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoibGFrc2htaS11IiwiYSI6ImNrdGJ2azQxeTF6Zmsyb3BkYTE0ZGUxZTkifQ.ttw2LugdFySyG0dQ1Ca-cg';
 
+    const stores = {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -77.034084142948,
+                        38.909671288923
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "(202) 234-7336",
+                    "phone": "2022347336",
+                    "address": "1471 P St NW",
+                    "city": "Washington DC",
+                    "country": "United States",
+                    "crossStreet": "at 15th St NW",
+                    "postalCode": "20005",
+                    "state": "D.C."
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -77.049766,
+                        38.900772
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "(202) 507-8357",
+                    "phone": "2025078357",
+                    "address": "2221 I St NW",
+                    "city": "Washington DC",
+                    "country": "United States",
+                    "crossStreet": "at 22nd St NW",
+                    "postalCode": "20037",
+                    "state": "D.C."
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -77.043929,
+                        38.910525
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "(202) 387-9338",
+                    "phone": "2023879338",
+                    "address": "1512 Connecticut Ave NW",
+                    "city": "Washington DC",
+                    "country": "United States",
+                    "crossStreet": "at Dupont Circle",
+                    "postalCode": "20036",
+                    "state": "D.C."
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -77.0672,
+                        38.90516896
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "(202) 337-9338",
+                    "phone": "2023379338",
+                    "address": "3333 M St NW",
+                    "city": "Washington DC",
+                    "country": "United States",
+                    "crossStreet": "at 34th St NW",
+                    "postalCode": "20007",
+                    "state": "D.C."
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -77.002583742142,
+                        38.887041080933
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "(202) 547-9338",
+                    "phone": "2025479338",
+                    "address": "221 Pennsylvania Ave SE",
+                    "city": "Washington DC",
+                    "country": "United States",
+                    "crossStreet": "btwn 2nd & 3rd Sts. SE",
+                    "postalCode": "20003",
+                    "state": "D.C."
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -76.933492720127,
+                        38.99225245786
+                    ]
+                },
+                "properties": {
+                    "address": "8204 Baltimore Ave",
+                    "city": "College Park",
+                    "country": "United States",
+                    "postalCode": "20740",
+                    "state": "MD"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -77.097083330154,
+                        38.980979
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "(301) 654-7336",
+                    "phone": "3016547336",
+                    "address": "4831 Bethesda Ave",
+                    "cc": "US",
+                    "city": "Bethesda",
+                    "country": "United States",
+                    "postalCode": "20814",
+                    "state": "MD"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -77.359425054188,
+                        38.958058116661
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "(571) 203-0082",
+                    "phone": "5712030082",
+                    "address": "11935 Democracy Dr",
+                    "city": "Reston",
+                    "country": "United States",
+                    "crossStreet": "btw Explorer & Library",
+                    "postalCode": "20190",
+                    "state": "VA"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -77.10853099823,
+                        38.880100922392
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "(703) 522-2016",
+                    "phone": "7035222016",
+                    "address": "4075 Wilson Blvd",
+                    "city": "Arlington",
+                    "country": "United States",
+                    "crossStreet": "at N Randolph St.",
+                    "postalCode": "22203",
+                    "state": "VA"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -75.28784,
+                        40.008008
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "(610) 642-9400",
+                    "phone": "6106429400",
+                    "address": "68 Coulter Ave",
+                    "city": "Ardmore",
+                    "country": "United States",
+                    "postalCode": "19003",
+                    "state": "PA"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -75.20121216774,
+                        39.954030175164
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "(215) 386-1365",
+                    "phone": "2153861365",
+                    "address": "3925 Walnut St",
+                    "city": "Philadelphia",
+                    "country": "United States",
+                    "postalCode": "19104",
+                    "state": "PA"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -77.043959498405,
+                        38.903883387232
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "(202) 331-3355",
+                    "phone": "2023313355",
+                    "address": "1901 L St. NW",
+                    "city": "Washington DC",
+                    "country": "United States",
+                    "crossStreet": "at 19th St",
+                    "postalCode": "20036",
+                    "state": "D.C."
+                }
+            }
+        ]
+    };
+    /* Assign a unique ID to each store */
+    stores.features.forEach(function (store, i) {
+        store.properties.id = i;
+    });
+
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/light-v10',
+        center: [-77.034084, 38.909671],
+        zoom: 13,
+        scrollZoom: false
+    });
+
+    map.on('load', () => {
+        buildLocationList(stores);
+        /* Add the data to your map as a layer */
+        map.addLayer({
+            id: 'locations',
+            type: 'circle',
+            /* Add a GeoJSON source containing place coordinates and information. */
+            source: {
+                type: 'geojson',
+                data: stores
+            }
+        });
+
+    });
+
+    function buildLocationList({ features }) {
+        for (const { properties } of features) {
+            /* Add a new listing section to the sidebar. */
+            const listings = document.getElementById('listings');
+            const listing = listings.appendChild(document.createElement('div'));
+            /* Assign a unique `id` to the listing. */
+            listing.id = `listing-${properties.id}`;
+            /* Assign the `item` class to each listing for styling. */
+            listing.className = 'item';
+
+            /* Add the link to the individual listing created above. */
+            const link = listing.appendChild(document.createElement('a'));
+            link.href = '#';
+            link.className = 'title';
+            link.id = `link-${properties.id}`;
+            link.innerHTML = `${properties.address}`;
+
+            /* Add details to the individual listing. */
+            const details = listing.appendChild(document.createElement('div'));
+            details.innerHTML = `${properties.city}`;
+            if (properties.phone) {
+                details.innerHTML += ` · ${properties.phoneFormatted}`;
+            }
+            if (properties.distance) {
+                const roundedDistance = Math.round(properties.distance * 100) / 100;
+                details.innerHTML += `<div><strong>${roundedDistance} miles away</strong></div>`;
+            }
+        }
+    }
+</script>
 
 </body>
 </html>
