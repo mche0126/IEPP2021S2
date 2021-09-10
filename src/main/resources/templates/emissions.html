@@ -10,9 +10,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="styles/navigationBar.css">
+
     <link rel="stylesheet" href="styles/general.css">
-    <link rel="stylesheet" href="styles/footer.css">
 
     <!--    font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -97,20 +96,21 @@
     <div class="row">
         <div class="col-sm-6">
             <section id="foodEntry">
-<!--                <form action="#" th:action="@{/emissions}" th:object="${foodItem}" method="post">-->
-                <form action="#">
                     <div class="form-group row">
                         <label for="food" class="col-sm-4 col-form-label">Enter the food item:</label>
-                        <div class="col-sm-2">
-<!--                            <input id="food" type="text" th:field="*{foodName}"/>-->
-                            <input id="food" type="text"/>
+                        <div id = "dropdown-section" class="col-sm-2">
+                            <input id="food" type="text" placeholder="Search.." onfocus="toggleOption()"
+                                   onkeyup="inputFilter()" onblur="toggleOption()" />
+                                <div id="dropdown" class="dropdown-content dropdown">
+                                    <!-- Add element from js -->
+                                </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"></div>
                         <div class="col-sm-2"><input type="submit" class="btn btn-primary" value="Calculate"/></div>
                     </div>
-                </form>
+
             </section>
         </div>
     </div>
@@ -168,5 +168,78 @@
     </div>
 </div>
 
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var response_list = [[${response}]];
+    var response = response_list[0]
+
+    var input,filter,li,node, numberShowed;
+
+    //get input & element
+    input = document.getElementById("food");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("dropdown");
+
+    //create first li element
+    node = document.createElement("li")
+    node.textContent = response_list[0].food;
+    node.id = response_list[0].id;
+    node.style.display = "none";
+    node.setAttribute("class", "food-dropdown-list");
+    div.appendChild(node);
+
+
+    //create rest element if not duplicated
+    for (i = 1; i < response_list.length; i++){
+        if(response_list[i].food != response_list[i - 1].food) {
+            node = document.createElement("li");
+            node.textContent = response_list[i].food;
+            node.id = response_list[i].id;
+            node.style.display = "none"
+            node.setAttribute("class", "food-dropdown-list");
+            div.appendChild(node);
+        }
+    }
+
+    //function filter
+    function inputFilter(){
+        var input,filter,li, numberShowed;
+        console.log("input detected")
+
+        //get input & element
+        input = document.getElementById("food");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("dropdown");
+
+        //filter element by input
+        numberShowed = 0;
+        li = document.getElementsByClassName("food-dropdown-list");
+        for (i = 0; i < li.length; i++) {
+            txtValue = li[i].textContent || li[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                numberShowed++;
+                if(numberShowed <= 5) {
+                    li[i].style.display = "";
+                }
+                else{
+                    li[i].style.display = "none"
+                }
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+
+    //show dropdown list
+    function toggleOption(){
+        document.getElementById("dropdown").classList.toggle("show");
+        inputFilter();
+    }
+
+
+
+    /*]]>*/
+
+</script>
 </body>
 </html>
