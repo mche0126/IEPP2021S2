@@ -119,7 +119,7 @@ public class EcoEatApplication {
         return "/veganMap";
     }
 
-    @GetMapping("/restaurant")
+    @RequestMapping("/restaurant")
     public String viewRestaurant() {
         return "/restaurant";
     }
