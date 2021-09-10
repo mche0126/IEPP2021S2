@@ -248,35 +248,35 @@
                 }
             } else {
                 li[i].style.display = "none";
-                checkCategory();
+                // checkCategory();
             }
         }
     }
 
-    function chceckCategory(){
-        var input, filter, li, numberShowed;
-
-        //get input & element
-        input = document.getElementById("food");
-        filter = input.value.toUpperCase();
-        div = document.getElementById("dropdown");
-
-        //filter element by input
-        numberShowed = 0;
-        li = document.getElementsByClassName("food-dropdown-list");
-        for (i = 0; i < li.length; i++) {
-            if(filter == li[i].catagory.toUpperCase()){
-                numberShowed++;
-                if (numberShowed <= 5) {
-                    li[i].style.display = "";
-                } else {
-                    li[i].style.display = "none"
-                }
-            } else {
-                li[i].style.display = "none";
-            }
-        }
-    }
+    // function chceckCategory(){
+    //     var input, filter, li, numberShowed;
+    //
+    //     //get input & element
+    //     input = document.getElementById("food");
+    //     filter = input.value.toUpperCase();
+    //     div = document.getElementById("dropdown");
+    //
+    //     //filter element by input
+    //     numberShowed = 0;
+    //     li = document.getElementsByClassName("food-dropdown-list");
+    //     for (i = 0; i < li.length; i++) {
+    //         if(filter == li[i].catagory.toUpperCase()){
+    //             numberShowed++;
+    //             if (numberShowed <= 5) {
+    //                 li[i].style.display = "";
+    //             } else {
+    //                 li[i].style.display = "none"
+    //             }
+    //         } else {
+    //             li[i].style.display = "none";
+    //         }
+    //     }
+    // }
 
     //show dropdown list
     function toggleOption() {
