@@ -13,6 +13,9 @@
 
     <link rel="stylesheet" href="styles/general.css">
 
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v5.js"></script>
+
     <!--    font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -75,43 +78,52 @@
 
 <div id="explanation" class="container">
     <div class="row">
-        <div class="col-sm-6">
-            <section>
-                <p>The carbon footprint of a food product is the total amount of greenhouse gases (GHG) emitted
-                    throughout its lifecycle, expressed in kilograms of
-                    CO2-equivalents.</p>
-                <p>GHG emissions of the production phase (including all agricultural inputs, machinery, livestock,
-                    soils) and successive phases (such as
-                    processing, transportation, preparation of food, waste disposal) are all included in this
-                    calculation.</p>
-                <p>Thus, one gram of wheat, or one gram of beef, have different carbon footprints, since their life
-                    cycles are different, emitting specific types
-                    and varying amount of greenhouse gases.</p>
-                <br>
-                <p>Use our calculator to find the carbon emission details for food items you consume.</p>
-            </section>
-        </div>
-    </div>
-<!-- Accept user input for food item to view emission details.-->
-    <div class="row">
-        <div class="col-sm-6">
-            <section id="foodEntry">
-                    <div class="form-group row">
-                        <label for="food" class="col-sm-4 col-form-label">Enter the food item:</label>
-                        <div id = "dropdown-section" class="col-sm-2">
-                            <input id="food" type="text" placeholder="Search.." onfocus="toggleOption()"
-                                   onkeyup="inputFilter()" onblur="toggleOption()" />
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-sm-12">
+                    <section>
+                        <p>The carbon footprint of a food product is the total amount of greenhouse gases (GHG) emitted
+                            throughout its lifecycle, expressed in kilograms of
+                            CO2-equivalents.</p>
+                        <p>GHG emissions of the production phase (including all agricultural inputs, machinery,
+                            livestock,
+                            soils) and successive phases (such as
+                            processing, transportation, preparation of food, waste disposal) are all included in this
+                            calculation.</p>
+                        <p>Thus, one gram of wheat, or one gram of beef, have different carbon footprints, since their
+                            life
+                            cycles are different, emitting specific types
+                            and varying amount of greenhouse gases.</p>
+                        <br>
+                        <p>Use our calculator to find the carbon emission details for food items you consume.</p>
+                    </section>
+                </div>
+            </div>
+            <!-- Accept user input for food item to view emission details.-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <section id="foodEntry">
+                        <div class="form-group row">
+                            <label for="food" class="col-sm-4 col-form-label">Enter the food item:</label>
+                            <div id="dropdown-section" class="col-sm-2">
+                                <input id="food" type="text" placeholder="Search.." onfocus="toggleOption()"
+                                       onkeyup="inputFilter()" onfocusout="toggleOption()"/>
                                 <div id="dropdown" class="dropdown-content dropdown">
                                     <!-- Add element from js -->
                                 </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4"></div>
-                        <div class="col-sm-2"><input type="submit" class="btn btn-primary" value="Calculate"/></div>
-                    </div>
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-2"><input type="submit" class="btn btn-primary" value="Calculate"/></div>
+                        </div>
 
-            </section>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div id="barChart" style="border: black solid 2px"></div>
         </div>
     </div>
 </div>
@@ -173,7 +185,8 @@
     var response_list = [[${response}]];
     var response = response_list[0]
 
-    var input,filter,li,node, numberShowed;
+    var input, filter, li, numberShowed;
+    var node = [];
 
     //get input & element
     input = document.getElementById("food");
@@ -181,30 +194,38 @@
     div = document.getElementById("dropdown");
 
     //create first li element
-    node = document.createElement("li")
-    node.textContent = response_list[0].food;
-    node.id = response_list[0].id;
-    node.style.display = "none";
-    node.setAttribute("class", "food-dropdown-list");
-    div.appendChild(node);
+    node[0] = document.createElement("li")
+    node[0].textContent = response_list[0].food;
+    node[0].id = response_list[0].id;
+    node[0].style.display = "none";
+    node[0].setAttribute("class", "food-dropdown-list");
+    node[0].onmousedown = function returnId() {
+        showPlot(node[0].id);
+        console.log(node[0].id)
+    }
+    div.appendChild(node[0]);
 
 
     //create rest element if not duplicated
-    for (i = 1; i < response_list.length; i++){
-        if(response_list[i].food != response_list[i - 1].food) {
-            node = document.createElement("li");
-            node.textContent = response_list[i].food;
-            node.id = response_list[i].id;
-            node.style.display = "none"
-            node.setAttribute("class", "food-dropdown-list");
-            div.appendChild(node);
+    for (i = 1; i < response_list.length; i++) {
+        var check = 0;
+        if (response_list[i].food != response_list[i - 1].food) {
+            node[i] = document.createElement("li");
+            node[i].textContent = response_list[i].food;
+            node[i].id = response_list[i].id;
+            check = response_list[i].id;
+            node[i].style.display = "none"
+            node[i].setAttribute("class", "food-dropdown-list");
+            node[i].onmousedown = function retuenId(e) {
+                showPlot(e.target.id);
+            }
+            div.appendChild(node[i]);
         }
     }
 
     //function filter
-    function inputFilter(){
-        var input,filter,li, numberShowed;
-        console.log("input detected")
+    function inputFilter() {
+        var input, filter, li, numberShowed;
 
         //get input & element
         input = document.getElementById("food");
@@ -218,10 +239,9 @@
             txtValue = li[i].textContent || li[i].innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
                 numberShowed++;
-                if(numberShowed <= 5) {
+                if (numberShowed <= 5) {
                     li[i].style.display = "";
-                }
-                else{
+                } else {
                     li[i].style.display = "none"
                 }
             } else {
@@ -231,11 +251,97 @@
     }
 
     //show dropdown list
-    function toggleOption(){
+    function toggleOption() {
         document.getElementById("dropdown").classList.toggle("show");
         inputFilter();
     }
 
+    function showPlot(foodId) {
+        var emission;
+        //    get emission data from resposne
+        emission = response_list[foodId].emission;
+
+        console.log(emission)
+
+        delete emission.emissionsTotal;
+
+
+        var values = Object.values(emission),
+            keys = Object.keys(emission);
+        let data = [],
+            maximum = 0;
+        for (let i = 0; i < 6; i++) {
+            if (values[i] > maximum) {
+                maximum = values[i];
+            }
+            data[i] = {name: keys[i].split("emissions").pop(), score: values[i]}
+        }
+
+
+// Set dimenssions and margins of the graph
+        var margin = {top: 20, right: 30, bottom: 40, left: 90},
+            width = 800 - margin.left - margin.right,
+            height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+        var svg = d3.select("#barChart")
+            .append('svg')
+            .attr('width', width - margin.left - margin.right)
+            .attr('height', height - margin.top - margin.bottom)
+            .attr("viewBox", [0, 0, width, height]);
+
+
+// Set X
+        const x = d3.scaleBand()
+            .domain(d3.range(data.length))
+            .range([margin.left, width - margin.right])
+            .padding(0.1)
+
+// Set Y
+        const y = d3.scaleLinear()
+            .domain([0, maximum])
+            .range([height - margin.bottom, margin.top])
+
+// set SVG
+        svg
+            .append("g")
+            .attr("fill", 'royalblue')
+            .selectAll("rect")
+            .data(data.sort((a, b) => d3.descending(a.score, b.score)))
+            .join("rect")
+            .attr("x", (d, i) => x(i))
+            .attr("y", d => y(d.score))
+            .attr('title', (d) => d.score)
+            .attr("class", "rect")
+            .attr("height", d => y(0) - y(d.score))
+            .attr("width", x.bandwidth());
+
+// add title
+        svg
+            .append("text")
+            .attr("x", width / 2)
+            .attr("y", 0 - (margin.top / 2))
+            .text("Emission Breakdown Bar Chart");
+
+// x Axis
+        function xAxis(g) {
+            g.attr("transform", `translate(0,${height - margin.bottom})`)
+                .call(d3.axisBottom(x).tickFormat(i => data[i].name))
+                .attr("font-size", '10px')
+        }
+
+// y axis
+        function yAxis(g) {
+            g.attr("transform", `translate(${margin.left}, 0)`)
+                .call(d3.axisLeft(y).ticks(null, data.format))
+                .attr("font-size", '10px')
+        }
+
+
+        svg.append("g").call(xAxis);
+        svg.append("g").call(yAxis);
+        svg.node();
+    }
 
 
     /*]]>*/
