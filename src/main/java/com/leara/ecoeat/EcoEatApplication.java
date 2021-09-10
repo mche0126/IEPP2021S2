@@ -1,9 +1,6 @@
 package com.leara.ecoeat;
 
-import com.leara.dtoclasses.FoodItem;
-import com.leara.dtoclasses.FormattedFood;
-import com.leara.dtoclasses.QueryFoodRequest;
-import com.leara.dtoclasses.QueryFoodResponse;
+import com.leara.dtoclasses.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +27,7 @@ public class EcoEatApplication {
     }
 
     private static String queryFoodUrl = "http://47.113.179.46:8080/food/queryFoodMessage";
+    private static String queryRecipeUrl = "http://47.113.179.46:8080/food/queryFoodMessage";
     @Autowired
     RestTemplate restTemplate;
 
@@ -53,6 +51,15 @@ public class EcoEatApplication {
         return "emissions";
     }
 
+    /*
+        Mapping for View recipes
+     */
+    @GetMapping("/recipes")
+    public String viewRecipes(Model model) {
+        model.addAttribute("recipeItem", new RecipeItem());
+        return "recipes";
+    }
+
     @PostMapping("/emissions")
     public String sendFoodRequest(Model model) {
         FormattedFood newFood;
@@ -73,6 +80,18 @@ public class EcoEatApplication {
         return "emissions";
     }
 
+    @PostMapping("/recipes")
+    public String sendRecipeRequest(@ModelAttribute RecipeItem recipeItem, Model model) {
+        model.addAttribute("recipeItem", recipeItem);
+        log.info(recipeItem.toString());
+        //        Send request to database
+        QueryRecipeRequest request = new QueryRecipeRequest(" "," ");
+        QueryRecipeResponse[] response = postRecipes(request);
+
+        log.info(response[0].toString());
+        model.addAttribute("response", response[0]);
+        return "reciperesults";
+    }
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
@@ -84,6 +103,14 @@ public class EcoEatApplication {
 
         QueryFoodResponse response[] = restTemplate.postForObject(
                 queryFoodUrl, request, QueryFoodResponse[].class);
+        return response;
+    }
+
+    @PostMapping("/postrecipes")
+    public QueryRecipeResponse[] postRecipes(@RequestBody QueryRecipeRequest request) {
+
+        QueryRecipeResponse response[] = restTemplate.postForObject(
+                queryRecipeUrl, request, QueryRecipeResponse[].class);
         return response;
     }
 
