@@ -43,6 +43,14 @@ public class EcoEatApplication {
     }
 
     /*
+        Mapping for View maps
+     */
+    @RequestMapping("/map")
+    public String viewMap() {
+        return "map";
+    }
+
+    /*
         Mapping for View emissions
      */
     @GetMapping("/emissions")
@@ -87,10 +95,7 @@ public class EcoEatApplication {
         return response;
     }
 
-    @GetMapping("/map")
-    public String viewMap() {
-        return "/map";
-    }
+
 
 
     /*
