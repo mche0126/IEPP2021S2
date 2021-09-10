@@ -107,7 +107,7 @@
                             <label for="food" class="col-sm-4 col-form-label">Enter the food item:</label>
                             <div id="dropdown-section" class="col-sm-2">
                                 <input id="food" type="text" placeholder="Search.." onfocus="toggleOption()"
-                                       onkeyup="inputFilter()" onfocusout="toggleOption()"/>
+                                       onkeyup="inputFilter()" onblur="toggleOption()"/>
                                 <div id="dropdown" class="dropdown-content dropdown">
                                     <!-- Add element from js -->
                                 </div>
@@ -123,7 +123,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div id="barChart" style="border: black solid 2px"></div>
+            <div id="barChart"></div>
         </div>
     </div>
 </div>
@@ -199,6 +199,7 @@
     node[0].id = response_list[0].id;
     node[0].style.display = "none";
     node[0].setAttribute("class", "food-dropdown-list");
+    node[0].setAttribute("category", response_list[0].category);
     node[0].onmousedown = function returnId() {
         showPlot(node[0].id);
         console.log(node[0].id)
@@ -216,6 +217,7 @@
             check = response_list[i].id;
             node[i].style.display = "none"
             node[i].setAttribute("class", "food-dropdown-list");
+            node[i].setAttribute("category", response_list[i].category);
             node[i].onmousedown = function retuenId(e) {
                 showPlot(e.target.id);
             }
@@ -246,9 +248,35 @@
                 }
             } else {
                 li[i].style.display = "none";
+                // checkCategory();
             }
         }
     }
+
+    // function chceckCategory(){
+    //     var input, filter, li, numberShowed;
+    //
+    //     //get input & element
+    //     input = document.getElementById("food");
+    //     filter = input.value.toUpperCase();
+    //     div = document.getElementById("dropdown");
+    //
+    //     //filter element by input
+    //     numberShowed = 0;
+    //     li = document.getElementsByClassName("food-dropdown-list");
+    //     for (i = 0; i < li.length; i++) {
+    //         if(filter == li[i].catagory.toUpperCase()){
+    //             numberShowed++;
+    //             if (numberShowed <= 5) {
+    //                 li[i].style.display = "";
+    //             } else {
+    //                 li[i].style.display = "none"
+    //             }
+    //         } else {
+    //             li[i].style.display = "none";
+    //         }
+    //     }
+    // }
 
     //show dropdown list
     function toggleOption() {
