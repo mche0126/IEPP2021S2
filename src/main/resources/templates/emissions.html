@@ -261,8 +261,6 @@
         //    get emission data from resposne
         emission = response_list[foodId].emission;
 
-        console.log(emission)
-
         delete emission.emissionsTotal;
 
 
@@ -281,7 +279,13 @@
 // Set dimenssions and margins of the graph
         var margin = {top: 20, right: 30, bottom: 40, left: 90},
             width = 800 - margin.left - margin.right,
-            height = 400 - margin.top - margin.bottom;
+            height = 600 - margin.top - margin.bottom;
+
+        var elements = document.getElementsByTagName("svg");
+
+        while(elements.length > 0){
+            elements[0].parentNode.removeChild(elements[0]);
+        }
 
 // append the svg object to the body of the page
         var svg = d3.select("#barChart")
