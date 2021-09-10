@@ -114,9 +114,9 @@ public class EcoEatApplication {
         return response;
     }
 
-    @GetMapping("/map")
+    @GetMapping("/veganMap")
     public String viewMap() {
-        return "/map";
+        return "/veganMap";
     }
 
 
@@ -174,6 +174,5 @@ public class EcoEatApplication {
     public String workInProgress() {
         return "workInProgress";
     }
-
 
 }
