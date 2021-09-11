@@ -12,6 +12,7 @@ body {
   background-attachment: fixed;
   background-image: linear-gradient(to bottom right, white, #c9e7d5);
   font-family: "Rubik", sans-serif;
+  scroll-behavior: smooth;
 }
 
 @keyframes fade-in { /* Fade in animation effect, linked by multiple classes*/
@@ -32,7 +33,7 @@ body {
 
 /* Style for all text blocks, including the form on the Emissions page */
 section{
-  animation: fade-in 2s;
+/*  animation: fade-in 2s; */
   background-image: linear-gradient(to bottom right, #f4fcf0, #9ff992);
   border: 1px solid grey;
   border-radius: 20px;
