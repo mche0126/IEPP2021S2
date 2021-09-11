@@ -17,7 +17,11 @@ In iteration two, we enable to build a map view, which shows some vegan restaura
 For the third iteration, we planned to develop some menu comparision features, which can compare different menus with their nutrients and ingredients. 
 
 ## Technology used
-The framework for this website is Java Spring Boot. The data for the website is stored in external servers and accessed by requests and an API. 
+The website backend is using Java Spring framework which integrated Spring Boot, Spring MVC, and Srping Security module in this project. The frontend is created by using jQuery, BootStrap framework, and used some d3 package for data visualization. 
+
+The data for the website is stored in external servers and accessed by requests and RESTful API. 
+
+Major programming language used in this project including: Java,, HTML, JavaScript, and CSS. 
 
 ## Data sources
 The carbon emissions calculator data comes from the following datasets:
