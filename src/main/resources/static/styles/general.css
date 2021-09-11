@@ -286,9 +286,13 @@ footer a:hover{
   }
   
 @media only screen and (max-width: 600px){ /* Adjusts media of tips page for mobile browsers*/
-  #info img, #info iframe{
+  #info iframe{
     height: 200px;
     width: 75%;
+  }
+
+  #info img{
+    visibility: hidden;
   }
 }
 
