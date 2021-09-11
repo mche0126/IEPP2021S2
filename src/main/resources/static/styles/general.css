@@ -8,7 +8,7 @@
 }
 
 body {
-  animation: fade-in 2s;
+/*  animation: fade-in 2s;   */
   background-attachment: fixed;
   background-image: linear-gradient(to bottom right, white, #c9e7d5);
   font-family: "Rubik", sans-serif;
@@ -182,7 +182,7 @@ footer a:hover{
   border: 5px solid rgba(0, 255, 170, 0.7);
   border-right: none;
   border-top: none;
-  backgroudn-clip: padding;
+/*  backgroudn-clip: padding; */
   box-shadow: inset 0px 0px 10px rgba(0, 255, 170, 0.15);
 }
 
