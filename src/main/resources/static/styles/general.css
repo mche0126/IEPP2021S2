@@ -34,7 +34,7 @@ body {
 /* Style for all text blocks, including the form on the Emissions page */
 section{
 /*  animation: fade-in 2s; */
-  background-image: linear-gradient(to bottom right, #f4fcf0, #9ff992);
+  background-color: #e5e6c8;
   border: 1px solid grey;
   border-radius: 20px;
   box-shadow: 8px 8px 4px grey;
