@@ -353,15 +353,17 @@ footer a:hover{
 /* Styles for Tips page items only */
 .card-body{
   animation: fade-in 2s;
-  background-image: linear-gradient(to bottom right, #C8E6C9, #4FCB7C);
-  border-color: #C8E6C9;
+  background-image: url(bgimage.gif);
+  background-color: #e5e6c8;
+  border-color: #93ce95;
   border-radius: 20px;
   box-shadow: 5px 5px 4px grey;
   color: black;
-  height: 180px;
-  margin-top: 30px;
-  padding-left: 8px;
-  padding-right: 8px;
+  height: 220px;
+  margin-top: 80px;
+  padding-left: 18px;
+  padding-right: 18px;
+  padding-top: 18px;
   text-align: center;
 }
 
