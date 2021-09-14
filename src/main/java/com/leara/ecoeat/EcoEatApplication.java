@@ -147,6 +147,75 @@ public class EcoEatApplication {
         return response;
     }
 
+
+    /*
+    Iteration two Mapping section
+    Page include index (home page), tips, emissions, map
+     */
+
+    /*
+    Mapping for View tips
+ */
+    @RequestMapping("/iteration2/tips")
+    public String viewIteration2Tips() {
+        return "iteration2Tips";
+    }
+
+    /*
+        Mapping for View maps
+     */
+    @RequestMapping("/iteration2/map")
+    public String viewIteration2Map() {
+        return "iteration2Map";
+    }
+
+    /*
+        Mapping for View emissions
+     */
+    @GetMapping("/iteration2/emissions")
+    public String viewIteration2Emissions(Model model) {
+        log.info("start");
+        sendFoodRequest(model);
+        log.info("Done");
+        return "iteration2Emissions";
+    }
+
+    @PostMapping("/iteration2/emissions")
+    public String sendIteration2FoodRequest(Model model) {
+        FormattedFood newFood;
+        //        Send request to database
+        QueryFoodRequest request = new QueryFoodRequest("");
+        QueryFoodResponse[] response = postFoodEmissions(request);
+
+        ArrayList<FormattedFood> data = new ArrayList<FormattedFood>();
+        for (QueryFoodResponse queryFoodResponse : response) {
+            newFood = new FormattedFood(queryFoodResponse);
+            data.add(newFood);
+        }
+
+        model.addAttribute("response", data);
+        log.info(String.valueOf(response.length));
+        log.info(String.valueOf(data.get(550).getFood()));
+
+        return "iteration2Emissions";
+    }
+
+
+    @Bean
+    public RestTemplate restIteration2Template(RestTemplateBuilder builder) {
+        return builder.build();
+    }
+
+    @PostMapping("/iteration2/foodemissions")
+    public QueryFoodResponse[] postIteration2FoodEmissions(@RequestBody QueryFoodRequest request) {
+
+        QueryFoodResponse response[] = restTemplate.postForObject(
+                queryFoodUrl, request, QueryFoodResponse[].class);
+        return response;
+    }
+
+
+
     //    work in progress page
     @GetMapping("/workinprogress")
     public String workInProgress() {

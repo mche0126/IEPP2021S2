@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Vegan food map</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="styles/navigationBar.css">
+    <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/emissions.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="styles/maps.css">
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="../.."><img src="images/eco-eat-logo.png" style="height: 80px"/></a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="../..">Home</a></li>
+                <li class="/emissions"><a href="#">Emission Calculator</a></li>
+                <li><a href="/tips">Low Carbon Tips</a></li>
+                <li><a href="active">Vegan Food Map</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Recipes <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/workinprogress">Find a recipe that suits you</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/workinprogress">Compare two different recipes</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <div class="row" style="margin-top: 100px;"></div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="banner">
+                <div>Find out vegan and vegetarian friendly restaurants near you!</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class='sidebar'>
+            <div class='heading'>
+                <h1>Restaurants</h1>
+            </div>
+            <div id='listings' class='listings'></div>
+        </div>
+        <div id="map" class="map"></div>
+
+    </div>
+
+</div>
+
+<div class="container" style="width: 100%;
+        margin-top: 900px;">
+    <div class="row cen">
+        <footer>
+            <div class="row" style="width: 100%">
+                <div class="col-xs-1"></div>
+                <div class="col-lg-3">
+                    <img id="footerLogo" src="images/eco-eat-logo.png" style="  margin-right: 30px">
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <h3 style="font-weight: bolder; margin-left: 20px">About Us</h3>
+                            <ul style="list-style-type:none;">
+                                <a href="/workinprogress">
+                                    <li><h6>Our Project</h6></li>
+                                </a>
+                                <a href="/workinprogress">
+                                    <li><h6>Our Team</h6></li>
+                                </a>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3">
+                            <h3 style="font-weight: bolder; margin-left: 20px">What we have</h3>
+                            <ul style="list-style-type:none;">
+                                <a href="/emission">
+                                    <li><h6>Emission Calculator</h6></li>
+                                </a>
+                                <a href="/tips">
+                                    <li><h6>Low Carbon Tips</h6></li>
+                                </a>
+                                <a href="/map">
+                                    <li><h6>Vegan Food Map</h6></li>
+                                </a>
+                                <a href="/workinprogress">
+                                    <li><h6>Vegan Food Recipes</h6></li>
+                                </a>
+                                <a href="/workinprogress">
+                                    <li><h6>Food Recipes Comparison</h6></li>
+                                </a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="copyright">Leara Eco-Eat Project Team © 2021</p>
+        </footer>
+
+    </div>
+</div>
+
+<script>
+
+    mapboxgl.accessToken = 'pk.eyJ1IjoibGFrc2htaS11IiwiYSI6ImNrdGJ2azQxeTF6Zmsyb3BkYTE0ZGUxZTkifQ.ttw2LugdFySyG0dQ1Ca-cg';
+
+    const stores = {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        144.989876,
+                        -37.799764
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "+61 3 9090 7878",
+                    "phone": "+61 3 9090 7878",
+                    "address": "Shu - Vegan Restaurant in Melbourne",
+                    "city": "Melbourne",
+                    "country": "Australia",
+                    "crossStreet": "147 Johnston St, Collingwood",
+                    "postalCode": "3066",
+                    "state": "Vic"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        144.9899053,
+                        -37.799729
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "+61 1300 464 729",
+                    "phone": "+61 1300 464 729",
+                    "address": "HOME Vegan Bar",
+                    "city": "Melbourne",
+                    "country": "Australia",
+                    "crossStreet": "Shop 4/699 Collins St, Docklands",
+                    "postalCode": "3008",
+                    "state": "VIC"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        144.9512693,
+                        -37.8202588
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "+61 3 9578 9566",
+                    "phone": "+61 3 9578 9566",
+                    "address": "Global Vegetarian",
+                    "city": "Melbourne",
+                    "country": "Australia",
+                    "crossStreet": "499 North Rd, Ormond",
+                    "postalCode": "3204",
+                    "state": "VIC"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        145.0001825,
+                        -37.8106951
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "+61 3 9428 6765",
+                    "phone": "+61 3 9428 6765",
+                    "address": "Fina's Vegan Restaurant - Richmond",
+                    "city": "Melbourne",
+                    "country": "Australia",
+                    "crossStreet": "268 Victoria St, Richmond",
+                    "postalCode": "3121",
+                    "state": "VIC"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        144.832115,
+                        -37.785806
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": " +61 422 113 775",
+                    "phone": " +61 422 113 775",
+                    "address": "Just Vegan",
+                    "city": "Melbourne",
+                    "country": "Australia",
+                    "crossStreet": "252a Hampshire Rd, Sunshine",
+                    "postalCode": "3020",
+                    "state": "VIC"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        144.965709,
+                        -37.814307
+                    ]
+                },
+                "properties": {
+                    "address": "Crossways Vegetarian and Vegan Restaurant",
+                    "city": "Melbourne",
+                    "country": "Australia",
+                    "crossStreet":"147 Swanston St",
+                    "postalCode": "3000",
+                    "state": "VIC"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        144.9651573,-37.8118076
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "+61 3 9663 7878",
+                    "phone": "+61 3 9663 7878",
+                    "address": "Gong De Lin",
+                    "city": "Melbourne",
+                    "crossStreet": "3/264 Swanston St",
+                    "country": "Australia",
+                    "postalCode": "3000",
+                    "state": "VIC"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        144.965715,
+                        -37.74481
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "+61 475 752 121",
+                    "phone": "+61 475 752 121",
+                    "address": "VEGAN 365",
+                    "city": "Melbourne",
+                    "country": "Australia",
+                    "crossStreet": "2 Munro St, Coburg",
+                    "postalCode": "3058",
+                    "state": "VIC"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        144.9791008,
+                        -37.7958476
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "+61 3 9417 6935",
+                    "phone": "+61 3 9417 6935",
+                    "address": "Vegie Bar",
+                    "city": "Melbourne",
+                    "country": "Australia",
+                    "crossStreet": "380 Brunswick St, Fitzroy",
+                    "postalCode": "3065",
+                    "state": "VIC"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        144.999266,
+                        -37.810523
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "+61 3 9427 8916",
+                    "phone": "+61 3 9427 8916",
+                    "address": "Loving Hut Richmond",
+                    "city": "Melbourne",
+                    "country": "Australia",
+                    "crossStreet": "10/242 Victoria St, Richmond",
+                    "postalCode": "3121",
+                    "state": "VIC"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        145.1240696,
+                        -37.7569193
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "+61 3 8838 1282",
+                    "phone": "+61 3 8838 1282",
+                    "address": "Power Plant Cafe",
+                    "city": "Melbourne",
+                    "country": "Australia",
+                    "crossStreet": "2-6 Swilk St, Templestowe",
+                    "postalCode": "3106",
+                    "state": "VIC"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        145.0300609,
+                        -37.8062484
+                    ]
+                },
+                "properties": {
+                    "phoneFormatted": "+61 3 9939 6133",
+                    "phone": "+61 3 9939 6133",
+                    "address": "V Series Kew",
+                    "city": "Melbourne",
+                    "country": "Australia",
+                    "crossStreet": "4/26 Princess St, Kew",
+                    "postalCode": "3101",
+                    "state": "VIC"
+                }
+            }
+        ]
+    };
+    /* Assign a unique ID to each store */
+    stores.features.forEach(function (store, i) {
+        store.properties.id = i;
+    });
+
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/light-v10',
+        center: [144.965709,
+            -37.814307],
+        zoom: 13,
+        scrollZoom: false
+    });
+
+    map.on('load', () => {
+
+        /* Add the data to your map as a layer */
+        map.addLayer({
+            id: 'locations',
+            type: 'circle',
+            /* Add a GeoJSON source containing place coordinates and information. */
+            source: {
+                type: 'geojson',
+                data: stores
+            }
+        });
+
+        map.on('click', ({ point }) => {
+            /* Determine if a feature in the "locations" layer exists at that point. */
+            const features = map.queryRenderedFeatures(point, {
+                layers: ['locations']
+            });
+
+            /* If it does not exist, return */
+            if (!features.length) return;
+
+            const clickedPoint = features[0];
+
+            /* Fly to the point */
+            flyToStore(clickedPoint);
+
+            /* Close all other popups and display popup for clicked store */
+            createPopUp(clickedPoint);
+
+            /* Highlight listing in sidebar (and remove highlight for all other listings) */
+            const activeItem = document.getElementsByClassName('active');
+            if (activeItem[0]) {
+                activeItem[0].classList.remove('active');
+            }
+            const listing = document.getElementById(
+                `listing-${clickedPoint.properties.id}`
+            );
+            listing.classList.add('active');
+        });
+
+        buildLocationList(stores);
+    });
+
+    function buildLocationList({ features }) {
+        for (const { properties } of features) {
+
+            /* Add a new listing section to the sidebar. */
+            const listings = document.getElementById('listings');
+            const listing = listings.appendChild(document.createElement('div'));
+            /* Assign a unique `id` to the listing. */
+            listing.id = `listing-${properties.id}`;
+            /* Assign the `item` class to each listing for styling. */
+            listing.className = 'item';
+
+            /* Add the link to the individual listing created above. */
+            const link = listing.appendChild(document.createElement('a'));
+            link.href = '#';
+            link.className = 'title';
+            link.id = `link-${properties.id}`;
+            link.innerHTML = `${properties.address}`;
+
+            /* Add details to the individual listing. */
+            const details = listing.appendChild(document.createElement('div'));
+            details.innerHTML = `${properties.crossStreet}`;
+            if (properties.phone) {
+                details.innerHTML += ` · ${properties.phoneFormatted}`;
+            }
+            if (properties.distance) {
+                const roundedDistance = Math.round(properties.distance * 100) / 100;
+                details.innerHTML += `<div><strong>${roundedDistance} miles away</strong></div>`;
+            }
+
+
+            link.addEventListener('click', function () {
+                for (const feature of features) {
+                    if (this.id === `link-${feature.properties.id}`) {
+                        flyToStore(feature);
+                        createPopUp(feature);
+                    }
+                }
+                const activeItem = document.getElementsByClassName('active');
+                if (activeItem[0]) {
+                    activeItem[0].classList.remove('active');
+                }
+                this.parentNode.classList.add('active');
+            });
+
+        }
+    }
+
+    function flyToStore(currentFeature) {
+        map.flyTo({
+            center: currentFeature.geometry.coordinates,
+            zoom: 15
+        });
+    }
+
+    function createPopUp(currentFeature) {
+        const popUps = document.getElementsByClassName('mapboxgl-popup');
+        /** Check if there is already a popup on the map and if so, remove it */
+        if (popUps[0]) popUps[0].remove();
+
+        const popup = new mapboxgl.Popup({ closeOnClick: false })
+            .setLngLat(currentFeature.geometry.coordinates)
+            .setHTML(`<h3>${currentFeature.properties.address}</h3><h4>${currentFeature.properties.crossStreet}</h4>`)
+            .addTo(map);
+    }
+</script>
+
+</body>
+</html>
+
