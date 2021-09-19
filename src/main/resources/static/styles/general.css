@@ -10,7 +10,7 @@
 body {
 /*  animation: fade-in 2s;   */
   background-attachment: fixed;
-  background-image: linear-gradient(to bottom right, white, #c9e7d5);
+  background-color: #ffffcc !important;
   font-family: "Rubik", sans-serif;
   scroll-behavior: smooth;
 }
@@ -31,16 +31,21 @@ body {
   text-shadow: 3px 3px 13px black;
   }
 
-/* Style for all text blocks, including the form on the Emissions page */
-section{
-/*  animation: fade-in 2s; */
-  background-color: #e5e6c8;
-  border: 1px solid grey;
-  border-radius: 20px;
-  box-shadow: 8px 8px 4px grey;
-  font-family: sans-serif;
-  padding: 12px;
-}
+  .page img {
+    width: 100%;
+  }
+
+  button {
+    background-color: #99cc00 !important;
+    border: none !important;
+  }
+
+  hr {
+    width: 80%;
+    border: 1px solid #99cc00 !important;
+    border-radius: 10px;
+  }
+
 
 /*Navigation Bar*/
 
@@ -269,32 +274,49 @@ footer a:hover{
 
 
 /* Styles for Homepage items only */
-#info section{
-  font-size: 1.2em;
-  margin-top: 20px;
-  }
-  
-#info img, #info iframe{
-  align-content: stretch;
-  background-image: linear-gradient(to bottom right, white, grey);
-  border: initial;
-  border-radius: 20px;
-  box-shadow: 8px 8px 4px grey;
-  font-family: sans-serif;
-  height: 350px;
-  margin-top: 20px;
-  width: 100%;
-  }
-  
-@media only screen and (max-width: 600px){ /* Adjusts media of tips page for mobile browsers*/
-  #info iframe{
-    height: 200px;
-    width: 75%;
-  }
 
-  #info img{
+@media only screen and (max-width: 700px) {
+  #heroBoxDesktop {
     visibility: hidden;
   }
+
+  #heroBoxMobile {
+    display: block;
+  }
+}
+
+#heroBoxDesktop {
+  background-color: white;
+  position: absolute;
+  top: 300px;
+  left: 30px;
+  width: 350px;
+  float: left;
+  z-index: 1;
+  border-radius: 3px;
+  display: flex;
+}
+
+#heroBoxDesktop p,
+#heroBoxMobile {
+  padding: 10px;
+}
+
+#heroBoxMobile {
+  background-color: white;
+  padding: 10px 30px 10px 30px;
+  margin: 20px;
+  border-radius: 3px;
+  visibility: hidden;
+  position: absolute;
+}
+
+#featureGrid p{
+  padding-left: 20px;
+}
+
+#featureGrid button{
+  margin-left: 20px;
 }
 
 /* Styles for Emissions page items only */
