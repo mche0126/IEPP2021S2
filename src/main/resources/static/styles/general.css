@@ -8,16 +8,10 @@
 }
 
 body {
-/*  animation: fade-in 2s;   */
   background-attachment: fixed;
   background-color: #ffffcc !important;
   font-family: "Rubik", sans-serif;
   scroll-behavior: smooth;
-}
-
-@keyframes fade-in { /* Fade in animation effect, linked by multiple classes*/
-  from {opacity: 0;}
-  to {opacity: 1;}
 }
 
 .banner { /* Style for all page banners */
@@ -164,13 +158,6 @@ footer a:hover{
 
 
 /*Preloader section:*/
-@media only screen and (max-width: 700px){ /* Adjusts text of tips page for mobile browsers*/
-  #info-1 section, #info-2 section, #info-3 section, .card-body, .card-title{
-    font-size: 1.2em;
-  }
-
-}
-
 .circle {
   width: 100%;
   height: 100%;
@@ -269,14 +256,13 @@ footer a:hover{
 
 
 /* Styles for Homepage items only */
-
-@media only screen and (max-width: 700px) {
-  #heroBoxDesktop {
-    visibility: hidden;
+@media only screen and (max-width: 700px){ /* Adjusts text of tips page for mobile browsers*/
+  #heroBoxDesktop, #featureGrid{
+    font-size: 1.2em;
   }
 
-  #heroBoxMobile {
-    display: block;
+  #heroBoxDesktop{
+    width: 450px;
   }
 }
 
@@ -292,18 +278,8 @@ footer a:hover{
   display: flex;
 }
 
-#heroBoxDesktop p,
-#heroBoxMobile {
+#heroBoxDesktop p {
   padding: 10px;
-}
-
-#heroBoxMobile {
-  background-color: white;
-  padding: 10px 30px 10px 30px;
-  margin: 20px;
-  border-radius: 3px;
-  visibility: hidden;
-  position: absolute;
 }
 
 #featureGrid p{
@@ -327,7 +303,6 @@ footer a:hover{
   /*border: 1px solid grey;*/
   border-radius: 8px;
   margin-top: 10px;
-
   box-sizing: border-box;
   background-image: url('https://www.w3schools.com/css/searchicon.png');
   background-position: 14px 12px;
@@ -337,7 +312,6 @@ footer a:hover{
   border: none;
   border-bottom: 1px solid #ddd;
 }
-
 
 #food:focus {outline: 3px solid #ddd;}
 
@@ -406,6 +380,11 @@ footer a:hover{
   margin-bottom: 7px;
 }
 
+@media only screen and (max-width: 700px){ /* Adjusts text of tips page for mobile browsers*/
+  #info-1 section, #info-2 section, #info-3 section, .card-body, .card-title{
+    font-size: 1.2em;
+  }
 
+}
 
 
