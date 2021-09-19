@@ -23,12 +23,10 @@ body {
 .banner { /* Style for all page banners */
   background-color: #81c784;
   border-radius: 5px 30px;
-  box-shadow: 5px 5px 4px grey;
   color: white;
   font-size: 130%;
   padding: 20px 7px;
   text-align: center;
-  text-shadow: 3px 3px 13px black;
   }
 
   .page img {
@@ -166,9 +164,6 @@ footer a:hover{
 
 
 /*Preloader section:*/
-
-
-
 @media only screen and (max-width: 700px){ /* Adjusts text of tips page for mobile browsers*/
   #info-1 section, #info-2 section, #info-3 section, .card-body, .card-title{
     font-size: 1.2em;
@@ -374,12 +369,10 @@ footer a:hover{
 
 /* Styles for Tips page items only */
 .card-body{
- /* animation: fade-in 2s; */
   background-image: url(bgimage.gif);
   background-color: #e5e6c8;
   border-color: #93ce95;
   border-radius: 20px;
-  box-shadow: 5px 5px 4px grey;
   color: black;
   height: 220px;
   margin-top: 80px;
