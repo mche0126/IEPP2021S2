@@ -129,7 +129,7 @@ body {
 
 footer{
   width: 100%;
-  background-color: rgba(0, 255, 0, 0.2);
+  background-color: #339933;
   height: 250px;
   font-family: sans-serif !important;
 }
@@ -346,7 +346,7 @@ footer a:hover{
 
 /* Styles for Tips page items only */
 .card-body{
-  background-image: url(bgimage.gif);
+  /*background-image: url(bgimage.gif);*/
   background-color: #e5e6c8;
   border-color: #93ce95;
   border-radius: 20px;
@@ -389,5 +389,3 @@ footer a:hover{
   }
 
 }
-
-
