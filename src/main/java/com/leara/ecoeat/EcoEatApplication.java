@@ -18,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 
-
+@CrossOrigin(origins = "/**", allowCredentials = "true", maxAge = 3600)
 @SpringBootApplication
 @Controller
 public class EcoEatApplication {
