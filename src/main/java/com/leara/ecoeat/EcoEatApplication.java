@@ -223,4 +223,8 @@ public class EcoEatApplication {
     }
 
 
+    @GetMapping("/test")
+    public String test(){return "test";}
+
+
 }
