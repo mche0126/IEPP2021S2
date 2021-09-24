@@ -31,4 +31,5 @@ mybatis-plus:
 
 backend:
   csp:
+    # 强制不升级http至https
     upgrade-insecure-requests: false
