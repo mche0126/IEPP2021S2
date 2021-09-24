@@ -28,3 +28,7 @@ mybatis-plus:
       logic-not-delete-value: 0
       # 删除后
       logic-delete-value: 1
+
+backend:
+  csp:
+    upgrade-insecure-requests: false
