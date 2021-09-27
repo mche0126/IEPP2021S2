@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var mysql = require('mysql');
+
+        var con = mysql.createConnection({
+            host: "us-cdbr-east-04.cleardb.com",
+            user: "bd59b0e3674880",
+            password: "d918a4e8"
+        });
+
+        con.connect(function(err) {
+            if (err) throw err;
+            console.log("Connected!");
+        });
+    </script>
+
+
+</head>
+<body>
+
+</body>
+</html>

@@ -7,35 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
+        const
+
+        $(document).ready(function(){
+            term = {"keyWords":"Apple"},
+            url = "https://47.113.179.46:8080/food/queryFoodMessage"
 
 
-
-$(document).ready(function(){
-    term = {"keyWords":"Apple"},
-    url = "https://47.113.179.46:8080/food/queryFoodMessage"
-
-
-  $("button").click(function(){
-    $.ajax({
-        url: url,
-        type: "GET",
-        crossDomain:true,
-        data:term,
-        dataType:'json',
-        withCredentials: true,
-        processData:false,
-        headers: { "Content-Type":"application/json","Accept": "*/*","Content-Endcoding":"gzip" ,"Access-Control-Allow-Origin": "*"},
-        success: function (response) {
-            response.addHeader("Access-Control-Allow-Origin", "*");
-            console.log(response);
-        },
-        error: function(error){
-            console.log("Something went wrong", error);
-        }
-    });
-  });
-});
-</script>
+          $("button").click(function(){
+            $.ajax({
+                url: url,
+                type: "GET",
+                crossDomain:true,
+                data:term,
+                dataType:'json',
+                withCredentials: true,
+                processData:false,
+                headers: { "Content-Type":"application/json","Accept": "*/*","Content-Endcoding":"gzip" ,"Access-Control-Allow-Origin": "*"},
+                success: function (response) {
+                    response.addHeader("Access-Control-Allow-Origin", "*");
+                    console.log(response);
+                },
+                error: function(error){
+                    console.log("Something went wrong", error);
+                }
+            });
+          });
+        });
+    </script>
 </head>
 <body>
    
