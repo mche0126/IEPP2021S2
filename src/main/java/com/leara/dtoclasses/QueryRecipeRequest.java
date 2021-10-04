@@ -16,6 +16,13 @@ public class QueryRecipeRequest {
         this.current="1";
     }
 
+    public QueryRecipeRequest(String name, String recipeCategory) {
+        this.name = name;
+        this.recipeCategory = recipeCategory;
+        this.size="10";
+        this.current="1";
+    }
+
     public String getName() {
         return name;
     }

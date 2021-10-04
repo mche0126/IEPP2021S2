@@ -47,7 +47,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Recipes <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/workinprogress">Find a recipe that suits you</a></li>
+                        <li><a href="#">Find a recipe that suits you</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="/workinprogress">Compare two different recipes</a></li>
                     </ul>
@@ -76,13 +76,25 @@
 
 <!-- Accept user input for food item to view recipes.-->
 <div class="container">
-    <div class="row" style="margin-top: 175px;">
+    <div class="row" style="margin-top: 75px;">
 
-<!--         <h1 th:text="${response.name}" >-->
-       <form action="#" th:action="@{/recipes}" th:object="${recipeItem}" method="post">
-            <p>Enter the food item: <input type="text" th:field="*{name}" /></p>
-            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-        </form>
+        <table class="table">
+            <tr>
+                <td style="width:50%; border:none;">
+                    <form action="#" th:action="@{/recipes}" th:object="${recipeItem}" method="post">
+                        <p>Enter the food item: <input type="text" th:field="*{name}" /></p>
+                        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+                    </form>
+                </td>
+                <td style="width:50%; border:none;">
+                    <form action="#" th:action="@{/recipescategories}" th:object="${recipeItem}" method="post">
+                        <p>Enter the food category: <input type="text" th:field="*{category}" /></p>
+                        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+                    </form>
+                </td>
+            </tr>
+        </table>
+
     </div>
 
 
@@ -141,5 +153,6 @@
     </div>
 </div>
 
+<script type="text/javascript" src="scripts/recipes.js"></script>
 </body>
 </html>

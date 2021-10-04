@@ -1,7 +1,5 @@
 $( document ).ready(function() {
-    let endpoint = "http://47.113.179.46:8080/food/queryFoodMessage";
-
-    $( ".content a" ).each(function( index, element ) {
+    let endpoint = "http://54.153.203.248:8080/food/queryAllCategory ";
 
         $.ajax({
             url: endpoint,
@@ -11,5 +9,5 @@ $( document ).ready(function() {
                 console.log(result);
             }
         })
-    });
+
 });
