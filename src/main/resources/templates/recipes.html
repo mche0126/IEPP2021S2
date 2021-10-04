@@ -77,12 +77,14 @@
 <div class="container">
     <div class="row" style="margin-top: 175px;">
 
-        <form action="#" th:action="@{/recipes}" th:object="${recipeItem}" method="post">
-            <p>Enter the name: <input type="text" th:field="*{name}" /></p>
+<!--         <h1 th:text="${response.name}" >-->
+       <form action="#" th:action="@{/recipes}" th:object="${recipeItem}" method="post">
+            <p>Enter the food item: <input type="text" th:field="*{name}" /></p>
             <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
         </form>
-
     </div>
+
+
 </div>
 
 
