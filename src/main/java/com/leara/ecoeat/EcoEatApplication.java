@@ -1,9 +1,6 @@
 package com.leara.ecoeat;
 
-import com.leara.dtoclasses.FoodItem;
-import com.leara.dtoclasses.FormattedFood;
-import com.leara.dtoclasses.QueryFoodRequest;
-import com.leara.dtoclasses.QueryFoodResponse;
+import com.leara.dtoclasses.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +27,7 @@ public class EcoEatApplication {
     }
 
     private static String queryFoodUrl = "http://47.113.179.46:8080/food/queryFoodMessage";
+    private static String queryRecipeUrl = "http://54.153.203.248:8080/food/queryRecipe";
     @Autowired
     RestTemplate restTemplate;
 
@@ -95,7 +93,33 @@ public class EcoEatApplication {
         return response;
     }
 
+    @GetMapping("/recipes")
+    public String recipeForm(Model model) {
+        model.addAttribute("recipeItem", new RecipeItem());
+        return "recipes";
+    }
 
+
+    @PostMapping("/recipes")
+    public String sendRecipeRequest(@ModelAttribute RecipeItem recipeItem, Model model) {
+        model.addAttribute("recipeItem", recipeItem);
+        log.info(recipeItem.toString());
+        QueryRecipeRequest request = new QueryRecipeRequest(recipeItem.getName());
+
+        QueryRecipeResponse response = postRecipes(request);
+        log.info(response.toString());
+        log.info("records "+ response.getRecords()[0].getName());
+        model.addAttribute("response", response);
+        return "reciperesults";
+    }
+
+    @PostMapping("/foodrecipes")
+    public QueryRecipeResponse postRecipes(@RequestBody QueryRecipeRequest request) {
+
+        QueryRecipeResponse response = restTemplate.postForObject(
+                queryRecipeUrl, request, QueryRecipeResponse.class);
+        return response;
+    }
 
 
     /*
