@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.leara</groupId>
     <artifactId>EcoEat</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>3.0.0-TEST</version>
     <name>EcoEat</name>
     <description>EcoEat</description>
 
@@ -54,6 +54,8 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+
 
     </dependencies>
 
