@@ -81,15 +81,20 @@
         <table class="table">
             <tr>
                 <td style="width:50%; border:none;">
-                    <form action="#" th:action="@{/recipes}" th:object="${recipeItem}" method="post">
+                    <p> Enter an ingredient to see recipe suggestions for it along with the carbon emission
+                        values, so that you can select a recipe which is less harmful to the planet.</p>
+                    <form action="#" th:action="@{/recipes}" th:object="${recipeItem}" method="post" style="margin-top: 60px">
                         <p>Enter the food item: <input type="text" th:field="*{name}" /></p>
-                        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+                        <div class="row"></div>
+                        <p style="margin-top: 25px;"><input type="submit" class="btn btn-primary" value="Submit" /> </p>
                     </form>
                 </td>
                 <td style="width:50%; border:none;">
-                    <form action="#" th:action="@{/recipescategories}" th:object="${recipeItem}" method="post">
+                    <p> Want to see recipes for a wider category? Choose a category from our list.</p>
+                    <form action="#" th:action="@{/recipescategories}" th:object="${recipeItem}" method="post" style="margin-top: 60px">
                         <p>Enter the food category: <input type="text" th:field="*{category}" /></p>
-                        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+
+                        <p style="margin-top: 25px;"><input type="submit" class="btn btn-primary" value="Submit" /> </p>
                     </form>
                 </td>
             </tr>
