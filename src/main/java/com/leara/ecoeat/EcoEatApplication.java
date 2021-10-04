@@ -153,6 +153,12 @@ public class EcoEatApplication {
     Page include index (home page), tips, emissions, map
      */
 
+    //    Homepage Mapping
+    @GetMapping("/iteration2")
+    public String viewIteration2Home() {
+        return "iteration2Index";
+    }
+
     /*
     Mapping for View tips
  */
