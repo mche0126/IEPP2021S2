@@ -8,11 +8,10 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        const
 
         $(document).ready(function(){
             term = {"keyWords":"Apple"},
-            url = "https://47.113.179.46:8080/food/queryFoodMessage"
+            url = "https://www.eco-eat-data.ml:8080/food/queryFoodMessage"
 
 
           $("button").click(function(){
@@ -20,7 +19,6 @@
                 url: url,
                 type: "GET",
                 crossDomain:true,
-                data:term,
                 dataType:'json',
                 withCredentials: true,
                 processData:false,
