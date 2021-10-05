@@ -389,3 +389,14 @@ footer a:hover{
   }
 
 }
+
+#ingredient{ /* Input box for the recipe ingredient search form */
+  /*border: 1px solid grey;*/
+  border-radius: 8px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  font-size: 16px;
+  padding: 14px 20px 12px 45px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
