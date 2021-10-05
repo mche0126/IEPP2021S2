@@ -1,6 +1,11 @@
 package com.leara.ecoeat;
 
 import com.leara.dtoclasses.*;
+
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.Unirest;
+
+import com.mashape.unirest.http.exceptions.UnirestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
+
 
 @CrossOrigin(origins = "/**", allowCredentials = "true", maxAge = 3600)
 @SpringBootApplication
@@ -26,7 +31,10 @@ public class EcoEatApplication {
         SpringApplication.run(EcoEatApplication.class, args);
     }
 
-    private static String queryFoodUrl = "http://47.113.179.46:8080/food/queryFoodMessage";
+    private static final String ALL_FOOD_BASE_URL = "https://ieppfood-2004.restdb.io/rest/all-food";
+    private static final String FOOD_APIKEY = "2630bf41b33a68f101f4af580f4cb65d49d9a";
+
+    private static String queryFoodUrl = "http://54.153.203.248:8080/food/queryFood";
     private static String queryRecipeUrl = "http://54.153.203.248:8080/food/queryRecipe";
     @Autowired
     RestTemplate restTemplate;
@@ -52,32 +60,21 @@ public class EcoEatApplication {
         Mapping for View emissions
      */
     @GetMapping("/emissions")
-    public String viewEmissions(Model model) {
+    public String viewEmissions(Model model) throws UnirestException {
         log.info("start");
-        sendFoodRequest(model);
+
+        HttpResponse response = Unirest.get("https://inventory-fac4.restdb.io/appdeploy/motorbikes")
+                .header("x-apikey", "560bd47058e7ab1b2648f4e7")
+                .header("cache-control", "no-cache")
+                .asString();
+
+        log.info("This is " + response);
+
         log.info("Done");
         return "emissions";
     }
 
-    @PostMapping("/emissions")
-    public String sendFoodRequest(Model model) {
-        FormattedFood newFood;
-        //        Send request to database
-        QueryFoodRequest request = new QueryFoodRequest("");
-        QueryFoodResponse[] response = postFoodEmissions(request);
 
-        ArrayList<FormattedFood> data = new ArrayList<FormattedFood>();
-        for (QueryFoodResponse queryFoodResponse : response) {
-            newFood = new FormattedFood(queryFoodResponse);
-            data.add(newFood);
-        }
-
-        model.addAttribute("response", data);
-        log.info(String.valueOf(response.length));
-        log.info(String.valueOf(data.get(550).getFood()));
-
-        return "emissions";
-    }
 
 
     @Bean
@@ -85,13 +82,6 @@ public class EcoEatApplication {
         return builder.build();
     }
 
-    @PostMapping("/foodemissions")
-    public QueryFoodResponse[] postFoodEmissions(@RequestBody QueryFoodRequest request) {
-
-        QueryFoodResponse response[] = restTemplate.postForObject(
-                queryFoodUrl, request, QueryFoodResponse[].class);
-        return response;
-    }
 
     @GetMapping("/recipes")
     public String recipeForm(Model model) {
@@ -220,7 +210,7 @@ public class EcoEatApplication {
     @GetMapping("/iteration2/emissions")
     public String viewIteration2Emissions(Model model) {
         log.info("start");
-        sendFoodRequest(model);
+//        sendFoodRequest(model);
         log.info("Done");
         return "iteration2Emissions";
     }
@@ -229,18 +219,18 @@ public class EcoEatApplication {
     public String sendIteration2FoodRequest(Model model) {
         FormattedFood newFood;
         //        Send request to database
-        QueryFoodRequest request = new QueryFoodRequest("");
-        QueryFoodResponse[] response = postFoodEmissions(request);
-
-        ArrayList<FormattedFood> data = new ArrayList<FormattedFood>();
-        for (QueryFoodResponse queryFoodResponse : response) {
-            newFood = new FormattedFood(queryFoodResponse);
-            data.add(newFood);
-        }
-
-        model.addAttribute("response", data);
-        log.info(String.valueOf(response.length));
-        log.info(String.valueOf(data.get(550).getFood()));
+//        QueryFoodRequest request = new QueryFoodRequest("");
+//        QueryFoodResponse[] response = postFoodEmissions(request);
+//
+//        ArrayList<FormattedFood> data = new ArrayList<FormattedFood>();
+//        for (QueryFoodResponse queryFoodResponse : response) {
+//            newFood = new FormattedFood(queryFoodResponse);
+//            data.add(newFood);
+//        }
+//
+//        model.addAttribute("response", data);
+//        log.info(String.valueOf(response.length));
+//        log.info(String.valueOf(data.get(550).getFood()));
 
         return "iteration2Emissions";
     }
@@ -269,7 +259,7 @@ public class EcoEatApplication {
 
 
     @GetMapping("/test")
-    public String test(){return "test1";}
+    public String test(){return "test";}
 
 
 }
