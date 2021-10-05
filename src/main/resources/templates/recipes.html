@@ -18,7 +18,8 @@
     <!--    font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik&display=swap">
 </head>
 <body>
 
@@ -86,7 +87,7 @@
                     <form action="#" th:action="@{/recipes}" th:object="${recipeItem}" method="post" style="margin-top: 60px">
                         <p>Enter the food item: <input type="text" th:field="*{name}" /></p>
                         <div class="row"></div>
-                        <p style="margin-top: 25px;"><input type="submit" class="btn btn-primary" value="Submit" /> </p>
+                        <p style="margin-top: 25px;"><input type="submit" class="btn btn-primary" style ="background-color: #99cc00 !important; border: none !important; " value="View recipes" /> </p>
                     </form>
                 </td>
                 <td style="width:50%; border:none;">
@@ -94,7 +95,7 @@
                     <form action="#" th:action="@{/recipescategories}" th:object="${recipeItem}" method="post" style="margin-top: 60px">
                         <p>Enter the food category: <input type="text" th:field="*{category}" /></p>
 
-                        <p style="margin-top: 25px;"><input type="submit" class="btn btn-primary" value="Submit" /> </p>
+                        <p style="margin-top: 25px;"><input type="submit" class="btn btn-primary" style ="background-color: #99cc00 !important; border: none !important; " value="View recipes" /> </p>
                     </form>
                 </td>
             </tr>
