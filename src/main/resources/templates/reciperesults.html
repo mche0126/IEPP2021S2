@@ -87,19 +87,26 @@
                                     <td style="width:50%; background-color: #C7EAB7;">
                                         <table class="table" style="background-color: #C7EAB7;">
                                             <tr>
-                                                <td style="width:20%">Total Emissions</td>
-                                                <td><p th:text="${record.emissionsTotal}"></p></td>
+                                                <td style="width:20%; background-color:#DF9E80;">Total Emissions</td>
+                                                <td colspan="8" style="background-color:#DF9E80; font-weight: bold;"><p th:text="${#numbers.formatDecimal(record.emissionsTotal,1,'COMMA',2,'POINT') + ' kg'}"></p></td>
                                             </tr>
                                             <tr>
-                                                <td style="width:20%">Ingredients</td>
-                                                <td><p th:text="${record.ingredients}"></td>
+                                                <td style="width:50%">Ingredients</td>
+                                                <td colspan="8"><p th:text="${record.ingredients}"></td>
                                             </tr>
                                             <tr>
                                                 <td style="width:20%">Directions</td>
-                                                <td><p th:text="${record.directions}"></td>
+                                                <td colspan="8"><p th:text="${record.directions}"></td>
                                             </tr>
                                             <tr>
-                                                <td><a th:href="'https://' + ${record.link}" target="_blank">Click to view recipe.</a></td>
+                                                <td colspan="8"><a th:href="'https://' + ${record.link}" target="_blank">Click to view recipe.</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:20%">Nutrition</td>
+                                                <td colspan="2"><p th:text="'Calories' + ${#numbers.formatDecimal(record.calories,1,'COMMA',2,'POINT') }"></td>
+                                                <td colspan="2"><p th:text="'Protein ' + ${#numbers.formatDecimal(record.protein,1,'COMMA',2,'POINT')+ ' g'}"></td>
+                                                <td colspan="2"><p th:text="'Sugars ' + ${#numbers.formatDecimal(record.sugars,1,'COMMA',2,'POINT') + ' g'}"></td>
+                                                <td colspan="2"><p th:text="'Sat. Fats ' + ${#numbers.formatDecimal(record.saturatedFat,1,'COMMA',2,'POINT') + ' g'}"></td>
                                             </tr>
                                         </table>
                                     </td>
