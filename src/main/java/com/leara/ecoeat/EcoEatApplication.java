@@ -1,11 +1,10 @@
 package com.leara.ecoeat;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.leara.dtoclasses.*;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.Unirest;
-
-import com.mashape.unirest.http.exceptions.UnirestException;
+import kong.unirest.HttpResponse;
+import kong.unirest.Unirest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
 
 
 @CrossOrigin(origins = "/**", allowCredentials = "true", maxAge = 3600)
@@ -60,15 +60,29 @@ public class EcoEatApplication {
         Mapping for View emissions
      */
     @GetMapping("/emissions")
-    public String viewEmissions(Model model) throws UnirestException {
+    public String viewEmissions(Model model){
         log.info("start");
 
-        HttpResponse response = Unirest.get("https://inventory-fac4.restdb.io/appdeploy/motorbikes")
-                .header("x-apikey", "560bd47058e7ab1b2648f4e7")
+        HttpResponse response = Unirest.get(ALL_FOOD_BASE_URL)
+                .header("x-apikey", FOOD_APIKEY)
                 .header("cache-control", "no-cache")
                 .asString();
 
-        log.info("This is " + response);
+        String res = response.getBody().toString();
+        ObjectMapper mapper = new ObjectMapper();
+
+        try{
+            FoodName[] foodName = mapper.readValue(res, FoodName[].class);
+            for(FoodName name : foodName){
+                log.info(name.getFood());
+            }
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+//        log.info("This is " + res);
 
         log.info("Done");
         return "emissions";
