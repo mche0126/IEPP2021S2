@@ -2,10 +2,7 @@ package com.leara.ecoeat;
 
 import com.leara.dtoclasses.*;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.Unirest;
 
-import com.mashape.unirest.http.exceptions.UnirestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +15,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
+
+
+/**
+ * @author Leara
+ */
 
 
 @CrossOrigin(origins = "/**", allowCredentials = "true", maxAge = 3600)
@@ -27,16 +30,21 @@ public class EcoEatApplication {
 
     private static final Logger log = LoggerFactory.getLogger(EcoEatApplication.class);
 
+    private static final String ALL_FOOD_BASE_URL = "https://ieppfood-2004.restdb.io/rest/all-food";
+    private static final String ALL_CATEGORY_BASE_URL = "https://ieppfood-2004.restdb.io/rest/all-category";
+    private static final String APIKEY_FOOD = "2630bf41b33a68f101f4af580f4cb65d49d9a";
+
+
+
+    private static String queryFoodUrl = "http://54.153.203.248:8080/food/queryFood";
+    private static String queryRecipeUrl = "http://54.153.203.248:8080/food/queryRecipe";
+
     public static void main(String[] args) {
         SpringApplication.run(EcoEatApplication.class, args);
     }
 
-    private static final String ALL_FOOD_BASE_URL = "https://ieppfood-2004.restdb.io/rest/all-food";
-    private static final String FOOD_APIKEY = "2630bf41b33a68f101f4af580f4cb65d49d9a";
 
-    private static String queryFoodUrl = "http://54.153.203.248:8080/food/queryFood";
-    //private static String queryRecipeUrl = "http://54.153.203.248:8080/food/queryRecipe";
-    private static String queryRecipeUrl = "http://47.113.179.46:8080/food/queryRecipe";
+
     @Autowired
     RestTemplate restTemplate;
 
@@ -44,6 +52,7 @@ public class EcoEatApplication {
     /*
         Mapping for View tips
      */
+
     @RequestMapping("/tips")
     public String viewTips() {
         return "tips";
@@ -60,28 +69,12 @@ public class EcoEatApplication {
     /*
         Mapping for View emissions
      */
+
     @GetMapping("/emissions")
-    public String viewEmissions(Model model) throws UnirestException {
-        log.info("start");
-
-        HttpResponse response = Unirest.get("https://inventory-fac4.restdb.io/appdeploy/motorbikes")
-                .header("x-apikey", "560bd47058e7ab1b2648f4e7")
-                .header("cache-control", "no-cache")
-                .asString();
-
-        log.info("This is " + response);
-
-        log.info("Done");
+    public String viewEmissions(Model model) {
         return "emissions";
     }
 
-
-
-
-    @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder builder) {
-        return builder.build();
-    }
 
 
     @GetMapping("/recipes")
@@ -99,7 +92,7 @@ public class EcoEatApplication {
 
         QueryRecipeResponse response = postRecipes(request);
         log.info(response.toString());
-        log.info("records "+ response.getRecords()[0].getName());
+        log.info("records " + response.getRecords()[0].getName());
         model.addAttribute("response", response);
         return "reciperesults";
     }
@@ -112,7 +105,7 @@ public class EcoEatApplication {
 
         QueryRecipeResponse response = postRecipes(request);
         log.info(response.toString());
-        log.info("records category "+ response.getRecords()[0].getName());
+        log.info("records category " + response.getRecords()[0].getName());
         model.addAttribute("response", response);
         return "reciperesults";
     }
@@ -251,7 +244,6 @@ public class EcoEatApplication {
     }
 
 
-
     //    work in progress page
     @GetMapping("/workinprogress")
     public String workInProgress() {
@@ -260,7 +252,9 @@ public class EcoEatApplication {
 
 
     @GetMapping("/test")
-    public String test(){return "test";}
+    public String test() {
+        return "test";
+    }
 
 
 }
