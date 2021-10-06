@@ -1,10 +1,8 @@
 package com.leara.ecoeat;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.leara.dtoclasses.*;
 
-import kong.unirest.HttpResponse;
-import kong.unirest.Unirest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
