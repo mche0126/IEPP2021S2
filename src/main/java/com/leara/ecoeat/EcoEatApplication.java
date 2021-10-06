@@ -35,7 +35,8 @@ public class EcoEatApplication {
     private static final String FOOD_APIKEY = "2630bf41b33a68f101f4af580f4cb65d49d9a";
 
     private static String queryFoodUrl = "http://54.153.203.248:8080/food/queryFood";
-    private static String queryRecipeUrl = "http://54.153.203.248:8080/food/queryRecipe";
+    //private static String queryRecipeUrl = "http://54.153.203.248:8080/food/queryRecipe";
+    private static String queryRecipeUrl = "http://47.113.179.46:8080/food/queryRecipe";
     @Autowired
     RestTemplate restTemplate;
 
