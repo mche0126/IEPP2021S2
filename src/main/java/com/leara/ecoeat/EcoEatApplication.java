@@ -37,8 +37,8 @@ public class EcoEatApplication {
 
 
     private static String queryFoodUrl = "http://54.153.203.248:8080/food/queryFood";
-    private static String queryRecipeUrl = "http://54.153.203.248:8080/food/queryRecipe";
-
+    //private static String queryRecipeUrl = "http://54.153.203.248:8080/food/queryRecipe";
+    private static String queryRecipeUrl = "http://47.113.179.46:8080/food/queryRecipe";
     public static void main(String[] args) {
         SpringApplication.run(EcoEatApplication.class, args);
     }
