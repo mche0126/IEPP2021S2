@@ -123,13 +123,14 @@ body {
   margin-top:15px;
   text-align:center;
   font-size:13px;
-  color:#717171;
+  color:whitesmoke;
   margin-bottom: 30px;
 }
 
 footer{
   width: 100%;
   background-color: #339933;
+  color: whitesmoke;
   height: 250px;
   font-family: sans-serif !important;
 }
@@ -140,12 +141,12 @@ footer{
 }
 
 footer a {
-  color: black;
+  color: white;
   text-decoration: none;
 }
 
 footer a:hover{
-  color: #717171;
+  color: navajowhite;
 }
 
 @media (max-width: 1183px) {

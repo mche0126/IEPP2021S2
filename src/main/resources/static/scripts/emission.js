@@ -1,6 +1,7 @@
-const CATEGORY_URL = "https://ieppfood-2004.restdb.io/rest/all-category",
-    FOOD_URL = "https://ieppfood-2004.restdb.io/rest/all-food",
+const FOOD_URL = "https://ieppfood-2004.restdb.io/rest/all-food",
     APIKEY = "615d37458597142da174544d";
+
+var foodNameList;
 
 var foodListCall = {
     "async": true,
@@ -15,22 +16,7 @@ var foodListCall = {
 }
 
 $.ajax(foodListCall).done(function (response) {
-    console.log(response[1]);
+    foodNameList = response
 });
 
-var categoryListCall = {
-    "async": true,
-    "crossDomain": true,
-    "url": CATEGORY_URL,
-    "method": "GET",
-    "headers": {
-        "content-type": "application/json",
-        "x-apikey": APIKEY,
-        "cache-control": "no-cache"
-    }
-}
-
-$.ajax(categoryListCall).done(function (response) {
-    console.log(response);
-});
-
+console.log(foodNameList)
