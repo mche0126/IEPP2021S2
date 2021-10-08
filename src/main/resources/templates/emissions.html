@@ -117,7 +117,8 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-4"></div>
-                            <div class="col-sm-2"><input type="submit" class="btn btn-primary" value="Calculate"/></div>
+                            <div class="col-sm-2"><input type="submit" class="btn btn-primary" value="Calculate"
+                                                         onclick="showPlot(document.getElementById('food').getAttribute('foodId'))"/></div>
                         </div>
 
                     </section>
@@ -182,210 +183,228 @@
     </div>
 </div>
 
-<script th:inline="javascript">
-//     /*<![CDATA[*/
-//     var response_list = [[${response}]];
-//     var response = response_list[0]
-//
-//     var input, filter, li, numberShowed;
-//     var node = [];
-//
-//     //get input & element
-//     input = document.getElementById("food");
-//     filter = input.value.toUpperCase();
-//     div = document.getElementById("dropdown");
-//
-//     //create first li element
-//     node[0] = document.createElement("li")
-//     node[0].textContent = response_list[0].food;
-//     node[0].id = response_list[0].id;
-//     node[0].style.display = "none";
-//     node[0].setAttribute("class", "food-dropdown-list");
-//     node[0].setAttribute("category", response_list[0].category);
-//     node[0].onmousedown = function returnId() {
-//         showPlot(node[0].id);
-//         console.log(node[0].id)
-//     }
-//     div.appendChild(node[0]);
-//
-//
-//     //create rest element if not duplicated
-//     for (i = 1; i < response_list.length; i++) {
-//         var check = 0;
-//         if (response_list[i].food != response_list[i - 1].food) {
-//             node[i] = document.createElement("li");
-//             node[i].textContent = response_list[i].food;
-//             node[i].id = response_list[i].id;
-//             check = response_list[i].id;
-//             node[i].style.display = "none"
-//             node[i].setAttribute("class", "food-dropdown-list");
-//             node[i].setAttribute("category", response_list[i].category);
-//             node[i].onmousedown = function retuenId(e) {
-//                 showPlot(e.target.id);
-//             }
-//             div.appendChild(node[i]);
-//         }
-//     }
-//
-//     //function filter
-//     function inputFilter() {
-//         var input, filter, li, numberShowed;
-//
-//         //get input & element
-//         input = document.getElementById("food");
-//         filter = input.value.toUpperCase();
-//         div = document.getElementById("dropdown");
-//
-//         //filter element by input
-//         numberShowed = 0;
-//         li = document.getElementsByClassName("food-dropdown-list");
-//         for (i = 0; i < li.length; i++) {
-//             txtValue = li[i].textContent || li[i].innerText;
-//             if (txtValue.toUpperCase().indexOf(filter) > -1) {
-//                 numberShowed++;
-//                 if (numberShowed <= 5) {
-//                     li[i].style.display = "";
-//                 } else {
-//                     li[i].style.display = "none"
-//                 }
-//             } else {
-//                 li[i].style.display = "none";
-//                 // checkCategory();
-//             }
-//         }
-//     }
-//
-//     // function chceckCategory(){
-//     //     var input, filter, li, numberShowed;
-//     //
-//     //     //get input & element
-//     //     input = document.getElementById("food");
-//     //     filter = input.value.toUpperCase();
-//     //     div = document.getElementById("dropdown");
-//     //
-//     //     //filter element by input
-//     //     numberShowed = 0;
-//     //     li = document.getElementsByClassName("food-dropdown-list");
-//     //     for (i = 0; i < li.length; i++) {
-//     //         if(filter == li[i].catagory.toUpperCase()){
-//     //             numberShowed++;
-//     //             if (numberShowed <= 5) {
-//     //                 li[i].style.display = "";
-//     //             } else {
-//     //                 li[i].style.display = "none"
-//     //             }
-//     //         } else {
-//     //             li[i].style.display = "none";
-//     //         }
-//     //     }
-//     // }
-//
-//     //show dropdown list
-//     function toggleOption() {
-//         document.getElementById("dropdown").classList.toggle("show");
-//         inputFilter();
-//     }
-//
-//     function showPlot(foodId) {
-//         var emission;
-//         //    get emission data from resposne
-//         emission = response_list[foodId].emission;
-//
-//         delete emission.emissionsTotal;
-//
-//
-//         var values = Object.values(emission),
-//             keys = Object.keys(emission);
-//         let data = [],
-//             maximum = 0;
-//         for (let i = 0; i < 6; i++) {
-//             if (values[i] > maximum) {
-//                 maximum = values[i];
-//             }
-//             data[i] = {name: keys[i].split("emissions").pop(), score: values[i]}
-//         }
-//
-//
-// // Set dimenssions and margins of the graph
-//         var margin = {top: 20, right: 30, bottom: 40, left: 90},
-//             width = 800 - margin.left - margin.right,
-//             height = 600 - margin.top - margin.bottom;
-//
-//         var elements = document.getElementsByTagName("svg");
-//
-//         while(elements.length > 0){
-//             elements[0].parentNode.removeChild(elements[0]);
-//         }
-//
-// // append the svg object to the body of the page
-//         var svg = d3.select("#barChart")
-//             .append('svg')
-//             .attr('width', width - margin.left - margin.right)
-//             .attr('height', height - margin.top - margin.bottom)
-//             .attr("viewBox", [0, 0, width, height]);
-//
-//
-// // Set X
-//         const x = d3.scaleBand()
-//             .domain(d3.range(data.length))
-//             .range([margin.left, width - margin.right])
-//             .padding(0.1)
-//
-// // Set Y
-//         const y = d3.scaleLinear()
-//             .domain([0, maximum])
-//             .range([height - margin.bottom, margin.top])
-//
-// // set SVG
-//         svg
-//             .append("g")
-//             .attr("fill", 'royalblue')
-//             .selectAll("rect")
-//             .data(data.sort((a, b) => d3.descending(a.score, b.score)))
-//             .join("rect")
-//             .attr("x", (d, i) => x(i))
-//             .attr("y", d => y(d.score))
-//             .attr('title', (d) => d.score)
-//             .attr("class", "rect")
-//             .attr("height", d => y(0) - y(d.score))
-//             .attr("width", x.bandwidth());
-//
-// // add title
-//         svg
-//             .append("text")
-//             .attr("x", width / 2)
-//             .attr("y", 0 - (margin.top / 2))
-//             .text("Emission Breakdown Bar Chart");
-//
-// // x Axis
-//         function xAxis(g) {
-//             g.attr("transform", `translate(0,${height - margin.bottom})`)
-//                 .call(d3.axisBottom(x).tickFormat(i => data[i].name))
-//                 .attr("font-size", '10px')
-//         }
-//
-// // y axis
-//         function yAxis(g) {
-//             g.attr("transform", `translate(${margin.left}, 0)`)
-//                 .call(d3.axisLeft(y).ticks(null, data.format))
-//                 .attr("font-size", '10px')
-//         }
-//
-//
-//         svg.append("g").call(xAxis);
-//         svg.append("g").call(yAxis);
-//         svg.node();
-//     }
-//
-//
-//     /*]]>*/
+<script>
+    const FOOD_URL = "https://ieppfood-2004.restdb.io/rest/redundancy-dataset-ready",
+        APIKEY = "615d37458597142da174544d";
 
+    var response_list;
+
+    var foodListCall = {
+        "async": false,
+        "crossDomain": true,
+        "url": FOOD_URL,
+        "method": "GET",
+        "headers": {
+            "content-type": "application/json",
+            "x-apikey": APIKEY,
+            "cache-control": "no-cache"
+        }
+    }
+
+    $.ajax(foodListCall).done(function (response) {
+        response_list = response
+    });
+
+    console.log(response_list)
+
+    var response = response_list[0]
+
+    var input, filter, li, numberShowed;
+    var node = [];
+//
+    //get input & element
+    input = document.getElementById("food");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("dropdown");
+
+    //create first li element
+    node[0] = document.createElement("li")
+    node[0].textContent = response_list[0].food;
+    node[0].id = response_list[0].id;
+    node[0].style.display = "none";
+    node[0].setAttribute("class", "food-dropdown-list");
+    node[0].onmousedown = function returnId() {
+        document.getElementById("food").value = response_list[0].food;
+        document.getElementById("food").setAttribute("foodId",0);
+    }
+    div.appendChild(node[0]);
+
+
+    //create rest element if not duplicated
+    for (i = 1; i < response_list.length; i++) {
+        var check = 0;
+        if (response_list[i].food !== response_list[i - 1].food) {
+            node[i] = document.createElement("li");
+            node[i].textContent = response_list[i].food;
+            node[i].id = response_list[i].id;
+            check = response_list[i].id;
+            node[i].style.display = "none"
+            node[i].setAttribute("class", "food-dropdown-list");
+            node[i].setAttribute("category", response_list[i].category);
+            node[i].onmousedown = function retuenId(e) {
+                document.getElementById("food").value = response_list[e.target.id].food;
+                document.getElementById("food").setAttribute("foodId",e.target.id);
+            }
+            div.appendChild(node[i]);
+        }
+    }
+
+    //function filter
+    function inputFilter() {
+        var input, filter, li, numberShowed;
+
+        //get input & element
+        input = document.getElementById("food");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("dropdown");
+
+        //filter element by input
+        numberShowed = 0;
+        li = document.getElementsByClassName("food-dropdown-list");
+        for (i = 0; i < li.length; i++) {
+            txtValue = li[i].textContent || li[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                numberShowed++;
+                if (numberShowed <= 5) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none"
+                }
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+
+
+
+    //show dropdown list
+    function toggleOption() {
+        document.getElementById("dropdown").classList.toggle("show");
+        inputFilter();
+    }
+
+    function showPlot(foodId) {
+        if (document.getElementById("food").value == null ||
+            document.getElementById("food").getAttribute("foodID") == null) {
+            alert("Please put any value");
+        } else {
+            var emission;
+            //    get emission data from resposne
+            emission = response_list[foodId];
+
+            delete emission.calcium;
+            delete emission.calories
+            delete emission.category
+            delete emission.chole_sterol
+            delete emission.dietary_fiber
+            delete emission.food
+            delete emission.id
+            delete emission.iron
+            delete emission.key_words
+            delete emission.land_used
+            delete emission.potassium
+            delete emission.protein
+            delete emission.saturated_fat
+            delete emission.sodium
+            delete emission.sugars
+            delete emission.total_carbo_hydrate
+            delete emission.total_fat
+            delete emission.vitamin_a
+            delete emission.vitamin_c
+            delete emission.water_used
+            delete emission._id
+
+            delete emission.emissionsTotal;
+
+            var values = Object.values(emission),
+                keys = Object.keys(emission);
+            let data = [],
+                maximum = 0;
+            for (let i = 0; i < 6; i++) {
+                if (values[i] > maximum) {
+                    maximum = values[i];
+                }
+                data[i] = {name: keys[i].split("emissions").pop(), score: values[i]}
+            }
+
+
+// Set dimenssions and margins of the graph
+            var margin = {top: 20, right: 30, bottom: 40, left: 90},
+                width = 800 - margin.left - margin.right,
+                height = 600 - margin.top - margin.bottom;
+
+            var elements = document.getElementsByTagName("svg");
+
+            while (elements.length > 0) {
+                elements[0].parentNode.removeChild(elements[0]);
+            }
+
+// append the svg object to the body of the page
+            var svg = d3.select("#barChart")
+                .append('svg')
+                .attr('width', width - margin.left - margin.right)
+                .attr('height', height - margin.top - margin.bottom)
+                .attr("viewBox", [0, 0, width, height]);
+
+
+// Set X
+            const x = d3.scaleBand()
+                .domain(d3.range(data.length))
+                .range([margin.left, width - margin.right])
+                .padding(0.1)
+
+// Set Y
+            const y = d3.scaleLinear()
+                .domain([0, maximum])
+                .range([height - margin.bottom, margin.top])
+
+// set SVG
+            svg
+                .append("g")
+                .attr("fill", 'royalblue')
+                .selectAll("rect")
+                .data(data.sort((a, b) => d3.descending(a.score, b.score)))
+                .join("rect")
+                .attr("x", (d, i) => x(i))
+                .attr("y", d => y(d.score))
+                .attr('title', (d) => d.score)
+                .attr("class", "rect")
+                .attr("height", d => y(0) - y(d.score))
+                .attr("width", x.bandwidth());
+
+// add title
+            svg
+                .append("text")
+                .attr("x", width / 2)
+                .attr("y", 0 - (margin.top / 2))
+                .text("Emission Breakdown Bar Chart");
+
+// x Axis
+            function xAxis(g) {
+                g.attr("transform", `translate(0,${height - margin.bottom})`)
+                    .call(d3.axisBottom(x).tickFormat(i => data[i].name))
+                    .attr("font-size", '10px')
+            }
+
+// y axis
+            function yAxis(g) {
+                g.attr("transform", `translate(${margin.left}, 0)`)
+                    .call(d3.axisLeft(y).ticks(null, data.format))
+                    .attr("font-size", '10px')
+            }
+
+
+            svg.append("g").call(xAxis);
+            svg.append("g").call(yAxis);
+            svg.node();
+        }
+        document.getElementById("food").removeAttribute("foodID");
+        document.getElementById("food").value = null;
+    }
 </script>
 
 
-
-
-<script type="text/javascript" src="scripts/emission.js"></script>
 
 </body>
 </html>
