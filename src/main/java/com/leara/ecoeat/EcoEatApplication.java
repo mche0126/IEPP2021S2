@@ -86,7 +86,7 @@ public class EcoEatApplication {
         return "recipes";
     }
 
-    @CrossOrigin(origins = "/**", allowCredentials = "true")
+
     @RequestMapping("/recipesresults")
     public String sendRecipeRequest(@ModelAttribute RecipeItem recipeItem, Model model) {
         model.addAttribute("recipeItem", recipeItem);
@@ -100,7 +100,7 @@ public class EcoEatApplication {
         return "reciperesults";
     }
 
-    @CrossOrigin(origins = "/**", allowCredentials = "true")
+
     @RequestMapping("/recipescategories")
     public String sendRecipeCategoryRequest(@ModelAttribute RecipeItem recipeItem, Model model) {
         model.addAttribute("recipeItem", recipeItem);
