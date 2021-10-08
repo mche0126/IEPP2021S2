@@ -27,7 +27,11 @@ public class RecipeItem {
     }
 
     public void setCategory(String category) {
-        this.category = category;
+
+
+        String formattedCategory = category.substring(0, 1).toUpperCase() + category.substring(1);
+
+        this.category = formattedCategory;
     }
 
     @Override

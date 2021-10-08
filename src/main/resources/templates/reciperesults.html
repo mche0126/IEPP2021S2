@@ -11,45 +11,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script>
-        window.itemHtml = "This is global!";
-        window.name;
-        $(document).ready(function(){
-            var name = $("#food").val();
-            var settings = {
-                "async": true,
-                "crossDomain": true,
-                "url": "https://iepprecipe-46db.restdb.io/rest/recipe-1300-records?max=5",
-                "method": "GET",
-                "headers": {
-                    "content-type": "application/json",
-                    "x-apikey": "615d72578597142da1745453",
-                    "cache-control": "no-cache"
-                }
-            }
 
-            $.ajax(settings).done(function (response) {
-                console.log(response);
-
-                var j = 0;
-
-                for(var item in response){
-
-
-                    window.name[j] = response[item]["name"];
-                    j++;
-
-                };
-                console.log("object" + window.name[1]);
-                });
-
-
-
-
-            });
-
-
-    </script>
     <link rel="stylesheet" href="styles/navigationBar.css">
     <link rel="stylesheet" href="styles/general.css">
     <link rel="stylesheet" href="styles/footer.css">
@@ -110,18 +72,53 @@
     <div class="row" style="margin-top: 50px;">
         <div class="row">
 
-            <div class="col-sm-8"><h2 th:text="'Recipes for ' + ${recipeItem.name}"></h2></div>
+            <!-- If name is not empty -->
+            <div th:if="${recipeItem.name != ''}">
+                <div class="col-sm-8"><h2 th:text="'Recipes for ' + ${recipeItem.name}"></h2></div>
+            </div>
+            <!-- Else -->
+            <div th:if="${recipeItem.category != ''}">
+                <div class="col-sm-8"><h2 th:text="'Recipes for ' + ${recipeItem.category}"></h2></div>
+            </div>
+
             <div class="col-sm-4"></div>
         </div>
+        <input type="hidden" id="food" th:value="${recipeItem.name}"/>
+        <input type="hidden" id="category" th:value="${recipeItem.category}"/>
 
         <div id="itemContent"></div>
 
                 <table class="table" >
-                    <th:block th:each="i: ${#numbers.sequence(1, 5)}">
-                        <tr style="background-color: #e5e6c8;">
+                    <th:block th:each="i: ${#numbers.sequence(1, 9)}">
+                        <tr th:id="'item' + ${i}" style="background-color: #e5e6c8;">
                             <td style="width:100%;">
                                 <table class="table table-bordered" >
                                     <tr><p><h4 th:id="'name' + ${i}"></h4></tr>
+                                    <tr>
+                                        <td style="width:50%; background-color: #C7EAB7;" > <img th:id="'image' + ${i}" src="$images/recipe-alt.png" alt="Image unavailable" onerror="this.onerror=null;this.src='images/recipe-alt.png';" style="height:70%; width:70% ;display: block; margin: auto; "></td>
+
+
+                                        <td style="width:50%; background-color: #C7EAB7;">
+                                            <table class="table" style="background-color: #C7EAB7;">
+                                                <tr>
+                                                    <td style="width:20%; background-color:#DF9E80;">Total Emissions</td>
+                                                    <td colspan="8" style="background-color:#DF9E80; font-weight: bold;"><p th:id="'emissions' + ${i}"></p></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:50%">Ingredients</td>
+                                                    <td colspan="8"><p th:id="'ingredients' + ${i}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:20%">Directions</td>
+                                                    <td colspan="8"><p th:id="'directions' + ${i}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="8"><a th:id="'link' + ${i}" href="#" target="_blank">Click to view recipe.</a></td>
+                                                </tr>
+
+                                            </table>
+                                        </td>
+                                    </tr>
                                 </table>
                         </tr>
 
@@ -189,13 +186,54 @@
 </div>
 <script>
 
+    $(document).ready(function(){
+        let name = $("#food").val();
+        console.log("name " +name);
+        let category = $("#category").val();
+        console.log("category " +category);
+        let ajaxUrl = "https://iepprecipe-46db.restdb.io/rest/recipe-1300-records?max=10"
+        if (name === "") {
+            ajaxUrl= ajaxUrl + '&q={\"recipe_category\":\"' + category + '\"}';
+        }
+        if (category=== ""){
+            ajaxUrl= ajaxUrl + '&q={}&filter=' + name;
 
-    setTimeout(function(){
-        document.getElementById("name1").innerHTML=window.name[1];
-        for (let i = 0; i < 5; i++) {
-        document.getElementById("name"+i).innerHTML  = window.name[i];
+        }
 
-    } }, 3000);
+        var settings = {
+            "async": false,
+            "crossDomain": true,
+            "url": ajaxUrl,
+            "method": "GET",
+            "headers": {
+                "content-type": "application/json",
+                "x-apikey": "615d72578597142da1745453",
+                "cache-control": "no-cache"
+            }
+        }
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+            console.log(response.length);
+            let i = 0;
+            for (i; i < response.length; i++) {
+                $("#name" + i).append(response[i]["name"]);
+                $("#emissions"+ i).append(response[i]["emissions_total"] + ' kg');
+                $("#ingredients"+ i).append(response[i]["ingredients"]);
+                $("#directions"+ i).append(response[i]["directions"]);
+                $("#image"+ i).attr("src", response[i]["images"]);
+                $("#link"+ i).attr("href", 'https://' +response[i]["link"]);
+            }
+            if(i < 10) {
+                for (i; i < 10; i++) {
+
+                    $("#item"+ i).remove();
+                }
+            }
+        });
+
+     });
+
+
 </script>
 </body>
 </html>

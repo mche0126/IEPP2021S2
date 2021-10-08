@@ -101,12 +101,12 @@ public class EcoEatApplication {
     public String sendRecipeCategoryRequest(@ModelAttribute RecipeItem recipeItem, Model model) {
         model.addAttribute("recipeItem", recipeItem);
         log.info("category " + recipeItem.toString());
-        QueryRecipeRequest request = new QueryRecipeRequest(recipeItem.getCategory());
+/*        QueryRecipeRequest request = new QueryRecipeRequest(recipeItem.getCategory());
 
         QueryRecipeResponse response = postRecipes(request);
         log.info(response.toString());
         log.info("records category " + response.getRecords()[0].getName());
-        model.addAttribute("response", response);
+        model.addAttribute("response", response);*/
         return "reciperesults";
     }
 
