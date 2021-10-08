@@ -48,6 +48,11 @@ public class EcoEatApplication {
     @Autowired
     RestTemplate restTemplate;
 
+    @RequestMapping("/project")
+    public  String viewProject(){
+        return "project";
+    }
+
 
     /*
         Mapping for View tips

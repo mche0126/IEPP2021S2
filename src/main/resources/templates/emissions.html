@@ -21,7 +21,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik&display=swap">
-    
+
 </head>
 <body>
 
@@ -84,20 +84,26 @@
             <div class="row">
                 <div class="col-sm-12">
                     <section>
-                        <p>The carbon footprint of a food product is the total amount of greenhouse gases (GHG) emitted
+                        <p style="text-align: justify">
+                            The carbon footprint of a food product is the total amount of greenhouse gases (GHG) emitted
                             throughout its lifecycle, expressed in kilograms of
-                            CO2-equivalents.</p>
-                        <p>GHG emissions of the production phase (including all agricultural inputs, machinery,
+                            CO2-equivalents.
+                            <br>
+                            <br>
+                            GHG emissions of the production phase (including all agricultural inputs, machinery,
                             livestock,
                             soils) and successive phases (such as
                             processing, transportation, preparation of food, waste disposal) are all included in this
-                            calculation.</p>
-                        <p>Thus, one gram of wheat, or one gram of beef, have different carbon footprints, since their
+                            calculation.
+                            <br>
+                            <br>
+                            Thus, one gram of wheat, or one gram of beef, have different carbon footprints, since their
                             life
                             cycles are different, emitting specific types
-                            and varying amount of greenhouse gases.</p>
-                        <br>
-                        <p>Use our calculator to find the carbon emission details for food items you consume.</p>
+                            and varying amount of greenhouse gases.
+                            <br>
+                            <br>
+                            Use our calculator to find the carbon emission details for food items you consume.</p>
                     </section>
                 </div>
             </div>
@@ -117,8 +123,13 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-4"></div>
-                            <div class="col-sm-2"><input type="submit" class="btn btn-primary" value="Calculate"
-                                                         onclick="showPlot(document.getElementById('food').getAttribute('foodId'))"/></div>
+                            <div class="col-sm-2">
+                                <input type="submit"
+                                       class="btn btn-primary" value="Calculate"
+                                       onclick="showPlot()"
+                                       style="background-color: #99cc00; border: none"
+                                />
+                            </div>
                         </div>
 
                     </section>
@@ -146,12 +157,10 @@
                         <div class="col-lg-3">
                             <h3 style="font-weight: bolder; margin-left: 20px">About Us</h3>
                             <ul style="list-style-type:none;">
-                                <a href="/workinprogress">
+                                <a href="/project">
                                     <li><h6>Our Project</h6></li>
                                 </a>
-                                <a href="/workinprogress">
-                                    <li><h6>Our Team</h6></li>
-                                </a>
+
                             </ul>
                         </div>
                         <div class="col-lg-3">
@@ -211,7 +220,7 @@
 
     var input, filter, li, numberShowed;
     var node = [];
-//
+    //
     //get input & element
     input = document.getElementById("food");
     filter = input.value.toUpperCase();
@@ -225,7 +234,7 @@
     node[0].setAttribute("class", "food-dropdown-list");
     node[0].onmousedown = function returnId() {
         document.getElementById("food").value = response_list[0].food;
-        document.getElementById("food").setAttribute("foodId",0);
+        document.getElementById("food").setAttribute("foodId", 0);
     }
     div.appendChild(node[0]);
 
@@ -243,7 +252,7 @@
             node[i].setAttribute("category", response_list[i].category);
             node[i].onmousedown = function retuenId(e) {
                 document.getElementById("food").value = response_list[e.target.id].food;
-                document.getElementById("food").setAttribute("foodId",e.target.id);
+                document.getElementById("food").setAttribute("foodId", e.target.id);
             }
             div.appendChild(node[i]);
         }
@@ -263,7 +272,7 @@
         var mark;
         li = document.getElementsByClassName("food-dropdown-list");
         for (i = 0; i < li.length; i++) {
-            txtValue = li[i].textContent || li[i].innerText;
+            var txtValue = li[i].textContent || li[i].innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
                 numberShowed++;
                 if (numberShowed <= 5) {
@@ -276,14 +285,13 @@
                 li[i].style.display = "none";
             }
         }
-        if( document.getElementById("food").value.toUpperCase() === li[mark].textContent.toUpperCase() ||
-            document.getElementById("food").value.toUpperCase() === li[mark].innerText.toUpperCase()){
+        if (document.getElementById("food").value.toUpperCase() === li[mark].textContent.toUpperCase() ||
+            document.getElementById("food").value.toUpperCase() === li[mark].innerText.toUpperCase()) {
             document.getElementById("food").setAttribute("foodId", mark)
-        }else{
+        } else {
             document.getElementById("food").removeAttribute("foodId")
         }
     }
-
 
 
     //show dropdown list
@@ -292,14 +300,33 @@
         inputFilter();
     }
 
-    function showPlot(foodId) {
-        if (document.getElementById("food").value == null ||
-            document.getElementById("food").getAttribute("foodID") == null) {
+    function showPlot() {
+
+        var li = document.getElementsByClassName("food-dropdown-list"),
+            content = document.getElementById("food").value.toUpperCase();
+        var bool = false;
+
+        var foodId;
+
+        for (i = 0; i < li.length; i++) {
+            var txtValue = li[i].textContent || li[i].innerText;
+            if(content === txtValue.toUpperCase()){
+                bool = true;
+                foodId = i;
+            }
+        }
+
+        if (content === '') {
             alert("Please put any value");
-        } else {
+        } else if(!bool)
+        {
+            alert("Please make sure the food is on the suggestion list");
+        }
+        else{
             var emission;
             //    get emission data from resposne
             emission = response_list[foodId];
+
 
             delete emission.calcium;
             delete emission.calories
@@ -322,6 +349,7 @@
             delete emission.vitamin_c
             delete emission.water_used
             delete emission._id
+            delete emission.emissions_from
 
             delete emission.emissionsTotal;
 
@@ -381,12 +409,13 @@
                 .attr("height", d => y(0) - y(d.score))
                 .attr("width", x.bandwidth());
 
+                console.log(response_list[foodId])
 // add title
             svg
                 .append("text")
-                .attr("x", width / 2)
+                .attr("x", width / 2 - margin.left/2)
                 .attr("y", 0 - (margin.top / 2))
-                .text("Emission Breakdown Bar Chart");
+                .text("Emission Breakdown Bar Chart for " + document.getElementById("food").value.toUpperCase());
 
 // x Axis
             function xAxis(g) {
@@ -407,11 +436,9 @@
             svg.append("g").call(yAxis);
             svg.node();
         }
-        document.getElementById("food").removeAttribute("foodID");
         document.getElementById("food").value = null;
     }
 </script>
-
 
 
 </body>
