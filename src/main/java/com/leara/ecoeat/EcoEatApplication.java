@@ -89,7 +89,7 @@ public class EcoEatApplication {
     }
 
 
-    @PostMapping("/recipes")
+    @RequestMapping("/recipes")
     public String sendRecipeRequest(@ModelAttribute RecipeItem recipeItem, Model model) {
         model.addAttribute("recipeItem", recipeItem);
         log.info(recipeItem.toString());
@@ -102,7 +102,7 @@ public class EcoEatApplication {
         return "reciperesults";
     }
 
-    @PostMapping("/recipescategories")
+    @RequestMapping("/recipescategories")
     public String sendRecipeCategoryRequest(@ModelAttribute RecipeItem recipeItem, Model model) {
         model.addAttribute("recipeItem", recipeItem);
         log.info("category " + recipeItem.toString());
