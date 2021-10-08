@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Emissions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="styles/general.css">
+
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v5.js"></script>
+
+    <!--    font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik&display=swap">
+
+</head>
+<body>
+
+
+<!--navigation bar-->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="../.."><img src="images/eco-eat-logo.png" style="height: 80px"/></a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="../..">Home</a></li>
+                <li><a href="/emissions">Emission Calculator</a></li>
+                <li><a href="/tips">Low Carbon Tips</a></li>
+                <li><a href="/map">Vegan Food Map</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Recipes <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/recipes">Find a recipe that suits you</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/workinprogress">Compare two different recipes</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Blank space for navigation -->
+<div class="container">
+    <div class="row" style="margin-top: 100px;"></div>
+</div>
+
+<!-- Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="banner">
+                <div>Why do we create Eco-eat project</div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="container">
+    <div class="row">
+        <h1>What is this project</h1>
+    </div>
+    <div class="row">
+        <p style="text-align: justify">
+        Since the 2000s, Australia has pledged to reduce its greenhouse gas emissions in response to the growing risks posed by climate change. With the greenhouse effect, the average temperature of the surface of the Earth is rapidly increasing. In Australia, the research shows around 14% of the greenhouse gas is produced by food and 6% are caused by food waste. The research also shows that certain diets, such as a plant-based diet, can significantly reduce carbon dioxide emissions.
+        <br>
+        <br>
+        Targeting people in Victoria who are concerned about the environment, we are here to help our users learn about how to help the environment by changing their food habits. By suggesting vegetarian recipes, comparing carbon emissions from different ingredients, and exploring fantastic environment-friendly restaurants for our users, we aimed to lead our users gradually to live an environment-friendly lifestyle.
+        </p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <h1>Why we need to go low carbon</h1>
+    </div>
+    <div class="row">
+    <iframe width="900" height="506" src="https://www.youtube.com/embed/wbR-5mHI6bo"
+            title="YouTube video player"
+            allow="accelerometer; autoplay;
+            clipboard-write; encrypted-media;
+             gyroscope; picture-in-picture"
+            allowfullscreen>
+    </iframe>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+    <p style="text-align: justify">
+    It is estimated that the U.S. food system is responsible for at least 20 percent of U.S. greenhouse gases.
+    This estimate may be low, as it counts only direct sources of GHGe. Indirect sources, such as demand for products
+    from other countries, are often not counted. A low-carbon diet minimizes the emissions released from the production,
+    packaging, processing, transport, preparation and waste of food. Major tenets of a low-carbon diet include eating less
+    industrial meat and dairy, eating less industrially produced food in general, eating food grown locally and seasonally,
+    eating less processed and packaged foods and reducing waste from food by proper portion size, recycling or composting.
+    </p>
+    </div>
+</div>
+
+
+
+<!--            Footer              -->
+<div class="container" style="width: 100%;
+        margin-top: 100px;">
+    <div class="row cen">
+        <footer>
+            <div class="row" style="width: 100%">
+                <div class="col-xs-1"></div>
+                <div class="col-lg-3">
+                    <img id="footerLogo" src="images/eco-eat-logo.png" style="  margin-right: 30px">
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <h3 style="font-weight: bolder; margin-left: 20px">About Us</h3>
+                            <ul style="list-style-type:none;">
+                                <a href="/project">
+                                    <li><h6>Our Project</h6></li>
+                                </a>
+
+                            </ul>
+                        </div>
+                        <div class="col-lg-3">
+                            <h3 style="font-weight: bolder; margin-left: 20px">What we have</h3>
+                            <ul style="list-style-type:none;">
+                                <a href="/emission">
+                                    <li><h6>Emission Calculator</h6></li>
+                                </a>
+                                <a href="/tips">
+                                    <li><h6>Low Carbon Tips</h6></li>
+                                </a>
+                                <a href="/map">
+                                    <li><h6>Vegan Food Map</h6></li>
+                                </a>
+                                <a href="/recipes">
+                                    <li><h6>Vegan Food Recipes</h6></li>
+                                </a>
+                                <a href="/workinprogress">
+                                    <li><h6>Food Recipes Comparison</h6></li>
+                                </a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="copyright">Leara Eco-Eat Project Team © 2021</p>
+        </footer>
+
+    </div>
+</div>
+
+</body>
+</html>
