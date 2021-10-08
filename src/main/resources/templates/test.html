@@ -14,7 +14,7 @@
             url = "https://www.eco-eat-data.ml:8080/food/queryFoodMessage"
 
 
-          $("button").click(function(){
+/*          $("button").click(function(){
             $.ajax({
                 url: url,
                 type: "GET",
@@ -22,7 +22,7 @@
                 dataType:'json',
                 withCredentials: true,
                 processData:false,
-                headers: { "Content-Type":"application/json","Accept": "*/*","Content-Endcoding":"gzip" ,"Access-Control-Allow-Origin": "*"},
+                headers: { "Content-Type":"application/json","Accept": "*!/!*","Content-Endcoding":"gzip" ,"Access-Control-Allow-Origin": "*"},
                 success: function (response) {
                     response.addHeader("Access-Control-Allow-Origin", "*");
                     console.log(response);
@@ -31,6 +31,25 @@
                     console.log("Something went wrong", error);
                 }
             });
+          });*/
+
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://iepprecipe-46db.restdb.io/rest/recipe-1300-records?max=5",
+                "method": "GET",
+                "headers": {
+                    "content-type": "application/json",
+                    "x-apikey": "615d72578597142da1745453",
+                    "cache-control": "no-cache"
+                }
+            }
+
+
+     $("button").click(function(){
+         $.ajax(settings).done(function (response) {
+             console.log(response);
+         });
           });
         });
     </script>

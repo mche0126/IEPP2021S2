@@ -88,12 +88,12 @@ public class EcoEatApplication {
     public String sendRecipeRequest(@ModelAttribute RecipeItem recipeItem, Model model) {
         model.addAttribute("recipeItem", recipeItem);
         log.info(recipeItem.toString());
-        QueryRecipeRequest request = new QueryRecipeRequest(recipeItem.getName());
+        /*QueryRecipeRequest request = new QueryRecipeRequest(recipeItem.getName());
 
         QueryRecipeResponse response = postRecipes(request);
         log.info(response.toString());
         log.info("records " + response.getRecords()[0].getName());
-        model.addAttribute("response", response);
+        model.addAttribute("response", response);*/
         return "reciperesults";
     }
 

@@ -11,6 +11,45 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        window.itemHtml = "This is global!";
+        window.name;
+        $(document).ready(function(){
+            var name = $("#food").val();
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://iepprecipe-46db.restdb.io/rest/recipe-1300-records?max=5",
+                "method": "GET",
+                "headers": {
+                    "content-type": "application/json",
+                    "x-apikey": "615d72578597142da1745453",
+                    "cache-control": "no-cache"
+                }
+            }
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+
+                var j = 0;
+
+                for(var item in response){
+
+
+                    window.name[j] = response[item]["name"];
+                    j++;
+
+                };
+                console.log("object" + window.name[1]);
+                });
+
+
+
+
+            });
+
+
+    </script>
     <link rel="stylesheet" href="styles/navigationBar.css">
     <link rel="stylesheet" href="styles/general.css">
     <link rel="stylesheet" href="styles/footer.css">
@@ -75,56 +114,24 @@
             <div class="col-sm-4"></div>
         </div>
 
-        <div class="row">
-            <!-- IF response list is not empty, display record-->
-            <div th:if="${not #lists.isEmpty(response.records)}">
-                <table class="table" >
-                    <tr th:each="record: ${response.records}" style="background-color: #e5e6c8;">
-                        <td style="width:100%;">
-                            <table class="table table-bordered" >
-                                <tr><p><h4 th:text="${record.name}"></h4></tr>
-                                <tr>
-                                    <td style="width:50%; background-color: #C7EAB7;" > <img th:src="${record.images}" alt="Image unavailable" onerror="this.onerror=null;this.src='images/recipe-alt.png';" style="height:70%; width:70% ;display: block; margin: auto; "></td>
+        <div id="itemContent"></div>
 
-                                    <td style="width:50%; background-color: #C7EAB7;">
-                                        <table class="table" style="background-color: #C7EAB7;">
-                                            <tr>
-                                                <td style="width:20%; background-color:#DF9E80;">Total Emissions</td>
-                                                <td colspan="8" style="background-color:#DF9E80; font-weight: bold;"><p th:text="${#numbers.formatDecimal(record.emissionsTotal,1,'COMMA',2,'POINT') + ' kg'}"></p></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width:50%">Ingredients</td>
-                                                <td colspan="8"><p th:text="${record.ingredients}"></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width:20%">Directions</td>
-                                                <td colspan="8"><p th:text="${record.directions}"></td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="8"><a th:href="'https://' + ${record.link}" target="_blank">Click to view recipe.</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width:20%">Nutrition</td>
-                                                <td colspan="2"><p th:text="'Calories' + ${#numbers.formatDecimal(record.calories,1,'COMMA',2,'POINT') }"></td>
-                                                <td colspan="2"><p th:text="'Protein ' + ${#numbers.formatDecimal(record.protein,1,'COMMA',2,'POINT')+ ' g'}"></td>
-                                                <td colspan="2"><p th:text="'Sugars ' + ${#numbers.formatDecimal(record.sugars,1,'COMMA',2,'POINT') + ' g'}"></td>
-                                                <td colspan="2"><p th:text="'Sat. Fats ' + ${#numbers.formatDecimal(record.saturatedFat,1,'COMMA',2,'POINT') + ' g'}"></td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
+                <table class="table" >
+                    <th:block th:each="i: ${#numbers.sequence(1, 5)}">
+                        <tr style="background-color: #e5e6c8;">
+                            <td style="width:100%;">
+                                <table class="table table-bordered" >
+                                    <tr><p><h4 th:id="'name' + ${i}"></h4></tr>
+                                </table>
+                        </tr>
+
+
+                    </th:block>
 
 
                 </table>
-            </div>
-            <!-- ELSE -->
-            <div th:unless="${not #lists.isEmpty(response.records)}">
-                <h3 th:text="Sorry, we do not have recipes for the entered food.">Hi, User</h3>
-            </div>
-        </div>
+
+
     </div>
 </div>
 
@@ -180,6 +187,15 @@
 
     </div>
 </div>
+<script>
 
+
+    setTimeout(function(){
+        document.getElementById("name1").innerHTML=window.name[1];
+        for (let i = 0; i < 5; i++) {
+        document.getElementById("name"+i).innerHTML  = window.name[i];
+
+    } }, 3000);
+</script>
 </body>
 </html>
