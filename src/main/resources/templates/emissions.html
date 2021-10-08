@@ -123,8 +123,12 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-4"></div>
-                            <div class="col-sm-2"><input type="submit" class="btn btn-primary" value="Calculate"
-                                                         onclick="showPlot(document.getElementById('food').getAttribute('foodId'))"/>
+                            <div class="col-sm-2">
+                                <input type="submit"
+                                       class="btn btn-primary" value="Calculate"
+                                       onclick="showPlot()"
+                                       style="background-color: #99cc00; border: none"
+                                />
                             </div>
                         </div>
 
@@ -268,7 +272,7 @@
         var mark;
         li = document.getElementsByClassName("food-dropdown-list");
         for (i = 0; i < li.length; i++) {
-            txtValue = li[i].textContent || li[i].innerText;
+            var txtValue = li[i].textContent || li[i].innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
                 numberShowed++;
                 if (numberShowed <= 5) {
@@ -296,11 +300,29 @@
         inputFilter();
     }
 
-    function showPlot(foodId) {
-        if (document.getElementById("food").value == null ||
-            document.getElementById("food").getAttribute("foodID") == null) {
+    function showPlot() {
+
+        var li = document.getElementsByClassName("food-dropdown-list"),
+            content = document.getElementById("food").value.toUpperCase();
+        var bool = false;
+
+        var foodId;
+
+        for (i = 0; i < li.length; i++) {
+            var txtValue = li[i].textContent || li[i].innerText;
+            if(content === txtValue.toUpperCase()){
+                bool = true;
+                foodId = i;
+            }
+        }
+
+        if (content === '') {
             alert("Please put any value");
-        } else {
+        } else if(!bool)
+        {
+            alert("Please make sure the food is on the suggestion list");
+        }
+        else{
             var emission;
             //    get emission data from resposne
             emission = response_list[foodId];
@@ -411,8 +433,7 @@
             svg.append("g").call(yAxis);
             svg.node();
         }
-        document.getElementById("food").removeAttribute("foodID");
-        document.getElementById("food").value = null;
+
     }
 </script>
 
