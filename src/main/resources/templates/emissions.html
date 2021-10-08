@@ -260,6 +260,7 @@
 
         //filter element by input
         numberShowed = 0;
+        var mark;
         li = document.getElementsByClassName("food-dropdown-list");
         for (i = 0; i < li.length; i++) {
             txtValue = li[i].textContent || li[i].innerText;
@@ -270,9 +271,16 @@
                 } else {
                     li[i].style.display = "none"
                 }
+                mark = i;
             } else {
                 li[i].style.display = "none";
             }
+        }
+        if( document.getElementById("food").value.toUpperCase() === li[mark].textContent.toUpperCase() ||
+            document.getElementById("food").value.toUpperCase() === li[mark].innerText.toUpperCase()){
+            document.getElementById("food").setAttribute("foodId", mark)
+        }else{
+            document.getElementById("food").removeAttribute("foodId")
         }
     }
 
