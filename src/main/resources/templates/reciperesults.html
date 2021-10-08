@@ -115,7 +115,13 @@
                                                 <tr>
                                                     <td colspan="8"><a th:id="'link' + ${i}" href="#" target="_blank">Click to view recipe.</a></td>
                                                 </tr>
-
+                                                <tr>
+                                                    <td style="width:20%">Nutrition</td>
+                                                    <td colspan="2">Calories<br/><p th:id="'calories' + ${i}"></td>
+                                                    <td colspan="2">Protein<br/><p th:id="'protein' + ${i}"></td>
+                                                    <td colspan="2">Carbs<br/><p th:id="'carbs' + ${i}"></td>
+                                                    <td colspan="2">Fats<br/><p th:id="'fats' + ${i}"></td>
+                                                </tr>
                                             </table>
                                         </td>
                                     </tr>
@@ -222,6 +228,10 @@
                 $("#directions"+ i).append(response[i]["directions"]);
                 $("#image"+ i).attr("src", response[i]["images"]);
                 $("#link"+ i).attr("href", 'https://' +response[i]["link"]);
+                $("#calories"+ i).append(response[i]["calories"] + '</br>kCal');
+                $("#protein"+ i).append(response[i]["protein"] + '</br>g');
+                $("#carbs"+ i).append(response[i]["total_carbohydrate"] + '</br>g');
+                $("#fats"+ i).append(response[i]["total_fat"] + '</br>g');
             }
             if(i < 10) {
                 for (i; i < 10; i++) {
