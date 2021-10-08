@@ -327,6 +327,7 @@
             //    get emission data from resposne
             emission = response_list[foodId];
 
+
             delete emission.calcium;
             delete emission.calories
             delete emission.category
@@ -348,6 +349,7 @@
             delete emission.vitamin_c
             delete emission.water_used
             delete emission._id
+            delete emission.emissions_from
 
             delete emission.emissionsTotal;
 
@@ -407,12 +409,13 @@
                 .attr("height", d => y(0) - y(d.score))
                 .attr("width", x.bandwidth());
 
+                console.log(response_list[foodId])
 // add title
             svg
                 .append("text")
-                .attr("x", width / 2)
+                .attr("x", width / 2 - margin.left/2)
                 .attr("y", 0 - (margin.top / 2))
-                .text("Emission Breakdown Bar Chart");
+                .text("Emission Breakdown Bar Chart for " + document.getElementById("food").value.toUpperCase());
 
 // x Axis
             function xAxis(g) {
@@ -433,7 +436,7 @@
             svg.append("g").call(yAxis);
             svg.node();
         }
-
+        document.getElementById("food").value = null;
     }
 </script>
 
