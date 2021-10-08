@@ -35,21 +35,20 @@ public class EcoEatApplication {
     private static final String APIKEY_FOOD = "2630bf41b33a68f101f4af580f4cb65d49d9a";
 
 
-
     private static String queryFoodUrl = "http://54.153.203.248:8080/food/queryFood";
     //private static String queryRecipeUrl = "http://54.153.203.248:8080/food/queryRecipe";
     private static String queryRecipeUrl = "http://47.113.179.46:8080/food/queryRecipe";
+
     public static void main(String[] args) {
         SpringApplication.run(EcoEatApplication.class, args);
     }
-
 
 
     @Autowired
     RestTemplate restTemplate;
 
     @RequestMapping("/project")
-    public  String viewProject(){
+    public String viewProject() {
         return "project";
     }
 
@@ -81,14 +80,13 @@ public class EcoEatApplication {
     }
 
 
-
     @GetMapping("/recipes")
     public String recipeForm(Model model) {
         model.addAttribute("recipeItem", new RecipeItem());
         return "recipes";
     }
 
-
+    @CrossOrigin(origins = "/**", allowCredentials = "true")
     @RequestMapping("/recipes")
     public String sendRecipeRequest(@ModelAttribute RecipeItem recipeItem, Model model) {
         model.addAttribute("recipeItem", recipeItem);
@@ -102,16 +100,18 @@ public class EcoEatApplication {
         return "reciperesults";
     }
 
+    @CrossOrigin(origins = "/**", allowCredentials = "true")
     @RequestMapping("/recipescategories")
     public String sendRecipeCategoryRequest(@ModelAttribute RecipeItem recipeItem, Model model) {
         model.addAttribute("recipeItem", recipeItem);
         log.info("category " + recipeItem.toString());
-/*        QueryRecipeRequest request = new QueryRecipeRequest(recipeItem.getCategory());
-
+        /*
+        QueryRecipeRequest request = new QueryRecipeRequest(recipeItem.getCategory());
         QueryRecipeResponse response = postRecipes(request);
         log.info(response.toString());
         log.info("records category " + response.getRecords()[0].getName());
-        model.addAttribute("response", response);*/
+        model.addAttribute("response", response);
+        */
         return "reciperesults";
     }
 
