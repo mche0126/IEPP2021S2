@@ -26,7 +26,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @CrossOrigin(origins = "/**", allowCredentials = "true", maxAge = 3600)
 @SpringBootApplication
 @Controller
-public class EcoEatApplication {
+public class EcoEatApplication implements WebMvcConfigurer{
 
     private static final Logger log = LoggerFactory.getLogger(EcoEatApplication.class);
 
@@ -49,7 +49,7 @@ public class EcoEatApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry){
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:8080");
+                        .allowedMethods("POST","GET");
             }
         };
     }
