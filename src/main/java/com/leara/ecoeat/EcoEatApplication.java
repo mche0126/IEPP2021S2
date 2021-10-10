@@ -14,8 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
-import java.io.IOException;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
 /**
@@ -26,7 +26,7 @@ import java.io.IOException;
 @CrossOrigin(origins = "/**", allowCredentials = "true", maxAge = 3600)
 @SpringBootApplication
 @Controller
-public class EcoEatApplication {
+public class EcoEatApplication implements WebMvcConfigurer{
 
     private static final Logger log = LoggerFactory.getLogger(EcoEatApplication.class);
 
@@ -41,6 +41,18 @@ public class EcoEatApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(EcoEatApplication.class, args);
+    }
+
+    @Bean
+    public WebMvcConfigurer configurer(){
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry){
+                registry.addMapping("/recipes")
+                        .allowedMethods("POST","GET")
+                        .allowedOrigins("/recipes","/recipesresults");
+            }
+        };
     }
 
 
