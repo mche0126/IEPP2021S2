@@ -214,8 +214,6 @@
         response_list = response
     });
 
-    console.log(response_list)
-
     var response = response_list[0]
 
     var input, filter, li, numberShowed;
@@ -326,8 +324,7 @@
         else{
             var emission;
             //    get emission data from resposne
-            emission = response_list[foodId];
-
+            emission = {...response_list[foodId]};
 
             delete emission.calcium;
             delete emission.calories
@@ -354,7 +351,7 @@
 
             delete emission.emissionsTotal;
 
-            console.log(emission)
+
 
             var values = Object.values(emission),
                 keys = Object.keys(emission);
@@ -364,12 +361,12 @@
                 if (values[i] > maximum) {
                     maximum = values[i];
                 }
-                data[i] = {name: keys[i].split("emissions").pop(), score: values[i]}
+                data[i] = {name: (keys[i].split("emissions").pop()).replaceAll("_", " "), score: values[i]}
             }
 
 
 // Set dimenssions and margins of the graph
-            var margin = {top: 20, right: 30, bottom: 40, left: 90},
+            var margin = {top: 20, right: 30, bottom: 75, left: 90},
                 width = 800 - margin.left - margin.right,
                 height = 600 - margin.top - margin.bottom;
 
@@ -412,33 +409,42 @@
                 .attr("height", d => y(0) - y(d.score))
                 .attr("width", x.bandwidth());
 
-                console.log(response_list[foodId])
-// add title
-            svg
-                .append("text")
-                .attr("x", width / 2 - margin.left/2)
-                .attr("y", 0 - (margin.top / 2))
-                .text("Emission Breakdown Bar Chart for " + document.getElementById("food").value.toUpperCase());
+
 
 // x Axis
             function xAxis(g) {
                 g.attr("transform", `translate(0,${height - margin.bottom})`)
                     .call(d3.axisBottom(x).tickFormat(i => data[i].name))
-                    .attr("font-size", '10px')
+                    .attr("font-size", '20px')
             }
 
 // y axis
             function yAxis(g) {
                 g.attr("transform", `translate(${margin.left}, 0)`)
                     .call(d3.axisLeft(y).ticks(null, data.format))
-                    .attr("font-size", '10px')
+                    .attr("font-size", '20px')
             }
 
 
-            svg.append("g").call(xAxis);
+            svg.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis)
+                .selectAll("text")
+                    .attr("transform", "translate(-10,0)rotate(-30)")
+                .   style("text-anchor", "end");
             svg.append("g").call(yAxis);
             svg.node();
+
+
+            // add title
+            svg
+                .append("text")
+                .attr("x", width / 2 - margin.left/2)
+                .attr("y", 0 - (margin.top / 2))
+                .text("Emission Breakdown Bar Chart for " + document.getElementById("food").value.toUpperCase());
         }
+
+
         document.getElementById("food").value = null;
     }
 </script>
