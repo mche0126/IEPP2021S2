@@ -115,6 +115,10 @@ body {
   .collapse.in{
     display:block !important;
   }
+
+  .collapse.show{
+    display:block !important;
+  }
 }
 
 /* Footer section*/
@@ -343,7 +347,7 @@ footer a:hover{
 
 .dropdown li:hover {background-color: #ddd;}
 
-.show {display: block;}
+.showPic {display: block;}
 
 /* Styles for Tips page items only */
 .card-body{

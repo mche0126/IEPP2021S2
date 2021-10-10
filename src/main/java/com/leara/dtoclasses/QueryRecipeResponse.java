@@ -2,6 +2,7 @@ package com.leara.dtoclasses;
 
 import java.util.Arrays;
 
+
 public class QueryRecipeResponse {
     private RecipeRecord[] records;
     private int total;

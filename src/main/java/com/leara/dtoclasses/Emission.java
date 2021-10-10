@@ -1,5 +1,8 @@
 package com.leara.dtoclasses;
 
+/**
+ * @author Jason
+ */
 public class Emission {
     public Emission(String emissionsLandUse, String emissionsFarm, String emissionsAnimalFeed, String emissionsProcessing, String emissionsTransport, String emissionsRetail, String emissionsPackaging, String emissionsTotal) {
         this.emissionsLandUse = emissionsLandUse;

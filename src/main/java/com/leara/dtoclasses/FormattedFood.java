@@ -1,7 +1,8 @@
 package com.leara.dtoclasses;
 
-import java.util.ArrayList;
-
+/**
+ * @author Jason
+ */
 public class FormattedFood {
     private String food;
     private String category;

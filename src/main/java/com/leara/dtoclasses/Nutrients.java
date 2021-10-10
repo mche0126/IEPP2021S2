@@ -1,5 +1,8 @@
 package com.leara.dtoclasses;
 
+/**
+ * @author Jason
+ */
 public class Nutrients {
     private String calories;
     private String totalFat;

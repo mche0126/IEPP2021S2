@@ -109,12 +109,6 @@ public class EcoEatApplication implements WebMvcConfigurer{
     public String sendRecipeRequest(@ModelAttribute RecipeItem recipeItem, Model model) {
         model.addAttribute("recipeItem", recipeItem);
         log.info(recipeItem.toString());
-        /*QueryRecipeRequest request = new QueryRecipeRequest(recipeItem.getName());
-
-        QueryRecipeResponse response = postRecipes(request);
-        log.info(response.toString());
-        log.info("records " + response.getRecords()[0].getName());
-        model.addAttribute("response", response);*/
         return "reciperesults";
     }
 
@@ -123,13 +117,6 @@ public class EcoEatApplication implements WebMvcConfigurer{
     public String sendRecipeCategoryRequest(@ModelAttribute RecipeItem recipeItem, Model model) {
         model.addAttribute("recipeItem", recipeItem);
         log.info("category " + recipeItem.toString());
-        /*
-        QueryRecipeRequest request = new QueryRecipeRequest(recipeItem.getCategory());
-        QueryRecipeResponse response = postRecipes(request);
-        log.info(response.toString());
-        log.info("records category " + response.getRecords()[0].getName());
-        model.addAttribute("response", response);
-        */
         return "reciperesults";
     }
 
@@ -179,7 +166,7 @@ public class EcoEatApplication implements WebMvcConfigurer{
         model.addAttribute("foodItem", foodItem);
 
         QueryFoodRequest request = new QueryFoodRequest(foodItem.getFoodName());
-        QueryFoodResponse response[] = iteration1PostFoodEmissions(request);
+        QueryFoodResponse[] response = iteration1PostFoodEmissions(request);
 
         model.addAttribute("response", response[0]);
         return "iteration1Results";
@@ -188,7 +175,7 @@ public class EcoEatApplication implements WebMvcConfigurer{
     @PostMapping("/iteration1/foodemissions")
     public QueryFoodResponse[] iteration1PostFoodEmissions(@RequestBody QueryFoodRequest request) {
 
-        QueryFoodResponse response[] = restTemplate.postForObject(
+        QueryFoodResponse[] response = restTemplate.postForObject(
                 queryFoodUrl, request, QueryFoodResponse[].class);
         return response;
     }
@@ -235,20 +222,6 @@ public class EcoEatApplication implements WebMvcConfigurer{
     @PostMapping("/iteration2/emissions")
     public String sendIteration2FoodRequest(Model model) {
         FormattedFood newFood;
-        //        Send request to database
-//        QueryFoodRequest request = new QueryFoodRequest("");
-//        QueryFoodResponse[] response = postFoodEmissions(request);
-//
-//        ArrayList<FormattedFood> data = new ArrayList<FormattedFood>();
-//        for (QueryFoodResponse queryFoodResponse : response) {
-//            newFood = new FormattedFood(queryFoodResponse);
-//            data.add(newFood);
-//        }
-//
-//        model.addAttribute("response", data);
-//        log.info(String.valueOf(response.length));
-//        log.info(String.valueOf(data.get(550).getFood()));
-
         return "iteration2Emissions";
     }
 
@@ -261,7 +234,7 @@ public class EcoEatApplication implements WebMvcConfigurer{
     @PostMapping("/iteration2/foodemissions")
     public QueryFoodResponse[] postIteration2FoodEmissions(@RequestBody QueryFoodRequest request) {
 
-        QueryFoodResponse response[] = restTemplate.postForObject(
+        QueryFoodResponse[] response = restTemplate.postForObject(
                 queryFoodUrl, request, QueryFoodResponse[].class);
         return response;
     }
@@ -271,12 +244,6 @@ public class EcoEatApplication implements WebMvcConfigurer{
     @GetMapping("/workinprogress")
     public String workInProgress() {
         return "workInProgress";
-    }
-
-
-    @GetMapping("/test")
-    public String test() {
-        return "test";
     }
 
 
