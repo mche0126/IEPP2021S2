@@ -48,8 +48,9 @@ public class EcoEatApplication implements WebMvcConfigurer{
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry){
-                registry.addMapping("/**")
-                        .allowedMethods("POST","GET");
+                registry.addMapping("/recipes")
+                        .allowedMethods("POST","GET")
+                        .allowedOrigins("/recipes","/recipesresults");
             }
         };
     }
