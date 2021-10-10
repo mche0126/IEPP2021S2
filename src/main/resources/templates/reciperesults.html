@@ -10,7 +10,6 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="styles/navigationBar.css">
@@ -52,8 +51,8 @@
                        aria-expanded="false">Recipes <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="../recipes">Find a recipe that suits you</a></li>
-<!--                        <li role="separator" class="divider"></li>-->
-<!--                        <li><a href="/workinprogress">Compare two different recipes</a></li>-->
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/workinprogress">Compare two different recipes</a></li>
                     </ul>
                 </li>
             </ul>
@@ -71,32 +70,25 @@
 <!-- Accept user input for food item to view recipes.-->
 <div class="container">
     <div class="row" style="margin-top: 50px;">
-        <div th:id="header" class="row">
+        <div class="row">
 
             <!-- If name is not empty -->
-            <div th:id="nameheader" th:if="${recipeItem.name != ''}" style="display: none;" >
+            <div th:if="${recipeItem.name != ''}">
                 <div class="col-sm-8"><h2 th:text="'Recipes for ' + ${recipeItem.name}"></h2></div>
             </div>
             <!-- Else -->
-            <div th:id="categoryheader" th:if="${recipeItem.category != ''}" style="display: none;">
+            <div th:if="${recipeItem.category != ''}">
                 <div class="col-sm-8"><h2 th:text="'Recipes for ' + ${recipeItem.category}"></h2></div>
             </div>
-            <div>
-                <h2 th:id="messageheader"></h2>
-            </div>
-            <div class="row" id="goback" style="display:none;">
-                <a href="../recipes"><button type="button" class="btn btn-primary" >Go back</button></a>
-            </div>
+
             <div class="col-sm-4"></div>
-
-
         </div>
         <input type="hidden" id="food" th:value="${recipeItem.name}"/>
         <input type="hidden" id="category" th:value="${recipeItem.category}"/>
 
-        <div id="itemContent" style="display:none;"></div>
+        <div id="itemContent"></div>
 
-                <table class="table" id="tabledata" style="display:none;">
+                <table class="table" >
                     <th:block th:each="i: ${#numbers.sequence(1, 9)}">
                         <tr th:id="'item' + ${i}" style="background-color: #e5e6c8;">
                             <td style="width:100%;">
@@ -142,6 +134,7 @@
 
                 </table>
 
+
     </div>
 </div>
 
@@ -161,12 +154,12 @@
                         <div class="col-lg-3">
                             <h3 style="font-weight: bolder; margin-left: 20px">About Us</h3>
                             <ul style="list-style-type:none;">
-                                <a href="/project">
+                                <a href="/workinprogress">
                                     <li><h6>Our Project</h6></li>
                                 </a>
-<!--                                <a href="/workinprogress">-->
-<!--                                    <li><h6>Our Team</h6></li>-->
-<!--                                </a>-->
+                                <a href="/workinprogress">
+                                    <li><h6>Our Team</h6></li>
+                                </a>
                             </ul>
                         </div>
                         <div class="col-lg-3">
@@ -181,12 +174,12 @@
                                 <a href="/map">
                                     <li><h6>Vegan Food Map</h6></li>
                                 </a>
-                                <a href="/recipes">
+                                <a href="/workinprogress">
                                     <li><h6>Vegan Food Recipes</h6></li>
                                 </a>
-<!--                                <a href="/workinprogress">-->
-<!--                                    <li><h6>Food Recipes Comparison</h6></li>-->
-<!--                                </a>-->
+                                <a href="/workinprogress">
+                                    <li><h6>Food Recipes Comparison</h6></li>
+                                </a>
                             </ul>
                         </div>
                     </div>
@@ -225,14 +218,8 @@
             }
         }
         $.ajax(settings).done(function (response) {
-            if (response.length != 0){
-                $("#itemContent").attr("display", "block");
-                $("#tabledata").attr("display", "block");
-                $("#nameheader").attr("display", "block");
-                $("#categoryheader").attr("display", "block");
-
-            }
-
+            console.log(response);
+            console.log(response.length);
             let i = 0;
             for (i; i < response.length; i++) {
                 $("#name" + i).append(response[i]["name"]);
@@ -251,13 +238,6 @@
 
                     $("#item"+ i).remove();
                 }
-            }
-
-            if (response.length == 0) {
-                $("#nameheader").remove();
-                $("#categoryheader").remove();
-                $("#messageheader").append("Sorry, there are no recipes for that food item");
-                $("#goback").attr("display", "block");
             }
         });
 
