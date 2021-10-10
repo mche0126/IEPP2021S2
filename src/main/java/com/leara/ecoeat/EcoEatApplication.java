@@ -54,6 +54,9 @@ public class EcoEatApplication implements WebMvcConfigurer{
                 registry.addMapping("/recipesresults")
                         .allowedMethods("POST","GET")
                         .allowedOrigins("https://eco-eat.ml","https://www.eco-eat.ml");
+                registry.addMapping("/recipescategories")
+                        .allowedMethods("POST","GET")
+                        .allowedOrigins("https://eco-eat.ml","https://www.eco-eat.ml");
             }
         };
     }
