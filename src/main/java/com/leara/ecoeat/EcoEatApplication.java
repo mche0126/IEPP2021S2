@@ -92,14 +92,9 @@ public class EcoEatApplication implements WebMvcConfigurer{
         Mapping for View emissions
      */
 
-    @GetMapping("/emissionsTest")
-    public String viewEmissionsTest() {
-        return "emissionsTest";
-    }
-
     @GetMapping("/emissions")
     public String viewEmissions() {
-        return "emissionsTest";
+        return "emissions";
     }
 
     @GetMapping("/recipes")
