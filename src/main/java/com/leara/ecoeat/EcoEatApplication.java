@@ -132,7 +132,14 @@ public class EcoEatApplication implements WebMvcConfigurer{
         return response;
     }
 
+    /*
+        Mapping for View compare
+     */
 
+    @RequestMapping("/compare")
+    public String viewCompare() {
+        return "compare";
+    }
 
 
     /*
