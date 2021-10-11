@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="styles/general.css">
 
     <!-- Load d3.js -->
-    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="https://d3js.org/d3.v6.js"></script>
 
     <!--    font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -193,7 +193,8 @@
 </div>
 
 <script>
-    const FOOD_URL = "https://ieppfood-2004.restdb.io/rest/redundancy-dataset-ready",
+    const FOOD_LIST_URL = "https://ieppfood-2004.restdb.io/rest/all-food",
+        FOOD_DATA_URL = "https://ieppfood-2004.restdb.io/rest/food-data",
         APIKEY = "615d37458597142da174544d";
 
     let response_list;
@@ -201,12 +202,12 @@
     let foodListCall = {
         "async": true,
         "crossDomain": true,
-        "url": FOOD_URL,
+        "url": FOOD_LIST_URL+"?max=2000",
         "method": "GET",
         "headers": {
             "content-type": "application/json",
             "x-apikey": APIKEY,
-            "cache-control": "no-cache"
+            "cache-control": "no-cache",
         }
     }
 
@@ -215,25 +216,47 @@
         prepare(response);
     });
 
+    // set the dimensions and margins of the graph
+    var margin = {top: 30, right: 30, bottom: 70, left: 60},
+        width = 550 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
+
+    // append the svg object to the body of the page
+    var svg = d3.select("#barChart")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+
+    // Initialize the X axis
+    var x = d3.scaleBand()
+        .range([ 0, width ])
+        .padding(0.2);
+    var xAxis = svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+
+    // Initialize the Y axis
+    var y = d3.scaleLinear()
+        .range([ height, 0]);
+    var yAxis = svg.append("g")
+        .attr("class", "myYaxis")
+
 
     function prepare(response_list){
-        let input, filter, li, numberShowed;
         let node = [];
-        //
-        //get input & element
-        input = document.getElementById("food");
-        filter = input.value.toUpperCase();
+
         div = document.getElementById("dropdown");
 
         //create first li element
         node[0] = document.createElement("li")
-        node[0].textContent = response_list[0].food;
-        node[0].id = response_list[0].id;
+        node[0].textContent = response_list[0].group;
+        node[0].id = 0;
         node[0].style.display = "none";
         node[0].setAttribute("class", "food-dropdown-list");
         node[0].onmousedown = function returnId() {
             document.getElementById("food").value = "Sugar";
-            document.getElementById("food").setAttribute("foodId", 0);
         }
         div.appendChild(node[0]);
 
@@ -241,17 +264,16 @@
         //create rest element if not duplicated
         for (let i = 1; i < response_list.length; i++) {
             let check = 0;
-            if (response_list[i].food !== response_list[i - 1].food) {
+            if (response_list[i].group !== response_list[i - 1].group) {
                 node[i] = document.createElement("li");
-                node[i].textContent = response_list[i].food;
-                node[i].id = response_list[i].id;
-                check = response_list[i].id;
+                node[i].textContent = response_list[i].group;
+                node[i].id = i;
+                check = i;
                 node[i].style.display = "none"
                 node[i].setAttribute("class", "food-dropdown-list");
-                node[i].setAttribute("category", response_list[i].category);
                 node[i].setAttribute("responseId", i)
                 node[i].onmousedown = function returnId(e) {
-                    document.getElementById("food").value = response_list[e.target.id].food;
+                    document.getElementById("food").value = response_list[e.target.id].group;
                     document.getElementById("food").setAttribute("foodId", e.target.id);
                 }
                 div.appendChild(node[i]);
@@ -317,56 +339,50 @@
             alert("Please make sure the food is on the suggestion list");
         }
         else {
-            var emission;
-            //    get emission data from resposne
-            emission = {...response_list[foodId]};
-
-            delete emission.calcium;
-            delete emission.calories;
-            delete emission.category;
-            delete emission.chole_sterol;
-            delete emission.dietary_fiber;
-            delete emission.food;
-            delete emission.id;
-            delete emission.iron;
-            delete emission.key_words;
-            delete emission.land_used;
-            delete emission.potassium;
-            delete emission.protein;
-            delete emission.saturated_fat;
-            delete emission.sodium;
-            delete emission.sugars;
-            delete emission.total_carbo_hydrate;
-            delete emission.total_fat;
-            delete emission.vitamin_a;
-            delete emission.vitamin_c;
-            delete emission.water_used;
-            delete emission._id;
-            delete emission.emissions_from;
-
-            delete emission.emissionsTotal;
-
-
-            let values = Object.values(emission),
-                keys = Object.keys(emission);
-            let data = [],
-                maximum = 0;
-            for (let i = 0; i < 6; i++) {
-                if (values[i] > maximum) {
-                    maximum = values[i];
-                }
-                data[i] = {name: (keys[i].split("emissions").pop()).replaceAll("_", " "), score: values[i]}
-            }
-            showPlot(data);
+            showPlot(
+                li[foodId].textContent
+            );
 
             document.getElementById("food").value = null;
-
         }
     }
 
-    function showPlot(data){
-        console.log(data);
+    function showPlot(selectedVar){
+        // Parse data
+        d3.json(FOOD_DATA_URL + "?apikey=" + APIKEY).then(function (data){
+            console.log(data)
+
+            // X axis
+            x.domain(data.map(d => d.group));
+            xAxis.transition().duration(1000).call(d3.axisBottom(x));
+
+            // Add Y axis
+            y.domain([0, d3.max(data, d => +d[selectedVar]) ]);
+            yAxis.transition().duration(1000).call(d3.axisLeft(y));
+
+            // variable u: map data to existing bars
+            const u = svg.selectAll("rect")
+                .data(data)
+
+            // update bars
+            u.join("rect")
+                .transition()
+                .duration(1000)
+                .attr("x", d => x(d.group))
+                .attr("y", d => y(Math.abs(d[selectedVar])))
+                .attr("width", x.bandwidth())
+                .attr("height", d => height - y(Math.abs(d[selectedVar])))
+                .attr("fill", function (d){
+                    if(d[selectedVar] >= 0){
+                        return "#69b3a2";
+                    }else{
+                        return "#00FF00";
+                    }
+                })
+        });
     }
+
+
 </script>
 
 

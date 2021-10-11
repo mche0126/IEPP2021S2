@@ -216,12 +216,8 @@
     });
 
     function prepare(response_list) {
-        var input, filter, li, numberShowed;
         var node = [];
-        //
-        //get input & element
-        input = document.getElementById("food");
-        filter = input.value.toUpperCase();
+
         div = document.getElementById("dropdown");
 
         //create first li element
@@ -357,10 +353,14 @@
             var values = Object.values(emission),
                 keys = Object.keys(emission);
             let data = [],
-                maximum = 0;
+                maximum = 0,
+                minimum = 0;
             for (let i = 0; i < 6; i++) {
                 if (values[i] > maximum) {
                     maximum = values[i];
+                }
+                if(values[i] < minimum){
+                    minimum = values[i]
                 }
                 data[i] = {name: (keys[i].split("emissions").pop()).replaceAll("_", " "), score: values[i]}
             }
@@ -386,6 +386,7 @@
 
 
 // Set X
+
             const x = d3.scaleBand()
                 .domain(d3.range(data.length))
                 .range([margin.left, width - margin.right])
@@ -393,7 +394,7 @@
 
 // Set Y
             const y = d3.scaleLinear()
-                .domain([0, maximum])
+                .domain([minimum, maximum])
                 .range([height - margin.bottom, margin.top])
 
 // set SVG
@@ -401,7 +402,7 @@
                 .append("g")
                 .attr("fill", 'royalblue')
                 .selectAll("rect")
-                .data(data.sort((a, b) => d3.descending(a.score, b.score)))
+                .data(data)
                 .join("rect")
                 .attr("x", (d, i) => x(i))
                 .attr("y", d => y(d.score))
