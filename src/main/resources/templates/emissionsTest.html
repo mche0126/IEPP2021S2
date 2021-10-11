@@ -353,7 +353,6 @@
         document.getElementById("barTitle").innerHTML = "The Emission Breakdown of " + selectedVar;
         // Parse data
         d3.json(FOOD_DATA_URL + "?apikey=" + APIKEY).then(function (data){
-            console.log(data)
 
             // X axis
             x.domain(data.map(d => d.group));
