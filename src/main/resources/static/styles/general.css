@@ -15,7 +15,7 @@ body {
 }
 
 .banner { /* Style for all page banners */
-  background-color: #99cc00;
+  background-color: #B0DC50;
   border-radius: 5px 30px;
   color: white;
   font-size: 130%;
@@ -76,7 +76,7 @@ body {
 .navbar .navbar-nav > li > a:focus,
 .navbar .navbar-nav > .active > a:hover,
 .navbar .navbar-nav > .active > a:focus {
-  color: #00D100;
+  color: #99cc00;
   background-color: #dddddd;
 }
 
@@ -133,7 +133,7 @@ body {
 
 footer{
   width: 100%;
-  background-color: #339933;
+  background-color: #B0DC50;
   color: whitesmoke;
   height: 250px;
   font-family: sans-serif !important;
