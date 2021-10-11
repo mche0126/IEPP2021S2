@@ -352,8 +352,8 @@ footer a:hover{
 /* Styles for Tips page items only */
 .card-body{
   /*background-image: url(bgimage.gif);*/
-  background-color: #e5e6c8;
-  border-color: #93ce95;
+  background-color: #99cc00 !important; 
+  border: none !important;
   border-radius: 20px;
   color: black;
   height: 220px;
