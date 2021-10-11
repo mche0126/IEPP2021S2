@@ -307,6 +307,13 @@
                 numberShowed++;
                 if (numberShowed <= 5) {
                     li[i].style.display = "";
+                    if(i >= 1){
+                        for(j = 0; j < i; j++){
+                            if(li[i].textContent === li[j].textContent || li[i].innerText === li[j].innerText){
+                                li[i].style.display = "none";
+                            }
+                        }
+                    }
                 } else {
                     li[i].style.display = "none"
                 }
