@@ -15,7 +15,7 @@ body {
 }
 
 .banner { /* Style for all page banners */
-  background-color: #81c784;
+  background-color: #99cc00;
   border-radius: 5px 30px;
   color: white;
   font-size: 130%;
@@ -372,8 +372,11 @@ footer a:hover{
   font-weight: lighter;
 }
 
+tr{
+  border-bottom: 1px solid grey;
+}
 
-#info-1 h2, #info-2 h2, #info-3 h2{ /* Heading style for main content of tips page*/
+#info-1 h2, #info-2 h2, #info-3 h2, #info-1 h3, #info-2 h3, #info-3 h3{ /* Heading style for main content of tips page*/
   font-weight: bold;
   padding-left: 12px;
 }
@@ -394,6 +397,8 @@ footer a:hover{
   }
 
 }
+
+/*Styles for recipe pages only*/
 
 #ingredient{ /* Input box for the recipe ingredient search form */
   /*border: 1px solid grey;*/
