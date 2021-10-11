@@ -137,7 +137,9 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div id="barChart"></div>
+            <div id="barChart">
+                <p id="barTitle"></p>
+            </div>
         </div>
     </div>
 </div>
@@ -166,7 +168,7 @@
                         <div class="col-lg-3">
                             <h3 style="font-weight: bolder; margin-left: 20px">What we have</h3>
                             <ul style="list-style-type:none;">
-                                <a href="/emission">
+                                <a href="/emissions">
                                     <li><h6>Emission Calculator</h6></li>
                                 </a>
                                 <a href="/tips">
@@ -175,12 +177,12 @@
                                 <a href="/map">
                                     <li><h6>Vegan Food Map</h6></li>
                                 </a>
-                                <a href="/workinprogress">
+                                <a href="/recipes">
                                     <li><h6>Vegan Food Recipes</h6></li>
                                 </a>
-                                <a href="/workinprogress">
-                                    <li><h6>Food Recipes Comparison</h6></li>
-                                </a>
+<!--                                <a href="/workinprogress">-->
+<!--                                    <li><h6>Food Recipes Comparison</h6></li>-->
+<!--                                </a>-->
                             </ul>
                         </div>
                     </div>
@@ -348,6 +350,7 @@
     }
 
     function showPlot(selectedVar){
+        document.getElementById("barTitle").innerHTML = "The Emission Breakdown of " + selectedVar;
         // Parse data
         d3.json(FOOD_DATA_URL + "?apikey=" + APIKEY).then(function (data){
             console.log(data)
