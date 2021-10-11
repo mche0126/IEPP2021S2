@@ -137,9 +137,9 @@
             </div>
         </div>
         <div class="col-md-6">
+            <img id="GHG" src="images/GHG.png" width="550px" height="auto" style="margin-top: 100px">
             <div id="barChart">
-                <p id="barTitle" style="text-align: center"></p>
-                <br>
+                <p id="barTitle" style="text-align: center; font-weight: bolder"></p>
                 <div id="legend" hidden>Legend:
                     <p id="negativeLegend" style="background-color: #00ff00; width: 200px">Negative Emission</p>
                     <p id="positiveLegend" style="background-color: #69b3a2; width: 200px">Positive Emission</p>
@@ -356,6 +356,9 @@
 
     function showPlot(selectedVar){
         document.getElementById("barTitle").innerHTML = "The Emission Breakdown of " + selectedVar;
+        if(document.getElementById("GHG")){
+            document.getElementById("GHG").remove();
+        }
         document.getElementById("legend").removeAttribute("hidden");
         // Parse data
         d3.json(FOOD_DATA_URL + "?apikey=" + APIKEY).then(function (data){
