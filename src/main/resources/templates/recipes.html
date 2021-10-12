@@ -13,15 +13,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 
-    <link rel="stylesheet" href="styles/navigationBar.css">
     <link rel="stylesheet" href="styles/general.css">
-    <link rel="stylesheet" href="styles/footer.css">
+
 
 
     <!--    font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik&display=swap">
 </head>
 <body>
@@ -89,26 +87,27 @@
                         values, so that you can select a recipe which is less harmful to the planet.</p>
                     <form th:action="@{/recipesresults}" th:object="${recipeItem}" method="post" style="margin-top: 60px">
                         <p>Enter the food item:
-                            <input id="ingredient"  type="text" th:field="*{name}" />
+                            <input id="ingredient"  type="text" th:field="*{name}" placeholder="Search.."/>
                         </p>
                         <div class="row"></div>
                         <p style="margin-top: 25px;">
                             <input type="submit" class="btn btn-primary"
                                    style ="background-color: #99cc00 !important; border: none !important; "
-                                   value="View recipes" /> </p>
+                                   value="View recipes"/>
+                        </p>
                     </form>
                 </td>
                 <td style="width:50%; border:none;">
-                    <p> Want to see recipes for a wider category? Choose a category from our list.</p>
+                    <p> Want to see recipes for a wider category? <br>Choose a category from our list.</p>
                     <form th:action="@{/recipescategories}" th:object="${recipeItem}" method="post" style="margin-top: 60px">
                         <p>Enter the food category:
-                            <input id="category" type="text" th:field="*{category}" />
+                            <input id="category" type="text" th:field="*{category}" placeholder="Search.."/>
                         </p>
 
                         <p style="margin-top: 25px;">
                             <input type="submit" class="btn btn-primary"
                                    style ="background-color: #99cc00 !important; border: none !important; "
-                                   value="View recipes" />
+                                   value="View recipes"/>
                         </p>
                     </form>
                 </td>
