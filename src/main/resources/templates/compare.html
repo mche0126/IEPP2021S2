@@ -2,9 +2,344 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Compare</title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>Recipes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="styles/general.css">
+
+
+    <!--    font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik&display=swap">
+
 </head>
 <body>
 
+<!--navigation bar-->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="../.."><img src="images/eco-eat-logo.png" style="height: 80px"/></a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="../..">Home</a></li>
+                <li><a href="/emissions">Emission Calculator</a></li>
+                <li><a href="/tips">Low Carbon Tips</a></li>
+                <li><a href="/map">Vegan Food Map</a></li>
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Recipes <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../recipes">Find a recipe that suits you</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="../compare">Compare two different recipes</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Blank space for navigation -->
+<div class="container">
+    <div class="row" style="margin-top: 100px;"></div>
+</div>
+
+
+
+<!-- Accept user input for food item to view recipes.-->
+<div class="container">
+    <div class="row" style="margin-top: 50px;">
+        <div class="row">
+            <table class="table">
+                <tr>
+                    <td style="width:50%; border:none;">
+                        <div class="form-group row">
+                            <label for="recipe-one" class="col-sm-4 col-form-label">Search recipe no. 1</label>
+                            <div id="dropdown-section-one" class="col-sm-6">
+                                <input id="recipe-one" type="text" placeholder="Search.." onfocus="toggleOption()"
+                                       onkeyup="inputFilter()" onblur="toggleOption()" style="width: 100%;" />
+                                <div id="dropdown-one" class="dropdown-content dropdown" style="width: 100%;">
+                                    <!-- Add element from js -->
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="width:50%; border:none;">
+                        <div class="form-group row">
+                            <label for="recipe-two" class="col-sm-4 col-form-label">Search recipe no. 2</label>
+                            <div id="dropdown-section-two" class="col-sm-6">
+                                <input style="width: 100%;" id="recipe-two" type="text" placeholder="Search.." onfocus="toggleOption()"
+                                       onkeyup="inputFilter()" onblur="toggleOption()"/>
+                                <div id="dropdown-two" class="dropdown-content dropdown">
+                                    <!-- Add element from js -->
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        <div id="itemContent"></div>
+
+
+
+
+    </div>
+</div>
+
+
+<!--            Footer              -->
+<div class="container" style="width: 100%;
+        margin-top: 100px;">
+    <div class="row cen">
+        <footer>
+            <div class="row" style="width: 100%">
+                <div class="col-xs-1"></div>
+                <div class="col-lg-3">
+                    <img id="footerLogo" src="images/eco-eat-logo.png" style="  margin-right: 30px">
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <h3 style="font-weight: bolder; margin-left: 20px">About Us</h3>
+                            <ul style="list-style-type:none;">
+                                <a href="/workinprogress">
+                                    <li><h6>Our Project</h6></li>
+                                </a>
+                                <a href="/workinprogress">
+                                    <li><h6>Our Team</h6></li>
+                                </a>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3">
+                            <h3 style="font-weight: bolder; margin-left: 20px">What we have</h3>
+                            <ul style="list-style-type:none;">
+                                <a href="/emission">
+                                    <li><h6>Emission Calculator</h6></li>
+                                </a>
+                                <a href="/tips">
+                                    <li><h6>Low Carbon Tips</h6></li>
+                                </a>
+                                <a href="/map">
+                                    <li><h6>Vegan Food Map</h6></li>
+                                </a>
+                                <a href="/workinprogress">
+                                    <li><h6>Vegan Food Recipes</h6></li>
+                                </a>
+                                <a href="/workinprogress">
+                                    <li><h6>Food Recipes Comparison</h6></li>
+                                </a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="copyright">Leara Eco-Eat Project Team © 2021</p>
+        </footer>
+
+    </div>
+</div>
+<script>
+
+
+
+    //function filter
+    function inputFilter() {
+        let input, filter, li, numberShowed;
+        let element = event.target.id;
+
+        //get input & element
+        input = document.getElementById(element);
+        filter = input.value.toUpperCase();
+        let div;
+
+        if(input.id == "recipe-one"){
+            div = document.getElementById("dropdown-one");
+            li = document.getElementsByClassName("recipe-one-dropdown-list");
+        }
+
+        else if(input.id == "recipe-two"){
+            div = document.getElementById("dropdown-two");
+            li = document.getElementsByClassName("recipe-two-dropdown-list");
+        }
+
+
+        //filter element by input
+        numberShowed = 0;
+        let mark;
+
+        for (let i = 0; i < li.length; i++) {
+            var txtValue = li[i].textContent || li[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                numberShowed++;
+                if (numberShowed <= 5) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none"
+                }
+                mark = i;
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+        /*if (document.getElementById("recipe-one").value.toUpperCase() === li[mark].textContent.toUpperCase() ||
+            document.getElementById("recipe-two").value.toUpperCase() === li[mark].innerText.toUpperCase()) {
+            // document.getElementById("food").setAttribute("foodId", mark)
+        } else {
+            // document.getElementById("food").removeAttribute("foodId")
+        }*/
+    }
+
+    //show dropdown list
+    function toggleOption() {
+        let element = event.target.id;
+        if(element === "recipe-one")
+            document.getElementById("dropdown-one").classList.toggle("showPic");
+        else if (element === "recipe-two")
+            document.getElementById("dropdown-two").classList.toggle("showPic");
+        inputFilter();
+    }
+
+    function prepareOne(response) {
+        let node = [];
+        let div = document.getElementById("dropdown-one");
+
+        //create first li element
+        node[0] = document.createElement("li")
+        node[0].textContent = response[0]["name"];
+        node[0].id = response[0]["_id"];
+        node[0].style.display = "none";
+        node[0].setAttribute("class", "recipe-one-dropdown-list");
+        node[0].onmousedown = function returnId() {
+            document.getElementById("recipe-one").value = response[0]["name"];
+           // document.getElementById("recipe-two").setAttribute("foodId", 0);
+        }
+        div.appendChild(node[0]);
+
+
+        //create rest element if not duplicated for text box one
+        for (let i = 1; i < response.length; i++) {
+            let check = 0;
+            if (response[i]["name"] !== response[i-1]["name"]) {
+                node[i] = document.createElement("li");
+                node[i].textContent = response[i]["name"];
+               node[i].id = i;
+                check = i;
+                node[i].style.display = "none"
+                node[i].setAttribute("class", "recipe-one-dropdown-list");
+                node[i].setAttribute("responseId", i)
+                node[i].onmousedown = function returnId(e) {
+                    document.getElementById("recipe-one").value = response[e.target.id]["name"];
+                    //document.getElementById("food").setAttribute("foodId", e.target.id);
+                }
+                div.appendChild(node[i]);
+            }
+        }
+
+
+    }
+
+    function prepareTwo(response) {
+        var node = [];
+        let div = document.getElementById("dropdown-two");
+        //create first li element
+        node[0] = document.createElement("li")
+        node[0].textContent = response[0]["name"];
+        node[0].id = response[0]["_id"];
+        node[0].style.display = "none";
+        node[0].setAttribute("class", "recipe-two-dropdown-list");
+        node[0].onmousedown = function returnId() {
+            document.getElementById("recipe-two").value = response[0]["name"];
+            // document.getElementById("recipe-two").setAttribute("foodId", 0);
+        }
+        div.appendChild(node[0]);
+
+
+        //create rest element if not duplicated for text box one
+        for (let i = 1; i < response.length; i++) {
+            let check = 0;
+            if (response[i]["name"] !== response[i-1]["name"]) {
+                node[i] = document.createElement("li");
+                node[i].textContent = response[i]["name"];
+                //nodeOne[i].id = response[i]["_id"];
+                node[i].id = i;
+                check = i;
+                node[i].style.display = "none"
+                node[i].setAttribute("class", "recipe-two-dropdown-list");
+                node[i].setAttribute("responseId", i)
+                node[i].onmousedown = function returnId(e) {
+                    document.getElementById("recipe-two").value = response[e.target.id]["name"];
+                    //document.getElementById("food").setAttribute("foodId", e.target.id);
+                }
+                div.appendChild(node[i]);
+            }
+        }
+
+
+    }
+    $(document).ready(function(){
+
+        let ajaxUrl = "https://iepprecipe-46db.restdb.io/rest/recipe-1300-records"
+
+        var settings = {
+            "async": false,
+            "crossDomain": true,
+            "url": ajaxUrl,
+            "method": "GET",
+            "headers": {
+                "content-type": "application/json",
+                "x-apikey": "615d72578597142da1745453",
+                "cache-control": "no-cache"
+            }
+        }
+        $.ajax(settings).done(function (response) {
+
+
+            prepareOne(response);
+            prepareTwo(response);
+            /*let i = 0;
+            for (i; i < response.length; i++) {
+                $("#name" + i).append(response[i]["name"]);
+                $("#emissions"+ i).append(response[i]["emissions_total"] + ' kg');
+                $("#ingredients"+ i).append(response[i]["ingredients"]);
+                $("#directions"+ i).append(response[i]["directions"]);
+                $("#image"+ i).attr("src", response[i]["images"]);
+                $("#link"+ i).attr("href", 'https://' +response[i]["link"]);
+                $("#calories"+ i).append(response[i]["calories"] + '</br>kCal');
+                $("#protein"+ i).append(response[i]["protein"] + '</br>g');
+                $("#carbs"+ i).append(response[i]["total_carbohydrate"] + '</br>g');
+                $("#fats"+ i).append(response[i]["total_fat"] + '</br>g');
+            }*/
+
+        });
+
+
+
+    });
+
+
+</script>
 </body>
 </html>
