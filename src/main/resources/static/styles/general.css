@@ -372,8 +372,20 @@ footer a:hover{
   font-weight: lighter;
 }
 
-tr{
+#tipsPage tbody{
+  width: 100%;
+}
+
+#tipsPage  tr{
   border-bottom: 1px solid grey;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#tipsPage tr td{
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
 }
 
 #info-1 h2, #info-2 h2, #info-3 h2, #info-1 h3, #info-2 h3, #info-3 h3{ /* Heading style for main content of tips page*/
