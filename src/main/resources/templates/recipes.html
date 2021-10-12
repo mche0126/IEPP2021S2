@@ -87,7 +87,7 @@
                         values, so that you can select a recipe which is less harmful to the planet.</p>
                     <form th:action="@{/recipesresults}" th:object="${recipeItem}" method="post" style="margin-top: 60px">
                         <p>Enter the food item:
-                            <input id="ingredient"  type="text" th:field="*{name}" placeholder="Search.."/>
+                            <input id="ingredient"  type="text" th:field="*{name}"/>
                         </p>
                         <div class="row"></div>
                         <p style="margin-top: 25px;">
@@ -101,7 +101,7 @@
                     <p> Want to see recipes for a wider category? <br>Choose a category from our list.</p>
                     <form th:action="@{/recipescategories}" th:object="${recipeItem}" method="post" style="margin-top: 60px">
                         <p>Enter the food category:
-                            <input id="category" type="text" th:field="*{category}" placeholder="Search.."/>
+                            <input id="category" type="text" th:field="*{category}"/>
                         </p>
 
                         <p style="margin-top: 25px;">
