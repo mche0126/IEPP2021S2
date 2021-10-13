@@ -81,10 +81,12 @@
     <div class="row" style="margin-top: 50px;">
         <div><p>Select two recipes from our list, to view emission values and choose one that is better for the environment.
             You can see the total emissions, land usage for agriculture or animal rearing, farm maintenance
-            and other factors.
+            and other factors.<br>
         </p></div>
         <div class="row"></div>
-        <div class="row">
+        <div class="row"></div>
+        <div class="row" id="loadingContent"><h4>Please wait while we load our collection of over 1000 recipes!</h4></div>
+        <div id="bodyContent" class="row" style="display: none;">
             <table class="table">
                 <tr>
                     <td style="width:50%; border:none;">
@@ -427,7 +429,8 @@
             prepareOne(response);
             prepareTwo(response);
 
-
+            $("#loadingContent").css('display','none');
+            $("#bodyContent").css('display','block');
             let buttonHtml = '<input id="comp" type="submit" value="Compare"/>';
             $("#compareButton").append(buttonHtml);
             $("#comp").addClass('btn btn-primary');
