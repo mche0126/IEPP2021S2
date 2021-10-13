@@ -432,3 +432,21 @@ footer a:hover{
   border: none;
   border-bottom: 1px solid #ddd;
 }
+
+#emissionTable {
+
+  border-collapse: collapse;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#emissionTable td, #emissionTable th {
+  border: 1px solid #9DC10A;
+  padding: 8px;
+}
+
+#emissionTable tr:nth-child(even){background-color: #E2F498;}
+
+#emissionTable tr:hover {background-color: #9DC10A;}
+

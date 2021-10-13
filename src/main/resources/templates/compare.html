@@ -64,11 +64,23 @@
     <div class="row" style="margin-top: 100px;"></div>
 </div>
 
-
+<!-- Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="banner">
+                <div>Compare recipes based on carbon emissions and resource usage!</div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
 
 <!-- Accept user input for food item to view recipes.-->
 <div class="container">
     <div class="row" style="margin-top: 50px;">
+        <div><p>Select two recipes from our list, to view emission values and choose one that is better for the environment. </p></div>
+
         <div class="row">
             <table class="table">
                 <tr>
@@ -97,11 +109,81 @@
                         </div>
                     </td>
                 </tr>
-            </table>
+                <tr>
+                    <td style="border:none;">
+                        <div class="col-sm-10"></div>
+                        <div class="col-sm-2" id="compareButton"></div>
 
+                    </td>
+                    <td style="border:none;"></td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+            <div class="row"></div>
+           </table>
+
+            <div id="messageContent" style="display: none;"><h4>Please select two different recipes.</h4></div>
+
+
+
+            <div id="emissionContent" style="width: 100%; display:none;">
+                <div style="width: 50%;  float: left;">
+                    <table id="emissionTable" >
+                        <tr>
+                            <td style="width:33%;"></td>
+                            <td style="width:33%;"id="recipe1name"></td>
+                            <td style="width:33%;"id="recipe2name"></td>
+                        </tr>
+                        <tr>
+                            <td>Total Emissions</td>
+                            <td id="recipe1total"></td>
+                            <td id="recipe2total"></td>
+                        </tr>
+                        <tr>
+                            <td>Land Use </td>
+                            <td id="recipe1land"></td>
+                            <td id="recipe2land"></td>
+                        </tr>
+                        <tr>
+                            <td>Farm </td>
+                            <td id="recipe1farm"></td>
+                            <td id="recipe2farm"></td>
+                        </tr>
+                        <tr>
+                            <td>Animal Feed </td>
+                            <td id="recipe1animal"></td>
+                            <td id="recipe2animal"></td>
+                        </tr>
+                        <tr>
+                            <td>Processing </td>
+                            <td id="recipe1processing"></td>
+                            <td id="recipe2processing"></td>
+                        </tr>
+                        <tr>
+                            <td>Transport </td>
+                            <td id="recipe1transport"></td>
+                            <td id="recipe2transport"></td>
+                        </tr>
+                        <tr>
+                            <td>Retail </td>
+                            <td id="recipe1retail"></td>
+                            <td id="recipe2retail"></td>
+                        </tr>
+                        <tr>
+                            <td>Packaging </td>
+                            <td id="recipe1packaging"></td>
+                            <td id="recipe2packaging"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="margin-left: 50%; ">
+                    <div id="landuse" style="margin-left: 40px;"></div>
+                    <div id="wateruse" style="margin-left: 40px;"></div>
+                </div>
+            </div>
         </div>
 
-        <div id="itemContent"></div>
+
 
 
 
@@ -204,12 +286,20 @@
                 li[i].style.display = "none";
             }
         }
-        /*if (document.getElementById("recipe-one").value.toUpperCase() === li[mark].textContent.toUpperCase() ||
-            document.getElementById("recipe-two").value.toUpperCase() === li[mark].innerText.toUpperCase()) {
-            // document.getElementById("food").setAttribute("foodId", mark)
+        if (document.getElementById("recipe-one").value.toUpperCase() === li[mark].textContent.toUpperCase() ||
+            document.getElementById("recipe-one").value.toUpperCase() === li[mark].innerText.toUpperCase()) {
+           document.getElementById("recipe-one").setAttribute("recipe1", mark)
         } else {
-            // document.getElementById("food").removeAttribute("foodId")
-        }*/
+           document.getElementById("recipe-one").removeAttribute("recipe1")
+        }
+        if (document.getElementById("recipe-two").value.toUpperCase() === li[mark].textContent.toUpperCase() ||
+            document.getElementById("recipe-two").value.toUpperCase() === li[mark].innerText.toUpperCase()) {
+            document.getElementById("recipe-two").setAttribute("recipe1", mark)
+        } else {
+            document.getElementById("recipe-one").removeAttribute("recipe1")
+        }
+
+
     }
 
     //show dropdown list
@@ -232,9 +322,10 @@
         node[0].id = response[0]["_id"];
         node[0].style.display = "none";
         node[0].setAttribute("class", "recipe-one-dropdown-list");
+        node[0].setAttribute("responseId", 0);
         node[0].onmousedown = function returnId() {
             document.getElementById("recipe-one").value = response[0]["name"];
-           // document.getElementById("recipe-two").setAttribute("foodId", 0);
+
         }
         div.appendChild(node[0]);
 
@@ -252,8 +343,8 @@
                 node[i].setAttribute("responseId", i)
                 node[i].onmousedown = function returnId(e) {
                     document.getElementById("recipe-one").value = response[e.target.id]["name"];
-                    //document.getElementById("food").setAttribute("foodId", e.target.id);
-                }
+
+                   }
                 div.appendChild(node[i]);
             }
         }
@@ -262,7 +353,7 @@
     }
 
     function prepareTwo(response) {
-        var node = [];
+        let node = [];
         let div = document.getElementById("dropdown-two");
         //create first li element
         node[0] = document.createElement("li")
@@ -270,10 +361,10 @@
         node[0].id = response[0]["_id"];
         node[0].style.display = "none";
         node[0].setAttribute("class", "recipe-two-dropdown-list");
+        node[0].setAttribute("responseId", 0);
         node[0].onmousedown = function returnId() {
             document.getElementById("recipe-two").value = response[0]["name"];
-            // document.getElementById("recipe-two").setAttribute("foodId", 0);
-        }
+       }
         div.appendChild(node[0]);
 
 
@@ -288,10 +379,10 @@
                 check = i;
                 node[i].style.display = "none"
                 node[i].setAttribute("class", "recipe-two-dropdown-list");
-                node[i].setAttribute("responseId", i)
+                node[i].setAttribute("responseId", i);
                 node[i].onmousedown = function returnId(e) {
                     document.getElementById("recipe-two").value = response[e.target.id]["name"];
-                    //document.getElementById("food").setAttribute("foodId", e.target.id);
+
                 }
                 div.appendChild(node[i]);
             }
@@ -299,6 +390,10 @@
 
 
     }
+
+
+
+
     $(document).ready(function(){
 
         let ajaxUrl = "https://iepprecipe-46db.restdb.io/rest/recipe-1300-records"
@@ -316,22 +411,148 @@
         }
         $.ajax(settings).done(function (response) {
 
-
             prepareOne(response);
             prepareTwo(response);
-            /*let i = 0;
-            for (i; i < response.length; i++) {
-                $("#name" + i).append(response[i]["name"]);
-                $("#emissions"+ i).append(response[i]["emissions_total"] + ' kg');
-                $("#ingredients"+ i).append(response[i]["ingredients"]);
-                $("#directions"+ i).append(response[i]["directions"]);
-                $("#image"+ i).attr("src", response[i]["images"]);
-                $("#link"+ i).attr("href", 'https://' +response[i]["link"]);
-                $("#calories"+ i).append(response[i]["calories"] + '</br>kCal');
-                $("#protein"+ i).append(response[i]["protein"] + '</br>g');
-                $("#carbs"+ i).append(response[i]["total_carbohydrate"] + '</br>g');
-                $("#fats"+ i).append(response[i]["total_fat"] + '</br>g');
-            }*/
+
+
+            let buttonHtml = '<input id="comp" type="submit" value="Compare"/>';
+            $("#compareButton").append(buttonHtml);
+            $("#comp").addClass('btn btn-primary');
+            $("#comp").css("background-color",'#99cc00');
+            $("#comp").css("border",'none');
+            $('#compareButton').on('click', function () {
+                $("#messageContent").css('display','none');
+                let li1 = document.getElementsByClassName("recipe-one-dropdown-list"),
+                    content1 = document.getElementById("recipe-one").value.toUpperCase();
+                let bool = false;
+                let recipe1;
+                for (let i = 0; i < li1.length; i++) {
+                    let txtValue = li1[i].textContent || li1[i].innerText;
+
+                    if(content1 === txtValue.toUpperCase()){
+                        console.log("Found element " + li1[i].getAttribute("responseId"))
+                        bool = true;
+                        recipe1 = li1[i].getAttribute("responseId");
+                    }
+                }
+
+                let li2 = document.getElementsByClassName("recipe-two-dropdown-list"),
+                    content2 = document.getElementById("recipe-two").value.toUpperCase();
+                bool = false;
+                let recipe2;
+                for (let i = 0; i < li2.length; i++) {
+                    let txtValue = li2[i].textContent || li2[i].innerText;
+
+                    if(content2 === txtValue.toUpperCase()){
+                        console.log("Found element " + li2[i].getAttribute("responseId"))
+                        bool = true;
+                        recipe2 = li2[i].getAttribute("responseId");
+                    }
+                }
+                console.log("recipe2 "+ recipe2);
+                let num1 =Number(recipe1);
+                let num2 =Number(recipe2);
+
+                if(num1 == num2)
+                {
+
+                    $("#messageContent").css('display','block');
+                    $("#emissionContent").css('display','none');
+                    $("#emissionTable").css('display','none');
+                }
+                else {
+
+                    /* Empty table contents */
+
+                    $("#recipe1name").empty();
+                    $("#recipe2name").empty();
+                    $("#recipe1total").empty();
+                    $("#recipe2total").empty();
+                    $("#recipe1land").empty();
+                    $("#recipe2land").empty();
+                    $("#recipe1farm").empty();
+                    $("#recipe2farm").empty();
+                    $("#recipe1animal").empty();
+                    $("#recipe2animal").empty();
+                    $("#recipe1processing").empty();
+                    $("#recipe2processing").empty();
+                    $("#recipe1transport").empty();
+                    $("#recipe2transport").empty();
+                    $("#recipe1retail").empty();
+                    $("#recipe2retail").empty();
+                    $("#recipe1packaging").empty();
+                    $("#recipe2packaging").empty();
+
+
+                    /* Fill table contents */
+
+                    $("#recipe1name").append(response[num1]["name"]);
+                    $("#recipe2name").append(response[num2]["name"]);
+                    $("#recipe1total").append(response[num1]["emissions_total"] + ' g');
+                    $("#recipe2total").append(response[num2]["emissions_total"] + ' g');
+                    $("#recipe1land").append(response[num1]["emissions_land_use"] + ' g');
+                    $("#recipe2land").append(response[num2]["emissions_land_use"] + ' g');
+                    $("#recipe1farm").append(response[num1]["emissions_farm"] + ' g');
+                    $("#recipe2farm").append(response[num2]["emissions_farm"] + ' g');
+                    $("#recipe1animal").append(response[num1]["emissions_animal_feed"] + ' g');
+                    $("#recipe2animal").append(response[num2]["emissions_animal_feed"] + ' g');
+                    $("#recipe1processing").append(response[num1]["emissions_processing"] + ' g');
+                    $("#recipe2processing").append(response[num2]["emissions_processing"] + ' g');
+                    $("#recipe1transport").append(response[num1]["emissions_transport"] + ' g');
+                    $("#recipe2transport").append(response[num2]["emissions_transport"] + ' g');
+                    $("#recipe1retail").append(response[num1]["emissions_retail"] + ' g');
+                    $("#recipe2retail").append(response[num2]["emissions_retail"] + ' g');
+                    $("#recipe1packaging").append(response[num1]["emissions_packaging"] + ' g');
+                    $("#recipe2packaging").append(response[num2]["emissions_packaging"] + ' g');
+
+                    recipe1Land = response[num1]["land_used"];
+                    recipe2Land = response[num2]["land_used"];
+                    recipe1Water = response[num1]["water_used"];
+                    recipe2Water = response[num2]["water_used"];
+
+                    if(recipe1Land > recipe2Land) {
+                        let perc= (recipe1Land - recipe2Land)/100;
+                        perc = Math.round(perc * 100) / 100;
+                        if(perc == 0) {
+                            $("#landuse").append( 'Both recipes use about the same amount of land.');
+                        }
+                        else {
+                            $("#landuse").append( response[num1]["name"] + ' uses ' + perc + '% more land than ' + response[num2]["name"]);
+
+                        }
+                    }
+                    else {
+                        let perc= (recipe2Land - recipe1Land)/100;
+                        perc = Math.round(perc * 100) / 100;
+                        $("#landuse").append( response[num2]["name"] + ' uses ' + perc + '% more land than ' + response[num1]["name"]+'.');
+                    }
+
+                    if(recipe1Water > recipe2Water) {
+                        let perc= (recipe1Water - recipe2Water)/100;
+                        perc = Math.round(perc * 100) / 100;
+                        if(perc == 0) {
+                            $("#wateruse").append( 'Both recipes use about the same amount of water.');
+                        }
+                        else {
+                            $("#wateruse").append( response[num1]["name"] + ' uses ' + perc + '% more water than ' + response[num2]["name"]+'.');
+
+                        }
+                    }
+                    else {
+                        let perc= (recipe2Water - recipe1Water)/100;
+                        if(perc == 0) {
+                            $("#wateruse").append( 'Both recipes use about the same amount of water.');
+                        }
+                        else{
+                            perc = Math.round(perc * 100) / 100;
+                            $("#wateruse").append( response[num2]["name"] + ' uses ' + perc + '% more water than ' + response[num1]["name"]);
+                        }
+                    }
+                    $("#emissionContent").css('display','block');
+                    $("#emissionTable").css('display','block');
+                }
+
+            });
 
         });
 
