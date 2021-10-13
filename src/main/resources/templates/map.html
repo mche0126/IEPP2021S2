@@ -22,6 +22,17 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
     <link rel="stylesheet" href="styles/maps.css">
+
+    <style>
+        .marker {
+            background-image: url('images/leaf.png');
+            background-size: cover;
+            width: 30px;
+            height: 30px;
+            border-radius: 30%;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
@@ -491,6 +502,16 @@
             });
 
         }
+
+        // add markers to map
+        for (const { geometry, properties } of features) {
+            // create a HTML element for each feature
+            const el = document.createElement('div');
+            el.className = 'marker';
+
+            // make a marker for each feature and add to the map
+            new mapboxgl.Marker(el).setLngLat(geometry.coordinates).addTo(map);
+        }
     }
 
     function flyToStore(currentFeature) {
@@ -510,6 +531,8 @@
             .setHTML(`<h3>${currentFeature.properties.address}</h3><h4>${currentFeature.properties.crossStreet}</h4>`)
             .addTo(map);
     }
+
+
 </script>
 
 </body>
