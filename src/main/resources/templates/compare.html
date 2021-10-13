@@ -79,8 +79,11 @@
 <!-- Accept user input for food item to view recipes.-->
 <div class="container">
     <div class="row" style="margin-top: 50px;">
-        <div><p>Select two recipes from our list, to view emission values and choose one that is better for the environment. </p></div>
-
+        <div><p>Select two recipes from our list, to view emission values and choose one that is better for the environment.
+            You can see the total emissions, land usage for agriculture or animal rearing, farm maintenance
+            and other factors.
+        </p></div>
+        <div class="row"></div>
         <div class="row">
             <table class="table">
                 <tr>
@@ -177,8 +180,18 @@
                     </table>
                 </div>
                 <div style="margin-left: 50%; ">
-                    <div id="landuse" style="margin-left: 40px;"></div>
-                    <div id="wateruse" style="margin-left: 40px;"></div>
+                    <table>
+                        <tr>
+                            <td><h4><div id="landuse" style="margin-left: 40px;"></div></h4></td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr>
+                            <td><h4><div id="wateruse" style="margin-left: 40px;"></div></h4></td>
+                        </tr>
+                    </table>
+
+
                 </div>
             </div>
         </div>
@@ -430,7 +443,7 @@
                     let txtValue = li1[i].textContent || li1[i].innerText;
 
                     if(content1 === txtValue.toUpperCase()){
-                        console.log("Found element " + li1[i].getAttribute("responseId"))
+
                         bool = true;
                         recipe1 = li1[i].getAttribute("responseId");
                     }
@@ -444,12 +457,14 @@
                     let txtValue = li2[i].textContent || li2[i].innerText;
 
                     if(content2 === txtValue.toUpperCase()){
-                        console.log("Found element " + li2[i].getAttribute("responseId"))
+
+
                         bool = true;
                         recipe2 = li2[i].getAttribute("responseId");
                     }
                 }
-                console.log("recipe2 "+ recipe2);
+
+
                 let num1 =Number(recipe1);
                 let num2 =Number(recipe2);
 
@@ -482,7 +497,8 @@
                     $("#recipe2retail").empty();
                     $("#recipe1packaging").empty();
                     $("#recipe2packaging").empty();
-
+                    $("#landuse").empty();
+                    $("#landuse").empty();
 
                     /* Fill table contents */
 
@@ -505,6 +521,7 @@
                     $("#recipe1packaging").append(response[num1]["emissions_packaging"] + ' g');
                     $("#recipe2packaging").append(response[num2]["emissions_packaging"] + ' g');
 
+
                     recipe1Land = response[num1]["land_used"];
                     recipe2Land = response[num2]["land_used"];
                     recipe1Water = response[num1]["water_used"];
@@ -517,14 +534,14 @@
                             $("#landuse").append( 'Both recipes use about the same amount of land.');
                         }
                         else {
-                            $("#landuse").append( response[num1]["name"] + ' uses ' + perc + '% more land than ' + response[num2]["name"]);
+                            $("#landuse").append( response[num1]["name"] + ' uses <b>' + perc + '%</b> more land than ' + response[num2]["name"]);
 
                         }
                     }
                     else {
                         let perc= (recipe2Land - recipe1Land)/100;
                         perc = Math.round(perc * 100) / 100;
-                        $("#landuse").append( response[num2]["name"] + ' uses ' + perc + '% more land than ' + response[num1]["name"]+'.');
+                        $("#landuse").append( response[num2]["name"] + ' uses <b>' + perc + '%</b> more land than ' + response[num1]["name"]+'.');
                     }
 
                     if(recipe1Water > recipe2Water) {
@@ -534,7 +551,7 @@
                             $("#wateruse").append( 'Both recipes use about the same amount of water.');
                         }
                         else {
-                            $("#wateruse").append( response[num1]["name"] + ' uses ' + perc + '% more water than ' + response[num2]["name"]+'.');
+                            $("#wateruse").append( response[num1]["name"] + ' uses <b>' + perc + '%</b> more water than ' + response[num2]["name"]+'.');
 
                         }
                     }
@@ -545,7 +562,7 @@
                         }
                         else{
                             perc = Math.round(perc * 100) / 100;
-                            $("#wateruse").append( response[num2]["name"] + ' uses ' + perc + '% more water than ' + response[num1]["name"]);
+                            $("#wateruse").append( response[num2]["name"] + ' uses <b>' + perc + '%</b> more water than ' + response[num1]["name"]);
                         }
                     }
                     $("#emissionContent").css('display','block');
