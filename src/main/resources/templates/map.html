@@ -401,7 +401,7 @@
         zoom: 13,
         scrollZoom: false
     });
-
+    map.addControl(new mapboxgl.NavigationControl());
     map.on('load', () => {
 
         /* Add the data to your map as a layer */
