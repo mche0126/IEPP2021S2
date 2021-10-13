@@ -78,14 +78,24 @@
 
 <!-- Accept user input for food item to view recipes.-->
 <div class="container">
-    <div class="row" style="margin-top: 50px;">
-        <div><p>Select two recipes from our list, to view emission values and choose one that is better for the environment.
-            You can see the total emissions, land usage for agriculture or animal rearing, farm maintenance
-            and other factors.<br>
-        </p></div>
+    <div id="outerrow" class="row" style="margin-top: 50px;">
+        <div class="row">
+            <div style="width: 50%;  float: left;">
+                <p>Select two recipes from our list, to view emission values and choose one that is better for the environment.
+                    You can see the total emissions, land usage for agriculture or animal rearing, farm maintenance
+                    and other factors.<br>
+                </p>
+                <div class="row"></div>
+                <div class="row"></div>
+                <div class="row" id="loadingContent"><h4>Please wait while we load our collection of over 1000 recipes!</h4></div>
+            </div>
+            <div style="margin-left: 50%; ">
+                <img src="images/recipe.jpg" class="img-fluid" alt="recipe image" style="width: 80%;">
+            </div>
+        </div>
         <div class="row"></div>
-        <div class="row"></div>
-        <div class="row" id="loadingContent"><h4>Please wait while we load our collection of over 1000 recipes!</h4></div>
+        <div class="row" style="height: 30px;"></div>
+
         <div id="bodyContent" class="row" style="display: none;">
             <table class="table">
                 <tr>
@@ -414,7 +424,7 @@
         let ajaxUrl = "https://iepprecipe-46db.restdb.io/rest/recipe-1300-records"
 
         var settings = {
-            "async": false,
+            "async": true,
             "crossDomain": true,
             "url": ajaxUrl,
             "method": "GET",
@@ -431,6 +441,8 @@
 
             $("#loadingContent").css('display','none');
             $("#bodyContent").css('display','block');
+
+
             let buttonHtml = '<input id="comp" type="submit" value="Compare"/>';
             $("#compareButton").append(buttonHtml);
             $("#comp").addClass('btn btn-primary');
