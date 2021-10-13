@@ -70,7 +70,7 @@
 <!-- Accept user input for food item to view recipes.-->
 <div class="container">
     <div class="row" style="margin-top: 50px;">
-        <div class="row">
+        <div id="header" class="row">
 
             <!-- If name is not empty -->
             <div th:if="${recipeItem.name != ''}">
@@ -83,12 +83,17 @@
 
             <div class="col-sm-4"></div>
         </div>
+        <div id="emptyMessage" style="display: none;">
+            <h2>Sorry, there are no results for that item.</h2>
+            <br/><br/>
+            <a href="../.."><button type="button" class="btn btn-primary">Go home</button></a>
+        </div>
         <input type="hidden" id="food" th:value="${recipeItem.name}"/>
         <input type="hidden" id="category" th:value="${recipeItem.category}"/>
 
-        <div id="itemContent"></div>
+        <div id="itemContent" style="display: none"></div>
 
-                <table class="table" >
+                <table id="recipeData" class="table" style="display: none">
                     <th:block th:each="i: ${#numbers.sequence(1, 9)}">
                         <tr th:id="'item' + ${i}" style="background-color: #e5e6c8;">
                             <td style="width:100%;">
@@ -154,12 +159,10 @@
                         <div class="col-lg-3">
                             <h3 style="font-weight: bolder; margin-left: 20px">About Us</h3>
                             <ul style="list-style-type:none;">
-                                <a href="/workinprogress">
+                                <a href="/project">
                                     <li><h6>Our Project</h6></li>
                                 </a>
-                                <a href="/workinprogress">
-                                    <li><h6>Our Team</h6></li>
-                                </a>
+
                             </ul>
                         </div>
                         <div class="col-lg-3">
@@ -218,27 +221,36 @@
             }
         }
         $.ajax(settings).done(function (response) {
-            console.log(response);
-            console.log(response.length);
-            let i = 0;
-            for (i; i < response.length; i++) {
-                $("#name" + i).append(response[i]["name"]);
-                $("#emissions"+ i).append(response[i]["emissions_total"] + ' kg');
-                $("#ingredients"+ i).append(response[i]["ingredients"]);
-                $("#directions"+ i).append(response[i]["directions"]);
-                $("#image"+ i).attr("src", response[i]["images"]);
-                $("#link"+ i).attr("href", 'https://' +response[i]["link"]);
-                $("#calories"+ i).append(response[i]["calories"] + '</br>kCal');
-                $("#protein"+ i).append(response[i]["protein"] + '</br>g');
-                $("#carbs"+ i).append(response[i]["total_carbohydrate"] + '</br>g');
-                $("#fats"+ i).append(response[i]["total_fat"] + '</br>g');
-            }
-            if(i < 10) {
-                for (i; i < 10; i++) {
 
-                    $("#item"+ i).remove();
+            if(response.length == 0){
+
+                $("#emptyMessage").css('display', 'block');
+            }
+            else {
+
+                $("#itemContent").css('display', 'block');
+                $("#recipeData").css('display', 'block');
+                let i = 0;
+                for (i; i < response.length; i++) {
+                    $("#name" + i).append(response[i]["name"]);
+                    $("#emissions"+ i).append(response[i]["emissions_total"] + ' kg');
+                    $("#ingredients"+ i).append(response[i]["ingredients"]);
+                    $("#directions"+ i).append(response[i]["directions"]);
+                    $("#image"+ i).attr("src", response[i]["images"]);
+                    $("#link"+ i).attr("href", 'https://' +response[i]["link"]);
+                    $("#calories"+ i).append(response[i]["calories"] + '</br>kCal');
+                    $("#protein"+ i).append(response[i]["protein"] + '</br>g');
+                    $("#carbs"+ i).append(response[i]["total_carbohydrate"] + '</br>g');
+                    $("#fats"+ i).append(response[i]["total_fat"] + '</br>g');
+                }
+                if(i < 10) {
+                    for (i; i < 10; i++) {
+
+                        $("#item"+ i).remove();
+                    }
                 }
             }
+
         });
 
      });
