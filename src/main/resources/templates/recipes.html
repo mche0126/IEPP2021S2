@@ -85,6 +85,7 @@
                 <td style="width:50%; border:none;">
                     <p> Enter an ingredient to see recipe suggestions for it along with the carbon emission
                         values, so that you can select a recipe which is less harmful to the planet.</p>
+                    <p>We will show you search results for the item or keyword.</p>
                     <form th:action="@{/recipesresults}" th:object="${recipeItem}" method="post" style="margin-top: 60px">
                         <p>Enter the food item:
                             <input id="ingredient"  type="text" th:field="*{name}"/>
@@ -98,7 +99,8 @@
                     </form>
                 </td>
                 <td style="width:50%; border:none;">
-                    <p> Want to see recipes for a wider category? <br>Choose a category from our list.</p>
+                    <p> Want to see recipes for a wider category or cuisine? <br>Search for a category or cuisine to see related results.</p>
+                    <p> For example, Australian, Indian, Chinese, High Protein, Fruit, Desserts, Chicken, Easy and so on.</p>
                     <form th:action="@{/recipescategories}" th:object="${recipeItem}" method="post" style="margin-top: 60px">
                         <p>Enter the food category:
                             <input id="category" type="text" th:field="*{category}"/>
