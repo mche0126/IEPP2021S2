@@ -475,3 +475,8 @@ footer a:hover{
 }
 
 #recipe-one:focus,#recipe-two:focus {outline: 3px solid #ddd;}
+
+/* Styles for Map items only */
+#restaurantHeading{
+  background-color: #B0DC50;
+}
