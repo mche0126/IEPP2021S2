@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.leara</groupId>
     <artifactId>EcoEat</artifactId>
-    <version>3.0.3-DEMO</version>
+    <version>4.0.0-RELEASE</version>
     <name>EcoEat</name>
     <description>EcoEat</description>
 
