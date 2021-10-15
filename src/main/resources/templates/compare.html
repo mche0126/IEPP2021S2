@@ -140,7 +140,7 @@
             <div class="row"></div>
            </table>
 
-            <div id="messageContent" style="display: none;"><h4>Please select two different recipes.</h4></div>
+            <div id="messageContent" style="display: none;"></div>
 
 
 
@@ -487,9 +487,18 @@
                 let num1 =Number(recipe1);
                 let num2 =Number(recipe2);
 
-                if(num1 == num2)
-                {
+                if (num1==undefined || num2 == undefined || isNaN(num1) || isNaN(num2)) {
 
+                    let content = '<h4>Please select recipes from the list.</h4>';
+                    $("#messageContent").append(content);
+                    $("#messageContent").css('display','block');
+                    $("#emissionContent").css('display','none');
+                    $("#emissionTable").css('display','none');
+                }
+                else  if(num1 == num2)
+                {
+                    let content = '<h4>Please select two different recipes.</h4>';
+                    $("#messageContent").append(content);
                     $("#messageContent").css('display','block');
                     $("#emissionContent").css('display','none');
                     $("#emissionTable").css('display','none');
